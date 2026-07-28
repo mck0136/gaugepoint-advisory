@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=10">
+    <link rel="stylesheet" href="styles.css?v=11">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -72,39 +72,58 @@
               <h2>The work already has a system. It may not be a good one.</h2>
             </div>
             <div class="workflow-map" aria-label="A fragmented transportation workflow">
-              <div class="workflow-track" aria-hidden="true"><span></span></div>
-              <div class="workflow-node node-order"><span>01</span><strong>Order</strong><small>Inbox</small></div>
-              <div class="workflow-node node-plan"><span>02</span><strong>Plan</strong><small>Spreadsheet</small></div>
-              <div class="workflow-node node-move"><span>03</span><strong>Move</strong><small>TMS</small></div>
-              <div class="workflow-node node-exception"><span>04</span><strong>Exception</strong><small>Phone call</small></div>
-              <div class="workflow-node node-close"><span>05</span><strong>Close</strong><small>Manual follow-up</small></div>
+              <div class="workflow-track" aria-hidden="true"><span></span><i></i></div>
+              <div class="workflow-node node-order">
+                <span class="workflow-index">01</span><strong>Order received</strong><small>INBOX · 14:18:02</small><em>RECEIVED</em>
+              </div>
+              <div class="workflow-node node-plan">
+                <span class="workflow-index">02</span><strong>Plan load</strong><small>SPREADSHEET · 14:21:16</small><em>PLANNED</em>
+              </div>
+              <div class="workflow-node node-move">
+                <span class="workflow-index">03</span><strong>Dispatch / move</strong><small>TMS · 14:27:44</small><em>IN TRANSIT</em>
+              </div>
+              <div class="workflow-node node-exception">
+                <span class="workflow-index">04</span><strong>Exception</strong><small>PHONE CALL · 14:32:08</small><em>NO OWNER</em>
+              </div>
+              <div class="workflow-node node-close">
+                <span class="workflow-index">05</span><strong>Resolve / close</strong><small>MANUAL FOLLOW-UP</small><em>PENDING</em>
+              </div>
+              <div class="exception-annotations" aria-hidden="true">
+                <span>Missing appointment</span><span>Driver delay</span><span>No clear owner</span>
+              </div>
             </div>
           </div>
           <div class="fragmented-steps">
-            <article class="story-step reveal" data-workflow-step="order">
-              <p class="eyebrow">The intake</p>
+            <article class="story-step workflow-panel reveal" data-workflow-step="order">
+              <p class="workflow-panel-state"><span>Order received</span><time>14:18:02</time></p>
               <h3>Information arrives faster than the operation can structure it.</h3>
               <p>Tenders, confirmations, emails, calls, and customer requirements enter through different channels. People become the integration layer.</p>
+              <dl><div><dt>Source</dt><dd>Customer inbox</dd></div><div><dt>Owner</dt><dd>Customer service</dd></div><div><dt>Status</dt><dd>Received</dd></div></dl>
             </article>
-            <article class="story-step reveal" data-workflow-step="plan">
-              <p class="eyebrow">The handoff</p>
+            <article class="story-step workflow-panel reveal" data-workflow-step="plan">
+              <p class="workflow-panel-state"><span>Plan load</span><time>+03:14</time></p>
               <h3>The same work is handled differently by person, branch, or customer.</h3>
               <p>Process variation creates rework, weakens measurement, and makes any automated recommendation harder to trust.</p>
+              <dl><div><dt>Source</dt><dd>Planning sheet</dd></div><div><dt>Owner</dt><dd>Local planner</dd></div><div><dt>Status</dt><dd>Planned</dd></div></dl>
             </article>
-            <article class="story-step reveal" data-workflow-step="move">
-              <p class="eyebrow">The systems</p>
+            <article class="story-step workflow-panel reveal" data-workflow-step="move">
+              <p class="workflow-panel-state"><span>Dispatch / move</span><time>+09:42</time></p>
               <h3>Critical information exists, but it does not move with the decision.</h3>
               <p>Disconnected systems force teams to search, re-key, interpret, and reconcile before they can act.</p>
+              <dl><div><dt>Source</dt><dd>TMS status</dd></div><div><dt>Owner</dt><dd>Dispatch</dd></div><div><dt>Status</dt><dd>In transit</dd></div></dl>
             </article>
-            <article class="story-step reveal" data-workflow-step="exception">
-              <p class="eyebrow">The exception</p>
+            <article class="story-step workflow-panel exception-panel reveal" data-workflow-step="exception">
+              <p class="workflow-panel-state"><span>Exception detected</span><time>14:32:08</time></p>
               <h3>Ownership becomes unclear when the standard process breaks.</h3>
               <p>Without explicit decision rights and escalation rules, speed depends on who notices and who knows what to do next.</p>
+              <dl><div><dt>Process</dt><dd>Standard flow broken</dd></div><div><dt>Owner</dt><dd class="risk-state">No explicit owner</dd></div><div><dt>Escalation</dt><dd>Tribal knowledge</dd></div><div><dt>Elapsed</dt><dd>12 minutes</dd></div></dl>
+              <div class="exception-alert"><span>MANUAL INTERVENTION REQUIRED</span><strong>Missing appointment · driver waiting</strong></div>
             </article>
-            <article class="story-step story-conclusion reveal" data-workflow-step="close">
-              <p class="eyebrow">The consequence</p>
+            <article class="story-step workflow-panel story-conclusion reveal" data-workflow-step="close">
+              <p class="workflow-panel-state"><span>Resolve / close</span><time>+27:06</time></p>
               <h3>AI does not fix a fragmented operation. It accelerates it.</h3>
               <p>Readiness begins by making the work visible, measurable, connected, and accountable.</p>
+              <dl><div><dt>Future state</dt><dd>Owner assigned</dd></div><div><dt>Control</dt><dd>Escalation rule triggered</dd></div><div><dt>Evidence</dt><dd>Status updated</dd></div></dl>
             </article>
           </div>
         </div>
@@ -206,49 +225,95 @@
                 <h3>Turn a physical event into a trusted workflow event.</h3>
                 <p>Cameras and sensors can identify equipment, verify arrival, and assess condition. Qualified people remain accountable for what happens next.</p>
               </div>
-              <div class="observe-system" aria-label="A trailer arrival is detected, verified, checked, and added to the workflow">
-                <div class="event-asset">
-                  <span class="technical-label">TRAILER 4821</span>
-                  <div class="trailer-shape" aria-hidden="true"><i></i><i></i><i></i></div>
-                  <span class="sensor-tag">CAMERA 03</span>
+              <div class="observe-cv-system" data-observe-system aria-label="Computer vision tracks a trailer-yard event through verification and human review">
+                <!-- Footage: Alex Kad / Pexels, video 5171156. Interface overlay is native Gaugepoint UI. -->
+                <video class="observe-video" muted loop playsinline preload="none" poster="assets/transport-yard-observe-poster.jpg" data-lazy-video>
+                  <source data-src="assets/transport-yard-observe.mp4" type="video/mp4">
+                </video>
+                <div class="observe-video-grade" aria-hidden="true"></div>
+                <div class="cv-meta">
+                  <span>CAMERA 03</span><span>GATE NORTH</span><time>14:32:08</time>
                 </div>
-                <div class="event-signal" aria-hidden="true"></div>
-                <div class="event-states">
-                  <span class="is-live">ARRIVAL DETECTED</span>
-                  <span>ID VERIFIED</span>
-                  <span>CONDITION CHECKED</span>
-                  <span>WORKFLOW UPDATED</span>
-                  <span class="human-state">HUMAN REVIEW REQUIRED</span>
+                <div class="cv-tracking-box" aria-hidden="true">
+                  <span>TRAILER 4821</span><i></i>
+                </div>
+                <div class="cv-subject-meta">
+                  <span>CONTAINER ID · MSKU 482106</span>
+                  <span>SEAL STATUS · INTACT</span>
+                  <span>EVENT CREATED · 0247</span>
+                </div>
+                <div class="cv-state-sequence">
+                  <span data-cv-state="1">ARRIVAL DETECTED</span>
+                  <span data-cv-state="2">EQUIPMENT ID VERIFIED</span>
+                  <span data-cv-state="3">CONDITION CHECKED</span>
+                  <span data-cv-state="4">WORKFLOW UPDATED</span>
+                  <span data-cv-state="5">HUMAN REVIEW REQUIRED</span>
                 </div>
               </div>
             </article>
 
-            <article class="os-stage understand-stage reveal">
-              <div class="understand-system" aria-label="Operating signals are interpreted into usable context">
-                <div class="context-inputs"><span>TENDER</span><span>TMS STATUS</span><span>CUSTOMER RULE</span></div>
-                <div class="context-line" aria-hidden="true"></div>
-                <div class="context-output"><small>OPERATING CONTEXT</small><strong>Service risk identified</strong><span>Evidence attached</span></div>
-              </div>
-              <div class="os-copy">
-                <p class="eyebrow">Understand</p>
-                <h3>Turn signals into usable context.</h3>
-                <p>Read documents, reconcile operating data, and surface what changed before a person or system makes a decision.</p>
-              </div>
-            </article>
+            <div class="decision-sequence">
+              <article class="os-stage understand-stage reveal">
+                <div class="reasoning-visual" aria-label="Tender, TMS, and customer evidence are reconciled into an operating-context record">
+                  <div class="evidence-stream">
+                    <div data-evidence="tender"><span>TENDER</span><strong>Delivery required 10:00</strong><small>Customer confirmation</small></div>
+                    <div data-evidence="tms"><span>TMS STATUS</span><strong>Updated ETA 10:42</strong><small>Last update 09:31</small></div>
+                    <div data-evidence="rule"><span>CUSTOMER RULE</span><strong>Escalate if delay exceeds 30 min</strong><small>Service profile · priority</small></div>
+                  </div>
+                  <div class="reasoning-path" aria-hidden="true"><i></i><span>RECONCILE</span></div>
+                  <div class="context-record">
+                    <p><span>OPERATING CONTEXT</span><time>09:32:06</time></p>
+                    <strong>SERVICE RISK IDENTIFIED</strong>
+                    <ul>
+                      <li>ETA exceeds appointment</li>
+                      <li>Customer threshold breached</li>
+                      <li>42-minute projected delay</li>
+                      <li>Evidence attached</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="os-copy">
+                  <p class="eyebrow">Understand</p>
+                  <h3>Make the reasoning visible.</h3>
+                  <p>Reconcile operating evidence, show which threshold was breached, and preserve the facts behind the conclusion.</p>
+                </div>
+              </article>
 
-            <article class="os-stage coordinate-stage reveal">
-              <div class="coordinate-system" aria-label="Fragmented inputs become one owned and measurable action">
-                <div class="coordinate-inputs"><span>EMAIL</span><span>TMS</span><span>CUSTOMER</span><span>DRIVER</span><span>WAREHOUSE</span><span>SENSOR</span></div>
-                <div class="coordinate-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="coordination-core"><small>EXCEPTION CREATED</small><strong>Owner assigned</strong><span>12 MIN ELAPSED</span></div>
-                <div class="resolution-flow"><span>MISSING INFORMATION</span><span>ESCALATED</span><span class="resolved">RESOLVED</span></div>
+              <div class="decision-handoff reveal" aria-label="Operating context creates exception 0247">
+                <span>CONTEXT RECORD</span><i></i><strong>EXCEPTION 0247 CREATED</strong>
               </div>
-              <div class="os-copy">
-                <p class="eyebrow">Coordinate</p>
-                <h3>Turn stalled work into owned action.</h3>
-                <p>Bring fragmented inputs into one managed exception, assign an owner, update status, and escalate within defined authority.</p>
-              </div>
-            </article>
+
+              <article class="os-stage coordinate-stage reveal">
+                <div class="exception-workflow" aria-label="Fragmented inputs become exception 0247, an owned and measurable case">
+                  <div class="exception-inputs">
+                    <div><span>EMAIL</span><strong>Missing appointment</strong></div>
+                    <div><span>DRIVER</span><strong>Waiting at gate</strong></div>
+                    <div><span>TMS</span><strong>ETA breached</strong></div>
+                    <div><span>CUSTOMER</span><strong>Status request</strong></div>
+                    <div><span>WAREHOUSE</span><strong>Door unavailable</strong></div>
+                  </div>
+                  <div class="exception-case">
+                    <div class="case-heading"><span>EXCEPTION 0247</span><time>12 MIN ELAPSED</time></div>
+                    <h4>APPOINTMENT CONFLICT</h4>
+                    <dl>
+                      <div><dt>Owner</dt><dd>Dispatch · Central Region</dd></div>
+                      <div><dt>Next action</dt><dd>Confirm revised appointment</dd></div>
+                      <div><dt>Authority</dt><dd>Dispatch may reschedule within SLA</dd></div>
+                      <div><dt>Escalates at</dt><dd>20 minutes</dd></div>
+                      <div><dt>Current status</dt><dd class="case-status">Owner assigned</dd></div>
+                    </dl>
+                  </div>
+                  <div class="case-progress">
+                    <span>Exception created</span><span>Owner assigned</span><span>Status updated</span><span>Escalation checked</span><span>Resolved</span>
+                  </div>
+                </div>
+                <div class="os-copy">
+                  <p class="eyebrow">Coordinate</p>
+                  <h3>Turn stalled work into owned action.</h3>
+                  <p>Consolidate the evidence into one case, assign authority, measure elapsed time, and move the exception toward resolution.</p>
+                </div>
+              </article>
+            </div>
 
             <article class="os-stage act-stage reveal">
               <div class="os-copy">
@@ -407,6 +472,6 @@
 
     <div id="site-footer"></div>
     <script src="content-data.js?v=9"></script>
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=11"></script>
   </body>
 </html>

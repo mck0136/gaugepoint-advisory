@@ -118,14 +118,52 @@ if (workflowSteps.length && workflowMap) {
       node.classList.toggle("is-active", node.classList.contains(`node-${key}`));
       node.classList.toggle("is-complete", index < activeIndex);
     });
+    workflowMap.dataset.current = key;
+    workflowMap.classList.toggle("is-exception", key === "exception");
     workflowMap.style.setProperty("--workflow-progress", progressByStep[key]);
   };
   setWorkflowStep(workflowSteps[0]);
+  const workflowVisibility = new Map(workflowSteps.map((step) => [step, 0]));
   const workflowObserver = new IntersectionObserver((entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (visible) setWorkflowStep(visible.target);
+    entries.forEach((entry) => workflowVisibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0));
+    const visible = [...workflowVisibility.entries()].sort((a, b) => b[1] - a[1])[0];
+    if (visible?.[1] > 0) setWorkflowStep(visible[0]);
   }, { threshold: [0.35, 0.55, 0.75] });
   workflowSteps.forEach((step) => workflowObserver.observe(step));
+}
+
+const lazyVideos = [...document.querySelectorAll("[data-lazy-video]")];
+const loadVideo = (video) => {
+  if (video.dataset.loaded === "true") return;
+  video.querySelectorAll("source[data-src]").forEach((source) => {
+    source.src = source.dataset.src;
+  });
+  video.dataset.loaded = "true";
+  video.load();
+};
+if (!reducedMotion && lazyVideos.length) {
+  if ("IntersectionObserver" in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          loadVideo(video);
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { rootMargin: "180px 0px", threshold: 0.08 });
+    lazyVideos.forEach((video) => {
+      video.addEventListener("playing", () => video.closest("[data-observe-system]")?.classList.add("is-video-active"));
+      videoObserver.observe(video);
+    });
+  } else {
+    lazyVideos.forEach((video) => {
+      loadVideo(video);
+      video.play().catch(() => {});
+    });
+  }
 }
 
 const readinessContent = {

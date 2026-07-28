@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=10">
+    <link rel="stylesheet" href="../styles.css?v=11">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"../"},{"@type":"ListItem","position":2,"name":"AI in Transportation"}]}</script>
   </head>
   <body data-page="ai-in-transportation" data-root="../">
@@ -50,49 +50,95 @@
                 <h3>Turn a physical event into a trusted workflow event.</h3>
                 <p>Cameras and sensors can identify equipment, verify arrival, and assess condition. Qualified people remain accountable for what happens next.</p>
               </div>
-              <div class="observe-system" aria-label="A trailer arrival is detected, verified, checked, and added to the workflow">
-                <div class="event-asset">
-                  <span class="technical-label">TRAILER 4821</span>
-                  <div class="trailer-shape" aria-hidden="true"><i></i><i></i><i></i></div>
-                  <span class="sensor-tag">CAMERA 03</span>
+              <div class="observe-cv-system" data-observe-system aria-label="Computer vision tracks a trailer-yard event through verification and human review">
+                <!-- Footage: Alex Kad / Pexels, video 5171156. Interface overlay is native Gaugepoint UI. -->
+                <video class="observe-video" muted loop playsinline preload="none" poster="../assets/transport-yard-observe-poster.jpg" data-lazy-video>
+                  <source data-src="../assets/transport-yard-observe.mp4" type="video/mp4">
+                </video>
+                <div class="observe-video-grade" aria-hidden="true"></div>
+                <div class="cv-meta">
+                  <span>CAMERA 03</span><span>GATE NORTH</span><time>14:32:08</time>
                 </div>
-                <div class="event-signal" aria-hidden="true"></div>
-                <div class="event-states">
-                  <span class="is-live">ARRIVAL DETECTED</span>
-                  <span>ID VERIFIED</span>
-                  <span>CONDITION CHECKED</span>
-                  <span>WORKFLOW UPDATED</span>
-                  <span class="human-state">HUMAN REVIEW REQUIRED</span>
+                <div class="cv-tracking-box" aria-hidden="true">
+                  <span>TRAILER 4821</span><i></i>
+                </div>
+                <div class="cv-subject-meta">
+                  <span>CONTAINER ID · MSKU 482106</span>
+                  <span>SEAL STATUS · INTACT</span>
+                  <span>EVENT CREATED · 0247</span>
+                </div>
+                <div class="cv-state-sequence">
+                  <span data-cv-state="1">ARRIVAL DETECTED</span>
+                  <span data-cv-state="2">EQUIPMENT ID VERIFIED</span>
+                  <span data-cv-state="3">CONDITION CHECKED</span>
+                  <span data-cv-state="4">WORKFLOW UPDATED</span>
+                  <span data-cv-state="5">HUMAN REVIEW REQUIRED</span>
                 </div>
               </div>
             </article>
 
-            <article class="os-stage understand-stage reveal">
-              <div class="understand-system" aria-label="Operating signals are interpreted into usable context">
-                <div class="context-inputs"><span>TENDER</span><span>TMS STATUS</span><span>CUSTOMER RULE</span></div>
-                <div class="context-line" aria-hidden="true"></div>
-                <div class="context-output"><small>OPERATING CONTEXT</small><strong>Service risk identified</strong><span>Evidence attached</span></div>
-              </div>
-              <div class="os-copy">
-                <p class="eyebrow">Understand</p>
-                <h3>Turn signals into usable context.</h3>
-                <p>Read documents, reconcile operating data, and surface what changed before a person or system makes a decision.</p>
-              </div>
-            </article>
+            <div class="decision-sequence">
+              <article class="os-stage understand-stage reveal">
+                <div class="reasoning-visual" aria-label="Tender, TMS, and customer evidence are reconciled into an operating-context record">
+                  <div class="evidence-stream">
+                    <div data-evidence="tender"><span>TENDER</span><strong>Delivery required 10:00</strong><small>Customer confirmation</small></div>
+                    <div data-evidence="tms"><span>TMS STATUS</span><strong>Updated ETA 10:42</strong><small>Last update 09:31</small></div>
+                    <div data-evidence="rule"><span>CUSTOMER RULE</span><strong>Escalate if delay exceeds 30 min</strong><small>Service profile · priority</small></div>
+                  </div>
+                  <div class="reasoning-path" aria-hidden="true"><i></i><span>RECONCILE</span></div>
+                  <div class="context-record">
+                    <p><span>OPERATING CONTEXT</span><time>09:32:06</time></p>
+                    <strong>SERVICE RISK IDENTIFIED</strong>
+                    <ul>
+                      <li>ETA exceeds appointment</li>
+                      <li>Customer threshold breached</li>
+                      <li>42-minute projected delay</li>
+                      <li>Evidence attached</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="os-copy">
+                  <p class="eyebrow">Understand</p>
+                  <h3>Make the reasoning visible.</h3>
+                  <p>Reconcile operating evidence, show which threshold was breached, and preserve the facts behind the conclusion.</p>
+                </div>
+              </article>
 
-            <article class="os-stage coordinate-stage reveal">
-              <div class="coordinate-system" aria-label="Fragmented inputs become one owned and measurable action">
-                <div class="coordinate-inputs"><span>EMAIL</span><span>TMS</span><span>CUSTOMER</span><span>DRIVER</span><span>WAREHOUSE</span><span>SENSOR</span></div>
-                <div class="coordinate-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="coordination-core"><small>EXCEPTION CREATED</small><strong>Owner assigned</strong><span>12 MIN ELAPSED</span></div>
-                <div class="resolution-flow"><span>MISSING INFORMATION</span><span>ESCALATED</span><span class="resolved">RESOLVED</span></div>
+              <div class="decision-handoff reveal" aria-label="Operating context creates exception 0247">
+                <span>CONTEXT RECORD</span><i></i><strong>EXCEPTION 0247 CREATED</strong>
               </div>
-              <div class="os-copy">
-                <p class="eyebrow">Coordinate</p>
-                <h3>Turn stalled work into owned action.</h3>
-                <p>Bring fragmented inputs into one managed exception, assign an owner, update status, and escalate within defined authority.</p>
-              </div>
-            </article>
+
+              <article class="os-stage coordinate-stage reveal">
+                <div class="exception-workflow" aria-label="Fragmented inputs become exception 0247, an owned and measurable case">
+                  <div class="exception-inputs">
+                    <div><span>EMAIL</span><strong>Missing appointment</strong></div>
+                    <div><span>DRIVER</span><strong>Waiting at gate</strong></div>
+                    <div><span>TMS</span><strong>ETA breached</strong></div>
+                    <div><span>CUSTOMER</span><strong>Status request</strong></div>
+                    <div><span>WAREHOUSE</span><strong>Door unavailable</strong></div>
+                  </div>
+                  <div class="exception-case">
+                    <div class="case-heading"><span>EXCEPTION 0247</span><time>12 MIN ELAPSED</time></div>
+                    <h4>APPOINTMENT CONFLICT</h4>
+                    <dl>
+                      <div><dt>Owner</dt><dd>Dispatch · Central Region</dd></div>
+                      <div><dt>Next action</dt><dd>Confirm revised appointment</dd></div>
+                      <div><dt>Authority</dt><dd>Dispatch may reschedule within SLA</dd></div>
+                      <div><dt>Escalates at</dt><dd>20 minutes</dd></div>
+                      <div><dt>Current status</dt><dd class="case-status">Owner assigned</dd></div>
+                    </dl>
+                  </div>
+                  <div class="case-progress">
+                    <span>Exception created</span><span>Owner assigned</span><span>Status updated</span><span>Escalation checked</span><span>Resolved</span>
+                  </div>
+                </div>
+                <div class="os-copy">
+                  <p class="eyebrow">Coordinate</p>
+                  <h3>Turn stalled work into owned action.</h3>
+                  <p>Consolidate the evidence into one case, assign authority, measure elapsed time, and move the exception toward resolution.</p>
+                </div>
+              </article>
+            </div>
 
             <article class="os-stage act-stage reveal">
               <div class="os-copy">
@@ -151,6 +197,6 @@
     </main>
     <div id="site-footer"></div>
     <script src="../content-data.js?v=9"></script>
-    <script src="../script.js?v=9"></script>
+    <script src="../script.js?v=11"></script>
   </body>
 </html>

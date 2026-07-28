@@ -14,6 +14,8 @@ const siteEntries = [
   "assets/gaugepoint-advisory.png",
   "assets/gaugepoint-advisory-lockup.png",
   "assets/hero-intermodal-yard.png",
+  "assets/transport-yard-observe-poster.jpg",
+  "assets/transport-yard-observe.mp4",
   "ai-readiness",
   "operating-transformation",
   "ai-in-transportation",
