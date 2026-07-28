@@ -141,7 +141,7 @@ window.GAUGEPOINT_CONTENT = {
       type: "Video commentary",
       date: "2020",
       title: "Intermodal 2020 Year-in-Review",
-      description: "Market and operating commentary produced during Mark's time at NFI.",
+      description: "Market and operating commentary produced during Mark's senior leadership at a leading 3PL.",
       url: "https://www.youtube.com/watch?v=ORqJ7Ac6xn4"
     },
     {
@@ -155,13 +155,13 @@ window.GAUGEPOINT_CONTENT = {
   ],
   videos: [
     {
-      title: "NFI - Intermodal 2020 Year-in-Review",
-      description: "Mark McKendry, then Regional Vice President of North American Intermodal at NFI, discusses the freight market and the operating conditions that shaped 2020.",
+      title: "Intermodal 2020 Year-in-Review",
+      description: "Mark McKendry, then a senior transportation executive at a leading 3PL, discusses the freight market and the operating conditions that shaped 2020.",
       youtubeId: "ORqJ7Ac6xn4",
       url: "https://www.youtube.com/watch?v=ORqJ7Ac6xn4"
     },
     {
-      title: "NFI - Intermodal 2021 Outlook",
+      title: "Intermodal 2021 Outlook",
       description: "Mark McKendry provides an outlook on intermodal transportation, capacity, freight conditions, and the operating environment entering 2021.",
       youtubeId: "N-Y-AvKPATc",
       url: "https://www.youtube.com/watch?v=N-Y-AvKPATc"
