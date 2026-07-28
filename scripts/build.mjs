@@ -12,6 +12,7 @@ const siteEntries = [
   "script.js",
   "content-data.js",
   "assets/gaugepoint-advisory.png",
+  "assets/gaugepoint-advisory-lockup.png",
   "assets/hero-intermodal-yard.png",
   "ai-readiness",
   "operating-transformation",

@@ -14,8 +14,8 @@
     <title>AI Readiness for Transportation | Gaugepoint Advisory</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=8">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=9">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -78,7 +78,6 @@
               <div class="workflow-node node-move"><span>03</span><strong>Move</strong><small>TMS</small></div>
               <div class="workflow-node node-exception"><span>04</span><strong>Exception</strong><small>Phone call</small></div>
               <div class="workflow-node node-close"><span>05</span><strong>Close</strong><small>Manual follow-up</small></div>
-              <div class="workflow-signal" aria-hidden="true"></div>
             </div>
           </div>
           <div class="fragmented-steps">
@@ -132,25 +131,38 @@
             <h2>Seven conditions. One operating system.</h2>
             <p>AI readiness is not a technology score. It is the alignment of the business problem, the work, and the controls required to produce a dependable outcome.</p>
           </div>
-          <div class="readiness-system" data-readiness-system>
-            <div class="readiness-orbit" aria-hidden="true">
-              <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span>
+          <div class="readiness-system reveal" data-readiness-system>
+            <div class="readiness-map">
+              <svg class="readiness-connectors" viewBox="0 0 720 620" aria-hidden="true">
+                <circle class="system-ring" cx="340" cy="300" r="224"></circle>
+                <path data-connector="strategy" d="M340 300 L340 66"></path>
+                <path data-connector="workflows" d="M340 300 L580 142"></path>
+                <path data-connector="data" d="M340 300 L628 330"></path>
+                <path data-connector="economics" d="M340 300 L520 516"></path>
+                <path data-connector="systems" d="M340 300 L320 558"></path>
+                <path data-connector="people" d="M340 300 L112 470"></path>
+                <path data-connector="governance" d="M340 300 L82 222"></path>
+              </svg>
+              <div class="readiness-core">
+                <span>Operating outcome</span>
+                <strong>Measurable<br>value</strong>
+              </div>
+              <button class="readiness-node readiness-position-strategy is-active" type="button" data-readiness="strategy"><small>01</small><span>Strategy</span></button>
+              <button class="readiness-node readiness-position-workflows" type="button" data-readiness="workflows"><small>02</small><span>Workflows</span></button>
+              <button class="readiness-node readiness-position-data" type="button" data-readiness="data"><small>03</small><span>Data</span></button>
+              <button class="readiness-node readiness-position-economics" type="button" data-readiness="economics"><small>07</small><span>Economics</span></button>
+              <button class="readiness-node readiness-position-systems" type="button" data-readiness="systems"><small>04</small><span>Systems</span></button>
+              <button class="readiness-node readiness-position-people" type="button" data-readiness="people"><small>05</small><span>People</span></button>
+              <button class="readiness-node readiness-position-governance" type="button" data-readiness="governance"><small>06</small><span>Governance</span></button>
             </div>
-            <button class="readiness-node node-strategy is-active" type="button" data-readiness="strategy"><span>Strategy</span></button>
-            <button class="readiness-node node-workflows" type="button" data-readiness="workflows"><span>Workflows</span></button>
-            <button class="readiness-node node-data" type="button" data-readiness="data"><span>Data</span></button>
-            <button class="readiness-node node-systems" type="button" data-readiness="systems"><span>Systems</span></button>
-            <button class="readiness-node node-people" type="button" data-readiness="people"><span>People</span></button>
-            <button class="readiness-node node-governance" type="button" data-readiness="governance"><span>Governance</span></button>
-            <button class="readiness-node node-economics" type="button" data-readiness="economics"><span>Economics</span></button>
-            <div class="readiness-core">
-              <p>Ready for</p><strong>measurable value</strong>
-            </div>
-            <div class="readiness-detail" aria-live="polite">
-              <p class="eyebrow" data-readiness-label>Strategy</p>
-              <h3 data-readiness-title>A defined business problem comes first.</h3>
-              <p data-readiness-copy>Clarify the operating outcome, executive ownership, and evidence that will define success before selecting a tool.</p>
-            </div>
+            <aside class="readiness-detail-wrap">
+              <div class="readiness-detail" aria-live="polite">
+                <p class="eyebrow" data-readiness-label>Strategy</p>
+                <h3 data-readiness-title>A defined business problem comes first.</h3>
+                <p data-readiness-copy>Clarify the operating outcome, executive ownership, and evidence that will define success before selecting a tool.</p>
+              </div>
+              <a class="button dark" href="ai-readiness/">Explore the AI Readiness Assessment</a>
+            </aside>
           </div>
           <div class="readiness-accordion">
             <details open><summary>Strategy</summary><p>Clarify the operating outcome, executive ownership, and evidence that will define success.</p></details>
@@ -161,7 +173,22 @@
             <details><summary>Governance</summary><p>Define approval boundaries, risk controls, audit trails, escalation, and accountability.</p></details>
             <details><summary>Economics</summary><p>Connect cost, cycle time, service, error, and margin to a measurable investment case.</p></details>
           </div>
-          <a class="button dark reveal" href="ai-readiness/">Explore the AI Readiness Assessment</a>
+        </div>
+      </section>
+
+      <section class="judgement-chapter">
+        <div class="container judgement-layout">
+          <div class="judgement-heading reveal">
+            <p class="eyebrow">Technology judgment</p>
+            <h2>Knowing when not to use AI is part of readiness.</h2>
+            <p>Gaugepoint teaches leadership teams how to distinguish a real AI opportunity from a process, management, or systems problem that should be solved another way.</p>
+          </div>
+          <div class="judgement-diagnostic reveal">
+            <div><span>01</span><strong>The process is not stable or understood.</strong><p>Standardize the work before automating it.</p></div>
+            <div><span>02</span><strong>The decision requires accountable human judgment.</strong><p>Use technology to improve the evidence, not remove the owner.</p></div>
+            <div><span>03</span><strong>The data or integration cannot support a dependable result.</strong><p>Fix the operating foundation first.</p></div>
+            <div><span>04</span><strong>The economics do not justify the change.</strong><p>Choose the simplest intervention that improves performance.</p></div>
+          </div>
         </div>
       </section>
 
@@ -169,24 +196,73 @@
         <div class="container">
           <div class="chapter-heading inverse reveal">
             <p class="eyebrow">AI in the flow of transportation</p>
-            <h2>Four environments. One accountable operation.</h2>
+            <h2>Observe. Understand. Coordinate. Act.</h2>
+            <p>Operational information should move through a clear system, from physical event to accountable resolution.</p>
           </div>
-          <div class="environment-sequence">
-            <article class="environment-scene reveal">
-              <div class="environment-visual visual-understand" aria-hidden="true"><span class="signal signal-a"></span><span class="signal signal-b"></span><span class="signal signal-c"></span></div>
-              <div><p class="eyebrow">Understand</p><h3>Turn language into usable operating information.</h3><p>Read tenders, confirmations, emails, SOPs, and customer requirements. Summarize what changed and surface what matters.</p></div>
+          <div class="operating-system-sequence">
+            <article class="os-stage observe-stage reveal">
+              <div class="os-copy">
+                <p class="eyebrow">Observe</p>
+                <h3>Turn a physical event into a trusted workflow event.</h3>
+                <p>Cameras and sensors can identify equipment, verify arrival, and assess condition. Qualified people remain accountable for what happens next.</p>
+              </div>
+              <div class="observe-system" aria-label="A trailer arrival is detected, verified, checked, and added to the workflow">
+                <div class="event-asset">
+                  <span class="technical-label">TRAILER 4821</span>
+                  <div class="trailer-shape" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="sensor-tag">CAMERA 03</span>
+                </div>
+                <div class="event-signal" aria-hidden="true"></div>
+                <div class="event-states">
+                  <span class="is-live">ARRIVAL DETECTED</span>
+                  <span>ID VERIFIED</span>
+                  <span>CONDITION CHECKED</span>
+                  <span>WORKFLOW UPDATED</span>
+                  <span class="human-state">HUMAN REVIEW REQUIRED</span>
+                </div>
+              </div>
             </article>
-            <article class="environment-scene reverse reveal">
-              <div class="environment-visual visual-decide" aria-hidden="true"><span class="decision-path"></span><span class="decision-point p1"></span><span class="decision-point p2"></span><span class="decision-point p3"></span></div>
-              <div><p class="eyebrow">Decide</p><h3>Support better choices with context and evidence.</h3><p>Forecast volume and capacity, identify service risk, support pricing, and improve asset planning without obscuring who owns the decision.</p></div>
+
+            <article class="os-stage understand-stage reveal">
+              <div class="understand-system" aria-label="Operating signals are interpreted into usable context">
+                <div class="context-inputs"><span>TENDER</span><span>TMS STATUS</span><span>CUSTOMER RULE</span></div>
+                <div class="context-line" aria-hidden="true"></div>
+                <div class="context-output"><small>OPERATING CONTEXT</small><strong>Service risk identified</strong><span>Evidence attached</span></div>
+              </div>
+              <div class="os-copy">
+                <p class="eyebrow">Understand</p>
+                <h3>Turn signals into usable context.</h3>
+                <p>Read documents, reconcile operating data, and surface what changed before a person or system makes a decision.</p>
+              </div>
             </article>
-            <article class="environment-scene reveal">
-              <div class="environment-visual visual-coordinate" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div><p class="eyebrow">Coordinate</p><h3>Reduce waiting across people and systems.</h3><p>Triage exceptions, follow up on missing information, update status, and escalate overdue work within defined authority.</p></div>
+
+            <article class="os-stage coordinate-stage reveal">
+              <div class="coordinate-system" aria-label="Fragmented inputs become one owned and measurable action">
+                <div class="coordinate-inputs"><span>EMAIL</span><span>TMS</span><span>CUSTOMER</span><span>DRIVER</span><span>WAREHOUSE</span><span>SENSOR</span></div>
+                <div class="coordinate-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="coordination-core"><small>EXCEPTION CREATED</small><strong>Owner assigned</strong><span>12 MIN ELAPSED</span></div>
+                <div class="resolution-flow"><span>MISSING INFORMATION</span><span>ESCALATED</span><span class="resolved">RESOLVED</span></div>
+              </div>
+              <div class="os-copy">
+                <p class="eyebrow">Coordinate</p>
+                <h3>Turn stalled work into owned action.</h3>
+                <p>Bring fragmented inputs into one managed exception, assign an owner, update status, and escalate within defined authority.</p>
+              </div>
             </article>
-            <article class="environment-scene reverse reveal">
-              <div class="environment-visual visual-observe" aria-hidden="true"><span class="scan-line"></span><span class="asset a1"></span><span class="asset a2"></span><span class="asset a3"></span></div>
-              <div><p class="eyebrow">Observe</p><h3>Connect physical events to digital workflows.</h3><p>Use cameras and sensors to identify equipment, verify events, and detect condition while qualified people remain accountable.</p></div>
+
+            <article class="os-stage act-stage reveal">
+              <div class="os-copy">
+                <p class="eyebrow">Act</p>
+                <h3>Move with explicit authority.</h3>
+                <p>The system may recommend, coordinate, or execute only what the operation has deliberately authorized.</p>
+              </div>
+              <div class="act-system" aria-label="A recommended action passes through human review and an auditable resolution">
+                <div><small>RECOMMENDATION</small><strong>Approve recovery plan</strong></div>
+                <span class="act-arrow" aria-hidden="true"></span>
+                <div class="approval-state"><small>HUMAN REVIEW</small><strong>Approved</strong></div>
+                <span class="act-arrow" aria-hidden="true"></span>
+                <div><small>ACTION LOG</small><strong>Resolution recorded</strong></div>
+              </div>
             </article>
           </div>
           <div class="accountability-rail reveal">
@@ -277,8 +353,8 @@
           </div>
           <blockquote class="belief reveal">Transportation does not need more AI theatre. It needs practical technology applied to real operating problems.</blockquote>
           <div class="authority-row reveal">
-            <div><strong>Nearly 20</strong><span>documented industry speaking appearances</span></div>
-            <div><strong>18</strong><span>substantive media and publication contributions</span></div>
+            <div><strong>Nearly 20</strong><span>industry speaking appearances</span></div>
+            <div><strong>18</strong><span>media and publication contributions</span></div>
             <div><strong>Industry voice</strong><span>Formal STB testimony and former IANA Operations Committee Chair</span></div>
           </div>
           <div class="publication-line reveal" aria-label="Publications featuring Mark McKendry's commentary">
@@ -296,7 +372,7 @@
               <p class="eyebrow reveal">Speaking and media</p>
               <h2 class="reveal">Practical transportation perspective, shared in public.</h2>
               <div class="media-preview-list reveal">
-                <a href="speaking-media/"><span>AI in Transportation</span><strong>Four confirmed IANA education sessions</strong></a>
+                <a href="speaking-media/"><span>AI in Transportation</span><strong>Practical education on analytics, agents, and applied AI</strong></a>
                 <a href="speaking-media/"><span>Freight and Intermodal</span><strong>Speaker, moderator, committee chair, and industry witness</strong></a>
                 <a href="speaking-media/"><span>Media and Publications</span><strong>Commentary across leading transportation publications</strong></a>
               </div>
@@ -330,7 +406,7 @@
     </main>
 
     <div id="site-footer"></div>
-    <script src="content-data.js?v=8"></script>
-    <script src="script.js?v=8"></script>
+    <script src="content-data.js?v=9"></script>
+    <script src="script.js?v=9"></script>
   </body>
 </html>

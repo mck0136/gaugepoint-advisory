@@ -1,11 +1,18 @@
 const worker = {
   async fetch(request, env) {
+    const url = new URL(request.url);
+    if (
+      request.method === "GET" &&
+      (url.pathname === "/insights" || url.pathname === "/insights/")
+    ) {
+      return Response.redirect(new URL("/insights/freight-market-tightening/", url), 301);
+    }
+
     const response = await env.ASSETS.fetch(request);
     if (response.status !== 404 || request.method !== "GET") {
       return response;
     }
 
-    const url = new URL(request.url);
     if (url.pathname.includes(".")) {
       return response;
     }

@@ -7,7 +7,6 @@ const navigation = [
   ["ai-readiness", "AI Readiness", "ai-readiness/"],
   ["operating-transformation", "Operating Transformation", "operating-transformation/"],
   ["ai-in-transportation", "AI in Transportation", "ai-in-transportation/"],
-  ["insights", "Insights", "insights/"],
   ["speaking-media", "Speaking & Media", "speaking-media/"],
   ["about", "About", "about/"]
 ];
@@ -27,7 +26,7 @@ if (headerTarget) {
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="${pageUrl()}" aria-label="Gaugepoint Advisory home">
-        <img src="${pageUrl("assets/gaugepoint-advisory.png")}" alt="Gaugepoint Advisory">
+        <img src="${pageUrl("assets/gaugepoint-advisory-lockup.png")}" alt="Gaugepoint Advisory">
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span></span><span></span><span></span><span class="sr-only">Open menu</span>
@@ -48,7 +47,7 @@ if (footerTarget) {
     <footer class="site-footer">
       <div class="container footer-grid">
         <a class="footer-logo" href="${pageUrl()}" aria-label="Gaugepoint Advisory home">
-          <img src="${pageUrl("assets/gaugepoint-advisory.png")}" alt="Gaugepoint Advisory">
+          <img src="${pageUrl("assets/gaugepoint-advisory-lockup.png")}" alt="Gaugepoint Advisory">
         </a>
         <div>
           <p><strong>AI readiness and operating transformation for transportation.</strong></p>
@@ -113,9 +112,11 @@ if (workflowSteps.length && workflowMap) {
   const progressByStep = { order: "8%", plan: "28%", move: "49%", exception: "70%", close: "94%" };
   const setWorkflowStep = (step) => {
     const key = step.dataset.workflowStep;
+    const activeIndex = workflowSteps.indexOf(step);
     workflowSteps.forEach((item) => item.classList.toggle("is-current", item === step));
-    document.querySelectorAll(".workflow-node").forEach((node) => {
+    document.querySelectorAll(".workflow-node").forEach((node, index) => {
       node.classList.toggle("is-active", node.classList.contains(`node-${key}`));
+      node.classList.toggle("is-complete", index < activeIndex);
     });
     workflowMap.style.setProperty("--workflow-progress", progressByStep[key]);
   };
@@ -137,16 +138,34 @@ const readinessContent = {
   economics: ["Economics", "A use case needs a measurable reason to exist.", "Connect labour, cycle time, service, error, and margin to a credible investment and measurement case."]
 };
 
+let readinessTimer;
 document.querySelectorAll("[data-readiness]").forEach((node) => {
   node.addEventListener("click", () => {
     const key = node.dataset.readiness;
     const detail = readinessContent[key];
-    document.querySelectorAll("[data-readiness]").forEach((item) => item.classList.toggle("is-active", item === node));
-    document.querySelector("[data-readiness-label]").textContent = detail[0];
-    document.querySelector("[data-readiness-title]").textContent = detail[1];
-    document.querySelector("[data-readiness-copy]").textContent = detail[2];
+    const detailCard = document.querySelector(".readiness-detail");
+    document.querySelectorAll("[data-readiness]").forEach((item) => {
+      const active = item === node;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+    document.querySelectorAll("[data-connector]").forEach((connector) => {
+      connector.classList.toggle("is-active", connector.dataset.connector === key);
+    });
+    const updateDetail = () => {
+      document.querySelector("[data-readiness-label]").textContent = detail[0];
+      document.querySelector("[data-readiness-title]").textContent = detail[1];
+      document.querySelector("[data-readiness-copy]").textContent = detail[2];
+      detailCard?.classList.remove("is-updating");
+    };
+    window.clearTimeout(readinessTimer);
+    detailCard?.classList.add("is-updating");
+    if (reducedMotion) updateDetail();
+    else readinessTimer = window.setTimeout(updateDetail, 150);
   });
 });
+document.querySelector('[data-readiness="strategy"]')?.setAttribute("aria-pressed", "true");
+document.querySelector('[data-connector="strategy"]')?.classList.add("is-active");
 
 const caseStudyTarget = document.querySelector('[data-render="case-studies"]');
 if (caseStudyTarget && content.externalAiExamples) {
@@ -189,10 +208,9 @@ if (webinarTarget && content.speakingAppearances) {
       <article class="media-card">
         <p class="card-date">${item.date}</p>
         <h3>${item.title}</h3>
-        <p>${item.role}</p>
+        <p>${item.context}</p>
         <ul class="compact-list">${item.topics.map((topic) => `<li>${topic}</li>`).join("")}</ul>
-        <div class="link-row">${externalLink(item.listingUrl, "View public listing")}${externalLink(item.memberUrl, "Open member session")}</div>
-        <p class="disclaimer">Presented through IANA. Membership or login may be required for the full session.</p>
+        <p class="disclaimer">Session focus and topics are summarized here for reference.</p>
       </article>`).join("");
 }
 
@@ -228,24 +246,6 @@ if (videoTarget && content.videos) {
       <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${item.youtubeId}" title="${item.title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       <div class="video-copy"><h3>${item.title}</h3><p>${item.description}</p>${externalLink(item.url, "Watch on YouTube")}</div>
     </article>`).join("");
-}
-
-const insightsTarget = document.querySelector('[data-render="insights"]');
-if (insightsTarget && content.articles) {
-  const categories = ["AI in Transportation", "Operating Transformation", "Freight Market"];
-  insightsTarget.innerHTML = categories.map((category) => `
-    <section class="insight-group" aria-labelledby="${category.toLowerCase().replaceAll(" ", "-")}">
-      <p class="eyebrow">${category}</p>
-      <h2 id="${category.toLowerCase().replaceAll(" ", "-")}">${category}</h2>
-      <div class="article-grid">
-        ${content.articles.filter((item) => item.category === category).map((item) => `
-          <article class="article-card">
-            <div class="card-meta"><span>${item.category}</span><span>${item.status}</span></div>
-            <h3>${item.title}</h3><p>${item.summary}</p>
-            ${item.href ? `<a class="text-link" href="${item.href}">Read the perspective</a>` : `<span class="disclaimer">In development</span>`}
-          </article>`).join("")}
-      </div>
-    </section>`).join("");
 }
 
 const sourceTarget = document.querySelector('[data-render="market-sources"]');

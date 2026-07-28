@@ -85,40 +85,32 @@ window.GAUGEPOINT_CONTENT = {
       type: "Presenter",
       title: "Beyond the Buzz: Demystifying AI's Role for Intermodal",
       date: "November 20, 2025",
-      role: "Presenter with Chris Machut through IANA Education On-Demand.",
+      context: "IANA Education On-Demand session on practical AI for intermodal transportation.",
       topics: ["Real-world applications", "Practical use cases", "Ethical and regulatory uncertainty", "Capability versus hype"],
-      listingUrl: "https://intermodal.org/education-on-demand/list?page=3",
-      memberUrl: "https://intermodal.org/education-on-demand/video/demystifying-ais-role-for-intermodal"
     },
     {
       category: "ai",
       type: "Presenter",
       title: "Breaking Down the Four Pillars of AI for Intermodal: AI for Analytics",
       date: "January 27, 2026",
-      role: "Presenter with Chris Machut through IANA Education On-Demand.",
+      context: "IANA Education On-Demand session on analytics and operational decision support.",
       topics: ["Forecasting", "Operational-risk identification", "Moving from analytics to action", "Trust and governance"],
-      listingUrl: "https://intermodal.org/education-on-demand/list?page=2",
-      memberUrl: "https://intermodal.org/education-on-demand/video/intermodal-ai-for-analytics"
     },
     {
       category: "ai",
       type: "Presenter",
       title: "Breaking Down the Four Pillars of AI for Intermodal: AI Agents",
       date: "February 24, 2026",
-      role: "Presenter with Chris Machut through IANA Education On-Demand.",
+      context: "IANA Education On-Demand session on agents, handoffs, and accountable automation.",
       topics: ["Operational handoffs", "Exception management", "Cross-system updates", "Human accountability"],
-      listingUrl: "https://intermodal.org/education-on-demand/list?page=2",
-      memberUrl: "https://intermodal.org/education-on-demand/video/the-four-pillars-of-ai-for-intermodal"
     },
     {
       category: "ai",
       type: "Presenter",
       title: "Breaking Down the Four Pillars of AI for Intermodal: Applied AI",
       date: "March 24, 2026",
-      role: "Presenter with Chris Machut through IANA Education On-Demand.",
+      context: "IANA Education On-Demand session on physical AI and event verification.",
       topics: ["Cameras and sensors", "Gates and equipment", "Condition detection", "Event verification"],
-      listingUrl: "https://intermodal.org/education-on-demand/list?page=1",
-      memberUrl: "https://intermodal.org/education-on-demand/video/applied-ai-webinar"
     }
   ],
   mediaArchive: [
@@ -127,8 +119,7 @@ window.GAUGEPOINT_CONTENT = {
       type: "AI education",
       date: "2025-2026",
       title: "IANA AI for Intermodal series",
-      description: "Four confirmed sessions covering AI fundamentals, analytics, agents, and applied AI.",
-      url: "https://intermodal.org/education-on-demand/list"
+      description: "An education series covering AI fundamentals, analytics, agents, and applied AI."
     },
     {
       category: "freight",
@@ -175,17 +166,6 @@ window.GAUGEPOINT_CONTENT = {
       youtubeId: "N-Y-AvKPATc",
       url: "https://www.youtube.com/watch?v=N-Y-AvKPATc"
     }
-  ],
-  articles: [
-    { category: "AI in Transportation", title: "Why AI Readiness Comes Before AI Strategy", summary: "Start with the process, controls, economics, and people required to make a use case work.", status: "Planned" },
-    { category: "AI in Transportation", title: "AI Agents in Freight: Where They Help and Where Humans Must Remain Accountable", summary: "A practical boundary between useful coordination and decisions that require accountable approval.", status: "Planned" },
-    { category: "AI in Transportation", title: "Seven Transportation Workflows Worth Assessing for AI", summary: "Where workflow-level discovery can expose measurable opportunities and operating constraints.", status: "Planned" },
-    { category: "Operating Transformation", title: "The Cost of Managing Freight Through Inboxes and Spreadsheets", summary: "How manual coordination increases decision latency, rework, and dependence on individual effort.", status: "Planned" },
-    { category: "Operating Transformation", title: "Designing Exception Management for Scale", summary: "A clear operating model for triage, ownership, escalation, and learning.", status: "Planned" },
-    { category: "Operating Transformation", title: "Why Sales, Pricing, and Operations Must Share the Same Economic Logic", summary: "Connecting customer decisions to executable service and durable margin.", status: "Planned" },
-    { category: "Freight Market", title: "The Freight Market Is Tightening. Is Your Operation Ready to Scale?", summary: "A tighter market may improve pricing. Operational leverage determines whether added volume becomes durable performance.", status: "Published", href: "freight-market-tightening/" },
-    { category: "Freight Market", title: "Why a Supply-Led Recovery Is Different From a Demand Boom", summary: "What capacity contraction means for planning, pricing, and operating discipline.", status: "Planned" },
-    { category: "Freight Market", title: "Operational Leverage in the Next Freight Cycle", summary: "How scalable workflows help a transportation business absorb growth without reproducing manual work.", status: "Planned" }
   ],
   marketSources: [
     { name: "ACT Research: Trucking Industry Forecast for 2026", url: "https://www.actresearch.net/resources/blog/trucking-industry-forecast-for-2026" },
