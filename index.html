@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=11">
+    <link rel="stylesheet" href="styles.css?v=12">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -342,22 +342,70 @@
             <p class="eyebrow">Operating transformation</p>
             <h2>Two businesses can add the same volume and create very different results.</h2>
           </div>
-          <div class="leverage-flow reveal">
-            <div class="flow-origin"><span>More volume</span></div>
-            <div class="flow-path fragmented-flow">
-              <div class="flow-line" aria-hidden="true"></div>
-              <p class="flow-label">Fragmented operation</p>
-              <strong>More people. More chasing. More variance.</strong>
-              <span>Complexity grows with revenue.</span>
+          <div class="leverage-system reveal" aria-label="The same thirty percent increase in volume enters a fragmented operation and a scalable operation with different results">
+            <div class="volume-input">
+              <span>Same input</span>
+              <strong>+30%</strong>
+              <p>added volume</p>
+              <div class="volume-stream" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             </div>
-            <div class="flow-path scalable-flow">
-              <div class="flow-line" aria-hidden="true"></div>
-              <p class="flow-label">Scalable operation</p>
-              <strong>Clear work. Faster decisions. Managed exceptions.</strong>
-              <span>Capability grows ahead of volume.</span>
-            </div>
+            <div class="operating-divergence" aria-hidden="true"><i></i><span></span><b></b></div>
+
+            <article class="leverage-lane fragmented-lane">
+              <header class="lane-heading">
+                <p>01 · Fragmented operation</p>
+                <h3>Growth creates more work around the work.</h3>
+                <span>Complexity grows with revenue.</span>
+              </header>
+              <div class="fragmented-system" aria-label="A fragmented process with email, spreadsheets, re-keying, chasing, waiting, and escalation">
+                <i class="fragment-line fragment-line-a" aria-hidden="true"></i>
+                <i class="fragment-line fragment-line-b" aria-hidden="true"></i>
+                <i class="fragment-line fragment-line-c" aria-hidden="true"></i>
+                <i class="fragment-line fragment-line-d" aria-hidden="true"></i>
+                <div class="fragment-node fragment-email"><small>01</small><strong>Email</strong><span>INTAKE</span></div>
+                <div class="fragment-node fragment-sheet"><small>02</small><strong>Spreadsheet</strong><span>RE-KEYING</span></div>
+                <div class="fragment-node fragment-followup"><small>03</small><strong>Manual follow-up</strong><span>NO OWNER</span></div>
+                <div class="fragment-node fragment-chase"><small>04</small><strong>Status chase</strong><span>2 TOUCHES</span></div>
+                <div class="fragment-node fragment-wait"><small>05</small><strong>Waiting</strong><span>18 MIN</span></div>
+                <div class="fragment-node fragment-escalation"><small>06</small><strong>Escalation</strong><span>REACTIVE</span></div>
+                <p class="system-interruption"><span>EXCEPTION 061</span><strong>Ownership unclear</strong></p>
+              </div>
+              <ul class="lane-outcomes">
+                <li><span>Touches</span><strong>More</strong></li>
+                <li><span>Decisions</span><strong>Slower</strong></li>
+                <li><span>Variance</span><strong>Greater</strong></li>
+                <li><span>Margin</span><strong>Under pressure</strong></li>
+              </ul>
+            </article>
+
+            <article class="leverage-lane scalable-lane">
+              <header class="lane-heading">
+                <p>02 · Scalable operation</p>
+                <h3>Growth moves through a designed operating system.</h3>
+                <span>Capability grows ahead of volume.</span>
+              </header>
+              <div class="scalable-system" aria-label="A structured process with clear intake, ownership, decision rules, managed exceptions, and resolution">
+                <i class="scale-rail" aria-hidden="true"></i>
+                <div class="scale-node"><small>01</small><strong>Structured intake</strong><span>RECEIVED</span></div>
+                <div class="scale-node"><small>02</small><strong>Assigned owner</strong><span>00:42</span></div>
+                <div class="scale-node"><small>03</small><strong>Decision rule</strong><span>APPLIED</span></div>
+                <div class="scale-node managed-node"><small>04</small><strong>Managed exception</strong><span>CONTAINED</span></div>
+                <div class="scale-node"><small>05</small><strong>Workflow update</strong><span>POSTED</span></div>
+                <div class="scale-node"><small>06</small><strong>Resolution</strong><span>CLOSED</span></div>
+                <p class="system-resolution"><span>CASE 061</span><strong>Owned · measured · resolved</strong></p>
+              </div>
+              <ul class="lane-outcomes">
+                <li><span>Touches</span><strong>Fewer</strong></li>
+                <li><span>Decisions</span><strong>Faster</strong></li>
+                <li><span>Consistency</span><strong>Higher</strong></li>
+                <li><span>Capability</span><strong>Ahead of volume</strong></li>
+              </ul>
+            </article>
           </div>
-          <a class="text-link reveal" href="operating-transformation/">Explore operating transformation</a>
+          <div class="leverage-footer reveal">
+            <p>Operating leverage is not a volume outcome. It is an operating-design outcome.</p>
+            <a class="text-link" href="operating-transformation/">Explore operating transformation</a>
+          </div>
         </div>
       </section>
 
