@@ -106,6 +106,279 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   revealItems.forEach((item) => revealObserver.observe(item));
 }
 
+document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
+  const system = svg.closest(".leverage-system");
+  const routes = svg.querySelector("[data-leverage-routes]");
+  const svgNamespace = "http://www.w3.org/2000/svg";
+  let drawingFrame;
+  let routeOrder = 0;
+
+  const relativeBounds = (element, rootBounds) => {
+    const bounds = element.getBoundingClientRect();
+    const left = bounds.left - rootBounds.left;
+    const top = bounds.top - rootBounds.top;
+    return {
+      left,
+      top,
+      right: left + bounds.width,
+      bottom: top + bounds.height,
+      width: bounds.width,
+      height: bounds.height,
+      centerX: left + bounds.width / 2,
+      centerY: top + bounds.height / 2
+    };
+  };
+
+  const routeData = (points) => points
+    .map((point, index) => `${index ? "L" : "M"} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`)
+    .join(" ");
+
+  const addRoute = (points, className, from, to) => {
+    const path = document.createElementNS(svgNamespace, "path");
+    path.setAttribute("class", `leverage-route ${className}`);
+    path.setAttribute("d", routeData(points));
+    path.setAttribute("pathLength", "1");
+    path.dataset.from = from;
+    path.dataset.to = to;
+    path.style.setProperty("--route-order", routeOrder++);
+    routes.appendChild(path);
+  };
+
+  const addJunction = (point, label) => {
+    const junction = document.createElementNS(svgNamespace, "circle");
+    junction.setAttribute("class", "leverage-junction");
+    junction.setAttribute("cx", point.x.toFixed(1));
+    junction.setAttribute("cy", point.y.toFixed(1));
+    junction.setAttribute("r", label === "shared-fork" ? "5" : "3.5");
+    junction.dataset.junction = label;
+    routes.appendChild(junction);
+  };
+
+  const connectCards = (source, destination, from, to) => {
+    if (destination.top >= source.bottom) {
+      const middleY = (source.bottom + destination.top) / 2;
+      addRoute([
+        { x: source.centerX, y: source.bottom },
+        { x: source.centerX, y: middleY },
+        { x: destination.centerX, y: middleY },
+        { x: destination.centerX, y: destination.top }
+      ], "", from, to);
+      return;
+    }
+    if (source.top >= destination.bottom) {
+      const middleY = (source.top + destination.bottom) / 2;
+      addRoute([
+        { x: source.centerX, y: source.top },
+        { x: source.centerX, y: middleY },
+        { x: destination.centerX, y: middleY },
+        { x: destination.centerX, y: destination.bottom }
+      ], "", from, to);
+      return;
+    }
+    const middleX = (source.right + destination.left) / 2;
+    addRoute([
+      { x: source.right, y: source.centerY },
+      { x: middleX, y: source.centerY },
+      { x: middleX, y: destination.centerY },
+      { x: destination.left, y: destination.centerY }
+    ], "", from, to);
+  };
+
+  const drawRoutes = () => {
+    if (!system || !routes) return;
+
+    const rootBounds = system.getBoundingClientRect();
+    if (!rootBounds.width || !rootBounds.height) return;
+
+    svg.setAttribute("viewBox", `0 0 ${rootBounds.width} ${rootBounds.height}`);
+    routes.replaceChildren();
+    routeOrder = 0;
+
+    const source = relativeBounds(system.querySelector("[data-flow-source]"), rootBounds);
+    const fragmentedLane = relativeBounds(system.querySelector(".fragmented-lane"), rootBounds);
+    const fragmentedSystem = relativeBounds(system.querySelector('[data-flow-system="fragmented"]'), rootBounds);
+    const scalableSystem = relativeBounds(system.querySelector('[data-flow-system="scalable"]'), rootBounds);
+    const fragmentedOutcome = relativeBounds(system.querySelector('[data-flow-outcome="fragmented"]'), rootBounds);
+    const scalableOutcome = relativeBounds(system.querySelector('[data-flow-outcome="scalable"]'), rootBounds);
+    const fragmentNames = ["frag-email", "frag-sheet", "frag-followup", "frag-chase", "frag-wait", "frag-escalation", "frag-terminal"];
+    const fragmentNodes = fragmentNames.map((name) =>
+      relativeBounds(system.querySelector(`[data-flow-node="${name}"]`), rootBounds));
+    const scaleNames = ["scale-intake", "scale-owner", "scale-rule", "scale-exception", "scale-update", "scale-resolution"];
+    const scaleCards = scaleNames.map((name) =>
+      relativeBounds(system.querySelector(`[data-flow-node="${name}"] .scale-copy`), rootBounds));
+    const mobile = window.matchMedia("(max-width: 768px)").matches;
+    let sharedJunction;
+
+    if (mobile) {
+      sharedJunction = { x: source.centerX, y: source.bottom + 36 };
+      addRoute([
+        { x: source.centerX, y: source.bottom },
+        sharedJunction
+      ], "is-shared", "shared-volume", "shared-fork");
+      addJunction(sharedJunction, "shared-fork");
+
+      const fragmentedEntryX = 6;
+      addRoute([
+        sharedJunction,
+        { x: fragmentedEntryX, y: sharedJunction.y },
+        { x: fragmentedEntryX, y: fragmentNodes[0].centerY },
+        { x: fragmentNodes[0].left, y: fragmentNodes[0].centerY }
+      ], "is-fork", "shared-fork", "frag-email");
+
+      const scaleBackboneX = scalableSystem.left + 26;
+      const scaleJunctions = scaleCards.map((card) => ({ x: scaleBackboneX, y: card.centerY }));
+      const scalableEntryY = scaleCards[0].top - 12;
+      const scalableEntryX = rootBounds.width - 6;
+      addRoute([
+        sharedJunction,
+        { x: scalableEntryX, y: sharedJunction.y },
+        { x: scalableEntryX, y: scalableEntryY },
+        { x: scaleBackboneX, y: scalableEntryY },
+        scaleJunctions[0]
+      ], "is-fork", "shared-fork", "scale-intake");
+
+      fragmentNodes.slice(0, -1).forEach((node, index) => {
+        connectCards(node, fragmentNodes[index + 1], fragmentNames[index], fragmentNames[index + 1]);
+      });
+
+      const reworkX = fragmentedSystem.left + 4;
+      addRoute([
+        { x: fragmentNodes[4].left, y: fragmentNodes[4].centerY },
+        { x: reworkX, y: fragmentNodes[4].centerY },
+        { x: reworkX, y: fragmentNodes[2].centerY },
+        { x: fragmentNodes[2].left, y: fragmentNodes[2].centerY }
+      ], "is-rework", "frag-wait", "frag-followup-rework");
+
+      const fragmentedTerminal = fragmentNodes.at(-1);
+      const fragmentedOutcomeMidY = (fragmentedTerminal.bottom + fragmentedOutcome.top) / 2;
+      addRoute([
+        { x: fragmentedTerminal.centerX, y: fragmentedTerminal.bottom },
+        { x: fragmentedTerminal.centerX, y: fragmentedOutcomeMidY },
+        { x: fragmentedOutcome.centerX, y: fragmentedOutcomeMidY },
+        { x: fragmentedOutcome.centerX, y: fragmentedOutcome.top }
+      ], "", "frag-terminal", "fragmented-outcomes");
+
+      scaleJunctions.forEach((junction, index) => {
+        const card = scaleCards[index];
+        addRoute([
+          junction,
+          { x: card.left, y: card.centerY }
+        ], "is-stem", scaleNames[index], `${scaleNames[index]}-card`);
+        addJunction(junction, scaleNames[index]);
+        if (index < scaleJunctions.length - 1) {
+          addRoute([junction, scaleJunctions[index + 1]], "", scaleNames[index], scaleNames[index + 1]);
+        }
+      });
+
+      const lastScaleJunction = scaleJunctions.at(-1);
+      const scalableExitY = scalableSystem.bottom - 6;
+      addRoute([
+        lastScaleJunction,
+        { x: lastScaleJunction.x, y: scalableExitY },
+        { x: scalableOutcome.centerX, y: scalableExitY },
+        { x: scalableOutcome.centerX, y: scalableOutcome.top }
+      ], "", "scale-resolution", "scalable-outcomes");
+      return;
+    }
+
+    sharedJunction = {
+      x: source.right + (fragmentedLane.left - source.right) / 2,
+      y: source.centerY
+    };
+    addRoute([
+      { x: source.right, y: source.centerY },
+      sharedJunction
+    ], "is-shared", "shared-volume", "shared-fork");
+    addJunction(sharedJunction, "shared-fork");
+
+    const fragmentedEntryY = fragmentedSystem.top + 14;
+    addRoute([
+      sharedJunction,
+      { x: sharedJunction.x, y: fragmentedEntryY },
+      { x: fragmentNodes[0].left - 14, y: fragmentedEntryY },
+      { x: fragmentNodes[0].left - 14, y: fragmentNodes[0].centerY },
+      { x: fragmentNodes[0].left, y: fragmentNodes[0].centerY }
+    ], "is-fork", "shared-fork", "frag-email");
+
+    const scaleBackboneY = scalableSystem.top + scalableSystem.height / 2;
+    const scaleJunctions = scaleCards.map((card) => ({ x: card.centerX, y: scaleBackboneY }));
+    const scalableEntryY = scalableSystem.top + 14;
+    addRoute([
+      sharedJunction,
+      { x: sharedJunction.x, y: scalableEntryY },
+      { x: scaleJunctions[0].x, y: scalableEntryY },
+      scaleJunctions[0]
+    ], "is-fork", "shared-fork", "scale-intake");
+
+    fragmentNodes.slice(0, -1).forEach((node, index) => {
+      connectCards(node, fragmentNodes[index + 1], fragmentNames[index], fragmentNames[index + 1]);
+    });
+
+    const reworkY = fragmentedSystem.top + 8;
+    addRoute([
+      { x: fragmentNodes[4].centerX, y: fragmentNodes[4].top },
+      { x: fragmentNodes[4].centerX, y: reworkY },
+      { x: fragmentNodes[2].centerX, y: reworkY },
+      { x: fragmentNodes[2].centerX, y: fragmentNodes[2].top }
+    ], "is-rework", "frag-wait", "frag-followup-rework");
+
+    const fragmentedTerminal = fragmentNodes.at(-1);
+    if (fragmentedOutcome.left >= fragmentedTerminal.right) {
+      addRoute([
+        { x: fragmentedTerminal.right, y: fragmentedTerminal.centerY },
+        { x: fragmentedOutcome.left, y: fragmentedTerminal.centerY }
+      ], "", "frag-terminal", "fragmented-outcomes");
+    } else {
+      const fragmentedOutcomeMidY = (fragmentedTerminal.bottom + fragmentedOutcome.top) / 2;
+      addRoute([
+        { x: fragmentedTerminal.centerX, y: fragmentedTerminal.bottom },
+        { x: fragmentedTerminal.centerX, y: fragmentedOutcomeMidY },
+        { x: fragmentedOutcome.centerX, y: fragmentedOutcomeMidY },
+        { x: fragmentedOutcome.centerX, y: fragmentedOutcome.top }
+      ], "", "frag-terminal", "fragmented-outcomes");
+    }
+
+    scaleJunctions.forEach((junction, index) => {
+      const card = scaleCards[index];
+      const cardAnchor = card.centerY < scaleBackboneY
+        ? { x: card.centerX, y: card.bottom }
+        : { x: card.centerX, y: card.top };
+      addRoute([cardAnchor, junction], "is-stem", `${scaleNames[index]}-card`, scaleNames[index]);
+      addJunction(junction, scaleNames[index]);
+      if (index < scaleJunctions.length - 1) {
+        addRoute([junction, scaleJunctions[index + 1]], "", scaleNames[index], scaleNames[index + 1]);
+      }
+    });
+
+    const lastScaleJunction = scaleJunctions.at(-1);
+    if (scalableOutcome.left >= scalableSystem.right - 2) {
+      addRoute([
+        lastScaleJunction,
+        { x: scalableOutcome.left, y: lastScaleJunction.y }
+      ], "", "scale-resolution", "scalable-outcomes");
+    } else {
+      const scalableExitX = scalableSystem.right - 7;
+      const scalableExitY = scalableSystem.bottom - 7;
+      addRoute([
+        lastScaleJunction,
+        { x: scalableExitX, y: lastScaleJunction.y },
+        { x: scalableExitX, y: scalableExitY },
+        { x: scalableOutcome.centerX, y: scalableExitY },
+        { x: scalableOutcome.centerX, y: scalableOutcome.top }
+      ], "", "scale-resolution", "scalable-outcomes");
+    }
+  };
+
+  const scheduleRoutes = () => {
+    window.cancelAnimationFrame(drawingFrame);
+    drawingFrame = window.requestAnimationFrame(drawRoutes);
+  };
+
+  drawRoutes();
+  window.addEventListener("resize", scheduleRoutes, { passive: true });
+  document.fonts?.ready.then(scheduleRoutes);
+});
+
 const workflowSteps = [...document.querySelectorAll("[data-workflow-step]")];
 const workflowMap = document.querySelector(".workflow-map");
 if (workflowSteps.length && workflowMap) {

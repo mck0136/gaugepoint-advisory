@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=13">
+    <link rel="stylesheet" href="styles.css?v=14">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -336,20 +336,31 @@
         </div>
       </section>
 
-      <section class="leverage-chapter">
+      <section class="leverage-chapter" id="operating-leverage">
         <div class="container">
           <div class="chapter-heading reveal">
             <p class="eyebrow">Operating transformation</p>
             <h2>Two businesses can add the same volume and create very different results.</h2>
           </div>
           <div class="leverage-system reveal" aria-label="The same thirty percent increase in volume enters a fragmented operation and a scalable operation with different results">
-            <div class="volume-input">
+            <svg class="leverage-connectors" data-leverage-connectors aria-hidden="true">
+              <defs>
+                <marker id="leverage-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 Z"></path>
+                </marker>
+                <marker id="leverage-arrow-gold" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 Z"></path>
+                </marker>
+              </defs>
+              <g data-leverage-routes></g>
+            </svg>
+            <div class="volume-input" data-flow-source>
               <span>Same input</span>
               <strong>+30%</strong>
               <p>added volume</p>
               <div class="volume-stream" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             </div>
-            <div class="operating-divergence" aria-hidden="true"><i></i><span></span><b></b></div>
+            <div class="operating-divergence" aria-hidden="true"></div>
 
             <article class="leverage-lane fragmented-lane">
               <header class="lane-heading">
@@ -357,20 +368,16 @@
                 <h3>Growth creates more work around the work.</h3>
                 <span>Complexity grows with revenue.</span>
               </header>
-              <div class="fragmented-system" aria-label="A fragmented process with email, spreadsheets, re-keying, chasing, waiting, and escalation">
-                <i class="fragment-line fragment-line-a" aria-hidden="true"></i>
-                <i class="fragment-line fragment-line-b" aria-hidden="true"></i>
-                <i class="fragment-line fragment-line-c" aria-hidden="true"></i>
-                <i class="fragment-line fragment-line-d" aria-hidden="true"></i>
-                <div class="fragment-node fragment-email"><small>01</small><strong>Email</strong><span>INTAKE</span></div>
-                <div class="fragment-node fragment-sheet"><small>02</small><strong>Spreadsheet</strong><span>RE-KEYING</span></div>
-                <div class="fragment-node fragment-followup"><small>03</small><strong>Manual follow-up</strong><span>NO OWNER</span></div>
-                <div class="fragment-node fragment-chase"><small>04</small><strong>Status chase</strong><span>2 TOUCHES</span></div>
-                <div class="fragment-node fragment-wait"><small>05</small><strong>Waiting</strong><span>18 MIN</span></div>
-                <div class="fragment-node fragment-escalation"><small>06</small><strong>Escalation</strong><span>REACTIVE</span></div>
-                <p class="system-interruption"><span>EXCEPTION 061</span><strong>Ownership unclear</strong></p>
+              <div class="fragmented-system" data-flow-system="fragmented" aria-label="A fragmented process with email, spreadsheets, re-keying, chasing, waiting, and escalation">
+                <div class="fragment-node fragment-email" data-flow-node="frag-email"><small>01</small><strong>Email</strong><span>INTAKE</span></div>
+                <div class="fragment-node fragment-sheet" data-flow-node="frag-sheet"><small>02</small><strong>Spreadsheet</strong><span>RE-KEYING</span></div>
+                <div class="fragment-node fragment-followup" data-flow-node="frag-followup"><small>03</small><strong>Manual follow-up</strong><span>NO OWNER</span></div>
+                <div class="fragment-node fragment-chase" data-flow-node="frag-chase"><small>04</small><strong>Status chase</strong><span>2 TOUCHES</span></div>
+                <div class="fragment-node fragment-wait" data-flow-node="frag-wait"><small>05</small><strong>Waiting</strong><span>18 MIN</span></div>
+                <div class="fragment-node fragment-escalation" data-flow-node="frag-escalation"><small>06</small><strong>Escalation</strong><span>REACTIVE</span></div>
+                <p class="system-interruption" data-flow-node="frag-terminal"><span>EXCEPTION 061</span><strong>Ownership unclear</strong></p>
               </div>
-              <ul class="lane-outcomes">
+              <ul class="lane-outcomes" data-flow-outcome="fragmented">
                 <li><span>Touches</span><strong>More</strong></li>
                 <li><span>Decisions</span><strong>Slower</strong></li>
                 <li><span>Variance</span><strong>Greater</strong></li>
@@ -384,17 +391,16 @@
                 <h3>Growth moves through a designed operating system.</h3>
                 <span>Capability grows ahead of volume.</span>
               </header>
-              <div class="scalable-system" aria-label="A structured process with clear intake, ownership, decision rules, managed exceptions, and resolution">
-                <i class="scale-rail" aria-hidden="true"></i>
-                <div class="scale-node"><i aria-hidden="true"></i><div class="scale-copy"><small>01</small><strong>Structured intake</strong><span>RECEIVED</span></div></div>
-                <div class="scale-node"><i aria-hidden="true"></i><div class="scale-copy"><small>02</small><strong>Assigned owner</strong><span>00:42</span></div></div>
-                <div class="scale-node"><i aria-hidden="true"></i><div class="scale-copy"><small>03</small><strong>Decision rule</strong><span>APPLIED</span></div></div>
-                <div class="scale-node managed-node"><i aria-hidden="true"></i><div class="scale-copy"><small>04</small><strong>Managed exception</strong><span>CONTAINED</span></div></div>
-                <div class="scale-node"><i aria-hidden="true"></i><div class="scale-copy"><small>05</small><strong>Workflow update</strong><span>POSTED</span></div></div>
-                <div class="scale-node"><i aria-hidden="true"></i><div class="scale-copy"><small>06</small><strong>Resolution</strong><span>CLOSED</span></div></div>
+              <div class="scalable-system" data-flow-system="scalable" aria-label="A structured process with clear intake, ownership, decision rules, managed exceptions, and resolution">
+                <div class="scale-node" data-flow-node="scale-intake"><div class="scale-copy"><small>01</small><strong>Structured intake</strong><span>RECEIVED</span></div></div>
+                <div class="scale-node" data-flow-node="scale-owner"><div class="scale-copy"><small>02</small><strong>Assigned owner</strong><span>00:42</span></div></div>
+                <div class="scale-node" data-flow-node="scale-rule"><div class="scale-copy"><small>03</small><strong>Decision rule</strong><span>APPLIED</span></div></div>
+                <div class="scale-node managed-node" data-flow-node="scale-exception"><div class="scale-copy"><small>04</small><strong>Managed exception</strong><span>CONTAINED</span></div></div>
+                <div class="scale-node" data-flow-node="scale-update"><div class="scale-copy"><small>05</small><strong>Workflow update</strong><span>POSTED</span></div></div>
+                <div class="scale-node" data-flow-node="scale-resolution"><div class="scale-copy"><small>06</small><strong>Resolution</strong><span>CLOSED</span></div></div>
                 <p class="system-resolution"><span>CASE 061</span><strong>Owned · measured · resolved</strong></p>
               </div>
-              <ul class="lane-outcomes">
+              <ul class="lane-outcomes" data-flow-outcome="scalable">
                 <li><span>Touches</span><strong>Fewer</strong></li>
                 <li><span>Decisions</span><strong>Faster</strong></li>
                 <li><span>Consistency</span><strong>Higher</strong></li>
@@ -520,6 +526,6 @@
 
     <div id="site-footer"></div>
     <script src="content-data.js?v=10"></script>
-    <script src="script.js?v=11"></script>
+    <script src="script.js?v=14"></script>
   </body>
 </html>
