@@ -521,7 +521,7 @@ p { text-wrap: pretty; }
 .cta-band { padding: 70px 0; color: var(--white); background: var(--navy); }.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }.cta-inner h2 { max-width: 850px; margin: 0; font-size: clamp(2rem,3.6vw,4rem); }
 
 /* Footer */
-.site-footer { padding: 48px 0; background: var(--paper); border-top: 1px solid var(--line); }
+.site-footer { padding: 48px 0; background: var(--white); border-top: 1px solid var(--line); }
 .footer-grid { display: grid; grid-template-columns: 210px 1fr auto; gap: 34px; align-items: center; }
 .footer-logo { width: 220px; height: 86px; }.footer-logo img { width: 100%; height: 100%; object-fit: contain; }
 .footer-grid p { margin: 0 0 6px; }.footer-grid .small { color: var(--steel); font-size: 0.74rem; }
