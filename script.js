@@ -143,7 +143,7 @@ if (contactForm) {
     event.preventDefault();
     const status = contactForm.querySelector(".form-status");
     if (status) {
-      status.textContent = "Your details are ready. Form delivery will be connected when the site is published.";
+      status.textContent = "This private review site does not send submissions yet. Form delivery will be connected before public launch.";
       status.focus();
     }
   });
