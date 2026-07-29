@@ -154,7 +154,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
     routes.appendChild(junction);
   };
 
-  const connectCards = (source, destination, from, to) => {
+  const connectCards = (source, destination, from, to, className = "") => {
     if (destination.top >= source.bottom) {
       const middleY = (source.bottom + destination.top) / 2;
       addRoute([
@@ -162,7 +162,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         { x: source.centerX, y: middleY },
         { x: destination.centerX, y: middleY },
         { x: destination.centerX, y: destination.top }
-      ], "", from, to);
+      ], className, from, to);
       return;
     }
     if (source.top >= destination.bottom) {
@@ -172,7 +172,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         { x: source.centerX, y: middleY },
         { x: destination.centerX, y: middleY },
         { x: destination.centerX, y: destination.bottom }
-      ], "", from, to);
+      ], className, from, to);
       return;
     }
     const middleX = (source.right + destination.left) / 2;
@@ -181,7 +181,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
       { x: middleX, y: source.centerY },
       { x: middleX, y: destination.centerY },
       { x: destination.left, y: destination.centerY }
-    ], "", from, to);
+    ], className, from, to);
   };
 
   const drawRoutes = () => {
@@ -237,17 +237,19 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         scaleJunctions[0]
       ], "is-fork", "shared-fork", "scale-intake");
 
-      fragmentNodes.slice(0, -1).forEach((node, index) => {
-        connectCards(node, fragmentNodes[index + 1], fragmentNames[index], fragmentNames[index + 1]);
+      const fragmentSequence = [0, 1, 2, 4, 5, 6];
+      fragmentSequence.slice(0, -1).forEach((nodeIndex, index) => {
+        const nextIndex = fragmentSequence[index + 1];
+        connectCards(
+          fragmentNodes[nodeIndex],
+          fragmentNodes[nextIndex],
+          fragmentNames[nodeIndex],
+          fragmentNames[nextIndex],
+          "is-fragmented"
+        );
       });
-
-      const reworkX = fragmentedSystem.left + 4;
-      addRoute([
-        { x: fragmentNodes[4].left, y: fragmentNodes[4].centerY },
-        { x: reworkX, y: fragmentNodes[4].centerY },
-        { x: reworkX, y: fragmentNodes[2].centerY },
-        { x: fragmentNodes[2].left, y: fragmentNodes[2].centerY }
-      ], "is-rework", "frag-wait", "frag-followup-rework");
+      connectCards(fragmentNodes[2], fragmentNodes[3], "frag-followup", "frag-chase", "is-rework");
+      connectCards(fragmentNodes[3], fragmentNodes[4], "frag-chase", "frag-wait", "is-rework");
 
       const fragmentedTerminal = fragmentNodes.at(-1);
       const fragmentedOutcomeMidY = (fragmentedTerminal.bottom + fragmentedOutcome.top) / 2;
@@ -256,17 +258,17 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         { x: fragmentedTerminal.centerX, y: fragmentedOutcomeMidY },
         { x: fragmentedOutcome.centerX, y: fragmentedOutcomeMidY },
         { x: fragmentedOutcome.centerX, y: fragmentedOutcome.top }
-      ], "", "frag-terminal", "fragmented-outcomes");
+      ], "is-fragmented", "frag-terminal", "fragmented-outcomes");
 
       scaleJunctions.forEach((junction, index) => {
         const card = scaleCards[index];
         addRoute([
           junction,
           { x: card.left, y: card.centerY }
-        ], "is-stem", scaleNames[index], `${scaleNames[index]}-card`);
+        ], "is-scalable is-stem", scaleNames[index], `${scaleNames[index]}-card`);
         addJunction(junction, scaleNames[index]);
         if (index < scaleJunctions.length - 1) {
-          addRoute([junction, scaleJunctions[index + 1]], "", scaleNames[index], scaleNames[index + 1]);
+          addRoute([junction, scaleJunctions[index + 1]], "is-scalable", scaleNames[index], scaleNames[index + 1]);
         }
       });
 
@@ -277,7 +279,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         { x: lastScaleJunction.x, y: scalableExitY },
         { x: scalableOutcome.centerX, y: scalableExitY },
         { x: scalableOutcome.centerX, y: scalableOutcome.top }
-      ], "", "scale-resolution", "scalable-outcomes");
+      ], "is-scalable", "scale-resolution", "scalable-outcomes");
       return;
     }
 
@@ -310,24 +312,26 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
       scaleJunctions[0]
     ], "is-fork", "shared-fork", "scale-intake");
 
-    fragmentNodes.slice(0, -1).forEach((node, index) => {
-      connectCards(node, fragmentNodes[index + 1], fragmentNames[index], fragmentNames[index + 1]);
+    const fragmentSequence = [0, 1, 2, 4, 5, 6];
+    fragmentSequence.slice(0, -1).forEach((nodeIndex, index) => {
+      const nextIndex = fragmentSequence[index + 1];
+      connectCards(
+        fragmentNodes[nodeIndex],
+        fragmentNodes[nextIndex],
+        fragmentNames[nodeIndex],
+        fragmentNames[nextIndex],
+        "is-fragmented"
+      );
     });
-
-    const reworkY = fragmentedSystem.top + 8;
-    addRoute([
-      { x: fragmentNodes[4].centerX, y: fragmentNodes[4].top },
-      { x: fragmentNodes[4].centerX, y: reworkY },
-      { x: fragmentNodes[2].centerX, y: reworkY },
-      { x: fragmentNodes[2].centerX, y: fragmentNodes[2].top }
-    ], "is-rework", "frag-wait", "frag-followup-rework");
+    connectCards(fragmentNodes[2], fragmentNodes[3], "frag-followup", "frag-chase", "is-rework");
+    connectCards(fragmentNodes[3], fragmentNodes[4], "frag-chase", "frag-wait", "is-rework");
 
     const fragmentedTerminal = fragmentNodes.at(-1);
     if (fragmentedOutcome.left >= fragmentedTerminal.right) {
       addRoute([
         { x: fragmentedTerminal.right, y: fragmentedTerminal.centerY },
         { x: fragmentedOutcome.left, y: fragmentedTerminal.centerY }
-      ], "", "frag-terminal", "fragmented-outcomes");
+      ], "is-fragmented", "frag-terminal", "fragmented-outcomes");
     } else {
       const fragmentedOutcomeMidY = (fragmentedTerminal.bottom + fragmentedOutcome.top) / 2;
       addRoute([
@@ -335,7 +339,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         { x: fragmentedTerminal.centerX, y: fragmentedOutcomeMidY },
         { x: fragmentedOutcome.centerX, y: fragmentedOutcomeMidY },
         { x: fragmentedOutcome.centerX, y: fragmentedOutcome.top }
-      ], "", "frag-terminal", "fragmented-outcomes");
+      ], "is-fragmented", "frag-terminal", "fragmented-outcomes");
     }
 
     scaleJunctions.forEach((junction, index) => {
@@ -343,10 +347,10 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
       const cardAnchor = card.centerY < scaleBackboneY
         ? { x: card.centerX, y: card.bottom }
         : { x: card.centerX, y: card.top };
-      addRoute([cardAnchor, junction], "is-stem", `${scaleNames[index]}-card`, scaleNames[index]);
+      addRoute([cardAnchor, junction], "is-scalable is-stem", `${scaleNames[index]}-card`, scaleNames[index]);
       addJunction(junction, scaleNames[index]);
       if (index < scaleJunctions.length - 1) {
-        addRoute([junction, scaleJunctions[index + 1]], "", scaleNames[index], scaleNames[index + 1]);
+        addRoute([junction, scaleJunctions[index + 1]], "is-scalable", scaleNames[index], scaleNames[index + 1]);
       }
     });
 
@@ -355,7 +359,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
       addRoute([
         lastScaleJunction,
         { x: scalableOutcome.left, y: lastScaleJunction.y }
-      ], "", "scale-resolution", "scalable-outcomes");
+      ], "is-scalable", "scale-resolution", "scalable-outcomes");
     } else {
       const scalableExitX = scalableSystem.right - 7;
       const scalableExitY = scalableSystem.bottom - 7;
@@ -365,7 +369,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         { x: scalableExitX, y: scalableExitY },
         { x: scalableOutcome.centerX, y: scalableExitY },
         { x: scalableOutcome.centerX, y: scalableOutcome.top }
-      ], "", "scale-resolution", "scalable-outcomes");
+      ], "is-scalable", "scale-resolution", "scalable-outcomes");
     }
   };
 

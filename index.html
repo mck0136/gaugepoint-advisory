@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="styles.css?v=15">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -315,23 +315,39 @@
               </article>
             </div>
 
-            <article class="os-stage act-stage reveal">
-              <div class="os-copy">
-                <p class="eyebrow">Act</p>
+            <article class="governance-stage reveal">
+              <div class="governance-copy">
+                <p class="eyebrow">Governance</p>
                 <h3>Move with explicit authority.</h3>
+                <span class="governance-rule" aria-hidden="true"></span>
                 <p>The system may recommend, coordinate, or execute only what the operation has deliberately authorized.</p>
               </div>
-              <div class="act-system" aria-label="A recommended action passes through human review and an auditable resolution">
-                <div><small>RECOMMENDATION</small><strong>Approve recovery plan</strong></div>
-                <span class="act-arrow" aria-hidden="true"></span>
-                <div class="approval-state"><small>HUMAN REVIEW</small><strong>Approved</strong></div>
-                <span class="act-arrow" aria-hidden="true"></span>
-                <div><small>ACTION LOG</small><strong>Resolution recorded</strong></div>
+              <div class="governance-system" aria-label="A recommendation passes through explicit human review before the resolution is recorded">
+                <article class="governance-card governance-recommendation">
+                  <svg class="governance-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"></path>
+                  </svg>
+                  <small>RECOMMENDATION</small>
+                  <strong>Approve<br>recovery plan</strong>
+                </article>
+                <span class="governance-link" aria-hidden="true"></span>
+                <article class="governance-card governance-approval">
+                  <svg class="governance-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path><path d="m9 12 2 2 4-4"></path>
+                  </svg>
+                  <small>HUMAN REVIEW</small>
+                  <strong>Approved</strong>
+                </article>
+                <span class="governance-link" aria-hidden="true"></span>
+                <article class="governance-card governance-log">
+                  <svg class="governance-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 5h10v14H5V9"></path><path d="M5 5h4v4H5zM8 14l2 2 4-4"></path>
+                  </svg>
+                  <small>ACTION LOG</small>
+                  <strong>Resolution<br>recorded</strong>
+                </article>
               </div>
             </article>
-          </div>
-          <div class="accountability-rail reveal">
-            <span>Governance</span><p>Permissions, verification, escalation, and auditability travel through every environment.</p><span>Human accountability</span>
           </div>
         </div>
       </section>
@@ -526,6 +542,6 @@
 
     <div id="site-footer"></div>
     <script src="content-data.js?v=10"></script>
-    <script src="script.js?v=14"></script>
+    <script src="script.js?v=15"></script>
   </body>
 </html>
