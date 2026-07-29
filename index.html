@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=18">
+    <link rel="stylesheet" href="styles.css?v=19">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -144,53 +144,173 @@
       </section>
 
       <section class="readiness-chapter" id="readiness-system">
-        <div class="container">
-          <div class="chapter-heading reveal">
+        <svg class="readiness-atmosphere" viewBox="0 0 1800 1120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g class="readiness-atmosphere-grid">
+            <path d="M120 0V1120M300 0V1120M480 0V1120M660 0V1120M840 0V1120M1020 0V1120M1200 0V1120M1380 0V1120M1560 0V1120M1740 0V1120"></path>
+            <path d="M0 120H1800M0 300H1800M0 480H1800M0 660H1800M0 840H1800M0 1020H1800"></path>
+          </g>
+          <g class="readiness-atmosphere-rings">
+            <circle cx="610" cy="650" r="310"></circle>
+            <circle cx="610" cy="650" r="420"></circle>
+            <circle cx="610" cy="650" r="535"></circle>
+          </g>
+          <g class="readiness-atmosphere-traces">
+            <path d="M0 860C160 792 242 926 390 850S650 790 770 842"></path>
+            <path d="M0 900C170 820 260 970 420 888S690 836 820 886"></path>
+            <path d="M0 944C180 854 288 1010 450 930S724 882 852 926"></path>
+            <path d="M1405 140h150l34 34h170M1490 222h106l26-26h138M1432 940h142l30-30h156"></path>
+          </g>
+          <g class="readiness-atmosphere-points">
+            <circle cx="110" cy="732" r="3"></circle><circle cx="326" cy="196" r="2"></circle>
+            <circle cx="1330" cy="284" r="3"></circle><circle cx="1650" cy="818" r="2"></circle>
+            <circle cx="1510" cy="980" r="3"></circle>
+          </g>
+        </svg>
+        <div class="readiness-container">
+          <div class="chapter-heading readiness-intro reveal">
             <p class="eyebrow">The Gaugepoint AI Readiness System</p>
             <h2>Seven conditions. One operating system.</h2>
             <p>AI readiness is not a technology score. It is the alignment of the business problem, the work, and the controls required to produce a dependable outcome.</p>
           </div>
           <div class="readiness-system reveal" data-readiness-system>
-            <div class="readiness-map">
-              <svg class="readiness-connectors" viewBox="0 0 720 620" aria-hidden="true">
-                <circle class="system-ring" cx="340" cy="300" r="224"></circle>
-                <path data-connector="strategy" d="M340 300 L340 66"></path>
-                <path data-connector="workflows" d="M340 300 L580 142"></path>
-                <path data-connector="data" d="M340 300 L628 330"></path>
-                <path data-connector="economics" d="M340 300 L520 516"></path>
-                <path data-connector="systems" d="M340 300 L320 558"></path>
-                <path data-connector="people" d="M340 300 L112 470"></path>
-                <path data-connector="governance" d="M340 300 L82 222"></path>
+            <div class="readiness-diagram-shell">
+              <svg class="readiness-diagram" viewBox="0 0 760 760" role="img" aria-labelledby="readiness-diagram-title readiness-diagram-desc">
+                <title id="readiness-diagram-title">Gaugepoint AI Readiness Operating System</title>
+                <desc id="readiness-diagram-desc">Seven interconnected operating dimensions surround the central outcome of measurable value.</desc>
+                <defs>
+                  <radialGradient id="readiness-hub-fill" cx="34%" cy="28%" r="78%">
+                    <stop offset="0%" stop-color="#1d4058"></stop>
+                    <stop offset="52%" stop-color="#10283d"></stop>
+                    <stop offset="100%" stop-color="#081a29"></stop>
+                  </radialGradient>
+                  <linearGradient id="readiness-node-fill" x1="0" y1="0" x2="0.8" y2="1">
+                    <stop offset="0%" stop-color="#ffffff"></stop>
+                    <stop offset="100%" stop-color="#f3f5f4"></stop>
+                  </linearGradient>
+                  <filter id="readiness-hub-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#10283d" flood-opacity=".22"></feDropShadow>
+                  </filter>
+                  <filter id="readiness-node-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#142b3b" flood-opacity=".13"></feDropShadow>
+                  </filter>
+                  <filter id="readiness-active-shadow" x="-70%" y="-70%" width="240%" height="240%">
+                    <feDropShadow dx="-2" dy="-8" stdDeviation="9" flood-color="#d2a34a" flood-opacity=".25"></feDropShadow>
+                    <feDropShadow dx="0" dy="13" stdDeviation="13" flood-color="#a67622" flood-opacity=".18"></feDropShadow>
+                  </filter>
+                </defs>
+
+                <g class="readiness-orbit-geometry" aria-hidden="true">
+                  <circle class="readiness-guide-ring" cx="380" cy="390" r="222"></circle>
+                  <circle class="readiness-guide-ring readiness-guide-ring-outer" cx="380" cy="390" r="286"></circle>
+                  <path class="readiness-orbit-segment" d="M420 124C500 126 558 151 600 180"></path>
+                  <path class="readiness-orbit-segment" d="M661 282C690 330 701 370 689 410"></path>
+                  <path class="readiness-orbit-segment" d="M636 501C612 550 579 588 548 610"></path>
+                  <path class="readiness-orbit-segment" d="M455 674C414 691 369 696 347 692"></path>
+                  <path class="readiness-orbit-segment" d="M244 674C188 643 151 594 132 548"></path>
+                  <path class="readiness-orbit-segment" d="M107 420C91 352 98 304 118 277"></path>
+                  <path class="readiness-orbit-segment" d="M198 190C247 151 299 128 340 121"></path>
+                  <path class="readiness-radial is-active" data-connector="strategy" d="M380 260L380 184"></path>
+                  <path class="readiness-radial" data-connector="workflows" d="M485.6 314.2L559.6 261.1"></path>
+                  <path class="readiness-radial" data-connector="data" d="M506.4 420.4L589.7 440.5"></path>
+                  <path class="readiness-radial" data-connector="economics" d="M441.6 504.5L490.6 595.4"></path>
+                  <path class="readiness-radial" data-connector="systems" d="M343.1 514.6L317.6 600.6"></path>
+                  <path class="readiness-radial" data-connector="people" d="M258.5 436.2L188 463"></path>
+                  <path class="readiness-radial" data-connector="governance" d="M272.2 317.3L201.4 269.6"></path>
+                  <path class="readiness-signal" data-signal="strategy" d="M380 260L380 184"></path>
+                  <path class="readiness-signal" data-signal="workflows" d="M485.6 314.2L559.6 261.1"></path>
+                  <path class="readiness-signal" data-signal="data" d="M506.4 420.4L589.7 440.5"></path>
+                  <path class="readiness-signal" data-signal="economics" d="M441.6 504.5L490.6 595.4"></path>
+                  <path class="readiness-signal" data-signal="systems" d="M343.1 514.6L317.6 600.6"></path>
+                  <path class="readiness-signal" data-signal="people" d="M258.5 436.2L188 463"></path>
+                  <path class="readiness-signal" data-signal="governance" d="M272.2 317.3L201.4 269.6"></path>
+                  <circle class="readiness-junction is-active" data-junction="strategy" cx="380" cy="184" r="4"></circle>
+                  <circle class="readiness-junction" data-junction="workflows" cx="559.6" cy="261.1" r="3.5"></circle>
+                  <circle class="readiness-junction" data-junction="data" cx="589.7" cy="440.5" r="3.5"></circle>
+                  <circle class="readiness-junction" data-junction="economics" cx="490.6" cy="595.4" r="3.5"></circle>
+                  <circle class="readiness-junction" data-junction="systems" cx="317.6" cy="600.6" r="3.5"></circle>
+                  <circle class="readiness-junction" data-junction="people" cx="188" cy="463" r="3.5"></circle>
+                  <circle class="readiness-junction" data-junction="governance" cx="201.4" cy="269.6" r="3.5"></circle>
+                </g>
+
+                <g class="readiness-hub" filter="url(#readiness-hub-shadow)" aria-hidden="true">
+                  <circle class="readiness-hub-ring readiness-hub-ring-outer" cx="380" cy="390" r="143"></circle>
+                  <circle class="readiness-hub-ring" cx="380" cy="390" r="136"></circle>
+                  <circle class="readiness-hub-body" cx="380" cy="390" r="130"></circle>
+                  <path class="readiness-hub-highlight" d="M296 318A111 111 0 0 1 388 280"></path>
+                  <text class="readiness-hub-eyebrow" x="380" y="366" text-anchor="middle">OPERATING OUTCOME</text>
+                  <text class="readiness-hub-title" x="380" y="410" text-anchor="middle">
+                    <tspan x="380">Measurable</tspan><tspan x="380" dy="42">value</tspan>
+                  </text>
+                </g>
+
+                <foreignObject class="readiness-node-object readiness-node-strategy" x="308" y="40" width="144" height="144">
+                  <button class="readiness-orbit-node is-active" type="button" data-readiness="strategy" aria-pressed="true" aria-label="Strategy. A defined business problem comes first.">
+                    <svg class="readiness-symbol" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="14"></circle><path d="M19 29l3.2-9.2 7.8-3.8-3.2 9.2z"></path><circle cx="35.5" cy="13" r="1.7"></circle><path d="M12.5 35.5l3-3"></path></svg>
+                    <span>Strategy</span>
+                  </button>
+                </foreignObject>
+                <foreignObject class="readiness-node-object readiness-node-workflows" x="548" y="163" width="124" height="124">
+                  <button class="readiness-orbit-node" type="button" data-readiness="workflows" aria-pressed="false" aria-label="Workflows. Understand the work before automating it.">
+                    <svg class="readiness-symbol" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8v7M24 26v6M12 32v-4h24v4"></path><path d="M24 14l6 6-6 6-6-6z"></path><rect x="6" y="32" width="12" height="8" rx="2"></rect><rect x="30" y="32" width="12" height="8" rx="2"></rect></svg>
+                    <span>Workflows</span>
+                  </button>
+                </foreignObject>
+                <foreignObject class="readiness-node-object readiness-node-data" x="588" y="393" width="124" height="124">
+                  <button class="readiness-orbit-node" type="button" data-readiness="data" aria-pressed="false" aria-label="Data. AI can only act on information the operation can trust.">
+                    <svg class="readiness-symbol" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="12" rx="13" ry="5"></ellipse><path d="M11 12v12c0 2.8 5.8 5 13 5s13-2.2 13-5V12M11 24v12c0 2.8 5.8 5 13 5s13-2.2 13-5V24M11 24c0 2.8 5.8 5 13 5s13-2.2 13-5"></path></svg>
+                    <span>Data</span>
+                  </button>
+                </foreignObject>
+                <foreignObject class="readiness-node-object readiness-node-economics" x="458" y="588" width="124" height="124">
+                  <button class="readiness-orbit-node" type="button" data-readiness="economics" aria-pressed="false" aria-label="Economics. The business case must survive implementation.">
+                    <svg class="readiness-symbol" viewBox="0 0 48 48" aria-hidden="true"><path d="M9 39V28h6v11M21 39V20h6v19M33 39V12h6v27M8 23l10-7 9 2 12-10"></path><circle cx="39" cy="8" r="2"></circle></svg>
+                    <span>Economics</span>
+                  </button>
+                </foreignObject>
+                <foreignObject class="readiness-node-object readiness-node-systems" x="238" y="598" width="124" height="124">
+                  <button class="readiness-orbit-node" type="button" data-readiness="systems" aria-pressed="false" aria-label="Systems. Technology must connect to the operating environment.">
+                    <svg class="readiness-symbol" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18l16-8 16 8-16 8zM8 25l16 8 16-8M8 32l16 8 16-8"></path></svg>
+                    <span>Systems</span>
+                  </button>
+                </foreignObject>
+                <foreignObject class="readiness-node-object readiness-node-people" x="68" y="423" width="124" height="124">
+                  <button class="readiness-orbit-node" type="button" data-readiness="people" aria-pressed="false" aria-label="People. Adoption is an operating requirement.">
+                    <svg class="readiness-symbol" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="6"></circle><circle cx="10.5" cy="20" r="4"></circle><circle cx="37.5" cy="20" r="4"></circle><path d="M13 39c.8-7 4.5-11 11-11s10.2 4 11 11M3.5 38c.5-5 3-8 7-8 2 0 3.7.7 5 2M44.5 38c-.5-5-3-8-7-8-2 0-3.7.7-5 2"></path></svg>
+                    <span>People</span>
+                  </button>
+                </foreignObject>
+                <foreignObject class="readiness-node-object readiness-node-governance" x="88" y="173" width="124" height="124">
+                  <button class="readiness-orbit-node" type="button" data-readiness="governance" aria-pressed="false" aria-label="Governance. Authority and accountability must remain explicit.">
+                    <svg class="readiness-symbol" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l13 5v10c0 9-5 15.5-13 21-8-5.5-13-12-13-21V11z"></path><path d="M17.5 24l4.5 4.5 9-10"></path></svg>
+                    <span>Governance</span>
+                  </button>
+                </foreignObject>
               </svg>
-              <div class="readiness-core">
-                <span>Operating outcome</span>
-                <strong>Measurable<br>value</strong>
+
+              <div class="readiness-mobile-selector" role="group" aria-label="AI readiness dimensions">
+                <button class="is-active" type="button" data-readiness="strategy" aria-pressed="true" aria-label="Strategy. A defined business problem comes first.">Strategy</button>
+                <button type="button" data-readiness="workflows" aria-pressed="false" aria-label="Workflows. Understand the work before automating it.">Workflows</button>
+                <button type="button" data-readiness="data" aria-pressed="false" aria-label="Data. AI can only act on information the operation can trust.">Data</button>
+                <button type="button" data-readiness="economics" aria-pressed="false" aria-label="Economics. The business case must survive implementation.">Economics</button>
+                <button type="button" data-readiness="systems" aria-pressed="false" aria-label="Systems. Technology must connect to the operating environment.">Systems</button>
+                <button type="button" data-readiness="people" aria-pressed="false" aria-label="People. Adoption is an operating requirement.">People</button>
+                <button type="button" data-readiness="governance" aria-pressed="false" aria-label="Governance. Authority and accountability must remain explicit.">Governance</button>
               </div>
-              <button class="readiness-node readiness-position-strategy is-active" type="button" data-readiness="strategy"><small>01</small><span>Strategy</span></button>
-              <button class="readiness-node readiness-position-workflows" type="button" data-readiness="workflows"><small>02</small><span>Workflows</span></button>
-              <button class="readiness-node readiness-position-data" type="button" data-readiness="data"><small>03</small><span>Data</span></button>
-              <button class="readiness-node readiness-position-economics" type="button" data-readiness="economics"><small>07</small><span>Economics</span></button>
-              <button class="readiness-node readiness-position-systems" type="button" data-readiness="systems"><small>04</small><span>Systems</span></button>
-              <button class="readiness-node readiness-position-people" type="button" data-readiness="people"><small>05</small><span>People</span></button>
-              <button class="readiness-node readiness-position-governance" type="button" data-readiness="governance"><small>06</small><span>Governance</span></button>
             </div>
-            <aside class="readiness-detail-wrap">
-              <div class="readiness-detail" aria-live="polite">
-                <p class="eyebrow" data-readiness-label>Strategy</p>
-                <h3 data-readiness-title>A defined business problem comes first.</h3>
+            <aside class="readiness-detail" aria-live="polite">
+              <div class="readiness-detail-dots" aria-hidden="true"></div>
+              <div class="readiness-detail-copy">
+                <p class="readiness-detail-label" data-readiness-label>Strategy</p>
+                <span class="readiness-detail-mark" aria-hidden="true"></span>
+                <h3 data-readiness-title><span>A defined business </span><span>problem comes first.</span></h3>
+                <div class="readiness-editorial-rule" aria-hidden="true"><i></i><span></span><i></i></div>
                 <p data-readiness-copy>Clarify the operating outcome, executive ownership, and evidence that will define success before selecting a tool.</p>
               </div>
-              <a class="button dark" href="ai-readiness/">Explore the AI Readiness Assessment</a>
+              <a class="readiness-cta" href="ai-readiness/" aria-label="Explore the AI Readiness Assessment">
+                <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18"></circle><path d="M14 22h15M24 17l5 5-5 5"></path></svg>
+                <span><span class="readiness-cta-prefix">Explore the </span>AI Readiness Assessment</span>
+              </a>
             </aside>
-          </div>
-          <div class="readiness-accordion">
-            <details open><summary>Strategy</summary><p>Clarify the operating outcome, executive ownership, and evidence that will define success.</p></details>
-            <details><summary>Workflows</summary><p>Map decisions, handoffs, exceptions, delay, rework, and the people who own the work.</p></details>
-            <details><summary>Data</summary><p>Assess quality, access, timeliness, ownership, baselines, and output verification.</p></details>
-            <details><summary>Systems</summary><p>Understand the TMS and workflow environment, integration paths, permissions, and write-back.</p></details>
-            <details><summary>People</summary><p>Design the roles, training, capacity, and change required for adoption.</p></details>
-            <details><summary>Governance</summary><p>Define approval boundaries, risk controls, audit trails, escalation, and accountability.</p></details>
-            <details><summary>Economics</summary><p>Connect cost, cycle time, service, error, and margin to a measurable investment case.</p></details>
           </div>
         </div>
       </section>
@@ -545,6 +665,6 @@
 
     <div id="site-footer"></div>
     <script src="content-data.js?v=10"></script>
-    <script src="script.js?v=18"></script>
+    <script src="script.js?v=19"></script>
   </body>
 </html>

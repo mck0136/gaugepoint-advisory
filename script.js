@@ -444,43 +444,122 @@ if (!reducedMotion && lazyVideos.length) {
 }
 
 const readinessContent = {
-  strategy: ["Strategy", "A defined business problem comes first.", "Clarify the operating outcome, executive ownership, and evidence that will define success before selecting a tool."],
-  workflows: ["Workflows", "Make the real work visible.", "Map decisions, handoffs, exceptions, delay, rework, and the people who own the workflow."],
-  data: ["Data", "Trust depends on more than cleanliness.", "Assess quality, access, timeliness, ownership, baselines, and how AI output will be verified."],
-  systems: ["Systems", "The workflow must move across the technology.", "Understand the TMS and workflow environment, integration paths, permissions, and write-back requirements."],
-  people: ["People", "Adoption changes roles and routines.", "Design the skills, capacity, training, and stakeholder involvement required to use the capability well."],
-  governance: ["Governance", "Authority must remain explicit.", "Define approvals, risk controls, permissions, audit trails, escalation paths, and accountability for outcomes."],
-  economics: ["Economics", "A use case needs a measurable reason to exist.", "Connect labour, cycle time, service, error, and margin to a credible investment and measurement case."]
+  strategy: {
+    label: "Strategy",
+    headline: ["A defined business", "problem comes first."],
+    description: "Clarify the operating outcome, executive ownership, and evidence that will define success before selecting a tool."
+  },
+  workflows: {
+    label: "Workflows",
+    headline: ["Understand the work", "before automating it."],
+    description: "Map the decisions, handoffs, exceptions, and delays that shape the operation before introducing intelligent automation."
+  },
+  data: {
+    label: "Data",
+    headline: ["AI can only act on", "information the", "operation can trust."],
+    description: "Identify the data required, where it originates, who owns it, and how its quality will be measured and maintained."
+  },
+  systems: {
+    label: "Systems",
+    headline: ["Technology must", "connect to the", "operating environment."],
+    description: "Evaluate how the TMS, ERP, CRM, telematics, and workflow tools exchange information and support action."
+  },
+  people: {
+    label: "People",
+    headline: ["Adoption is an", "operating requirement."],
+    description: "Define how roles will change, where human judgement remains essential, and how teams will be prepared to work differently."
+  },
+  governance: {
+    label: "Governance",
+    headline: ["Authority and", "accountability must", "remain explicit."],
+    description: "Set permissions, approval points, escalation rules, audit trails, and responsibility before AI participates in operational decisions."
+  },
+  economics: {
+    label: "Economics",
+    headline: ["The business case", "must survive", "implementation."],
+    description: "Establish the baseline, investment requirement, measurable benefit, and conditions required for the use case to create durable value."
+  }
 };
 
+const readinessKeys = ["strategy", "workflows", "data", "economics", "systems", "people", "governance"];
+const readinessNodes = [...document.querySelectorAll("[data-readiness]")];
+const readinessDetail = document.querySelector(".readiness-detail");
+const readinessTitle = document.querySelector("[data-readiness-title]");
 let readinessTimer;
-document.querySelectorAll("[data-readiness]").forEach((node) => {
-  node.addEventListener("click", () => {
-    const key = node.dataset.readiness;
-    const detail = readinessContent[key];
-    const detailCard = document.querySelector(".readiness-detail");
-    document.querySelectorAll("[data-readiness]").forEach((item) => {
-      const active = item === node;
-      item.classList.toggle("is-active", active);
-      item.setAttribute("aria-pressed", String(active));
-    });
-    document.querySelectorAll("[data-connector]").forEach((connector) => {
-      connector.classList.toggle("is-active", connector.dataset.connector === key);
-    });
-    const updateDetail = () => {
-      document.querySelector("[data-readiness-label]").textContent = detail[0];
-      document.querySelector("[data-readiness-title]").textContent = detail[1];
-      document.querySelector("[data-readiness-copy]").textContent = detail[2];
-      detailCard?.classList.remove("is-updating");
-    };
-    window.clearTimeout(readinessTimer);
-    detailCard?.classList.add("is-updating");
-    if (reducedMotion) updateDetail();
-    else readinessTimer = window.setTimeout(updateDetail, 150);
+let readinessHoverTimer;
+let activeReadiness = "strategy";
+
+const renderReadinessTitle = (lines) => {
+  if (!readinessTitle) return;
+  readinessTitle.replaceChildren(...lines.map((line, index) => {
+    const span = document.createElement("span");
+    span.textContent = `${line}${index < lines.length - 1 ? " " : ""}`;
+    return span;
+  }));
+};
+
+const illuminateReadinessPath = (key) => {
+  const signal = document.querySelector(`[data-signal="${key}"]`);
+  if (!signal || reducedMotion) return;
+  signal.classList.remove("is-signaling");
+  void signal.getBoundingClientRect();
+  signal.classList.add("is-signaling");
+};
+
+const activateReadiness = (key) => {
+  const detail = readinessContent[key];
+  if (!detail) return;
+
+  activeReadiness = key;
+  readinessNodes.forEach((node) => {
+    const active = node.dataset.readiness === key;
+    node.classList.toggle("is-active", active);
+    node.setAttribute("aria-pressed", String(active));
+  });
+  document.querySelectorAll("[data-connector]").forEach((connector) => {
+    connector.classList.toggle("is-active", connector.dataset.connector === key);
+  });
+  document.querySelectorAll("[data-junction]").forEach((junction) => {
+    junction.classList.toggle("is-active", junction.dataset.junction === key);
+  });
+
+  const updateDetail = () => {
+    document.querySelector("[data-readiness-label]").textContent = detail.label;
+    renderReadinessTitle(detail.headline);
+    document.querySelector("[data-readiness-copy]").textContent = detail.description;
+    readinessDetail?.classList.remove("is-updating");
+    illuminateReadinessPath(key);
+  };
+
+  window.clearTimeout(readinessTimer);
+  readinessDetail?.classList.add("is-updating");
+  if (reducedMotion) updateDetail();
+  else readinessTimer = window.setTimeout(updateDetail, 210);
+};
+
+const visibleReadinessNode = (key) => readinessNodes.find((node) =>
+  node.dataset.readiness === key && node.offsetParent !== null);
+
+readinessNodes.forEach((node) => {
+  node.addEventListener("click", () => activateReadiness(node.dataset.readiness));
+  node.addEventListener("pointerenter", () => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    window.clearTimeout(readinessHoverTimer);
+    readinessHoverTimer = window.setTimeout(() => activateReadiness(node.dataset.readiness), 140);
+  });
+  node.addEventListener("pointerleave", () => window.clearTimeout(readinessHoverTimer));
+  node.addEventListener("keydown", (event) => {
+    if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) return;
+    event.preventDefault();
+    const direction = ["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1;
+    const currentIndex = readinessKeys.indexOf(node.dataset.readiness);
+    const nextKey = readinessKeys[(currentIndex + direction + readinessKeys.length) % readinessKeys.length];
+    activateReadiness(nextKey);
+    visibleReadinessNode(nextKey)?.focus();
   });
 });
-document.querySelector('[data-readiness="strategy"]')?.setAttribute("aria-pressed", "true");
-document.querySelector('[data-connector="strategy"]')?.classList.add("is-active");
+
+window.setTimeout(() => illuminateReadinessPath(activeReadiness), 900);
 
 const caseStudyTarget = document.querySelector('[data-render="case-studies"]');
 if (caseStudyTarget && content.externalAiExamples) {
