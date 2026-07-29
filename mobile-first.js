@@ -90,25 +90,6 @@ if (processRoot) {
   });
 }
 
-const readinessRoot = document.querySelector("[data-mf-readiness]");
-if (readinessRoot) {
-  const readinessItems = [...readinessRoot.querySelectorAll(".mf-readiness-item")];
-  readinessItems.forEach((item) => {
-    const button = item.querySelector("button");
-    button?.addEventListener("click", () => {
-      const wasActive = item.classList.contains("is-active");
-      readinessItems.forEach((candidate) => {
-        candidate.classList.remove("is-active");
-        candidate.querySelector("button")?.setAttribute("aria-expanded", "false");
-      });
-      if (!wasActive) {
-        item.classList.add("is-active");
-        button.setAttribute("aria-expanded", "true");
-      }
-    });
-  });
-}
-
 const osRoot = document.querySelector("[data-mf-os]");
 if (osRoot) {
   const osButtons = [...osRoot.querySelectorAll("[data-os-key]")];

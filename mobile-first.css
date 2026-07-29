@@ -354,6 +354,38 @@
   background-size: 56px 56px;
 }
 
+.mf-readiness.readiness-chapter {
+  min-height: 0;
+  padding-inline: 0;
+}
+
+.mf-readiness .readiness-container {
+  position: relative;
+  width: min(calc(100% - 28px), 1420px);
+}
+
+.mf-readiness .readiness-intro {
+  margin-bottom: clamp(36px, 5vw, 70px);
+}
+
+.mf-readiness .readiness-system {
+  margin-top: 0;
+}
+
+.mf-readiness .readiness-guide-rings,
+.mf-readiness .readiness-hub,
+.mf-readiness .readiness-node-group {
+  opacity: 1;
+}
+
+.mf-readiness .readiness-hub {
+  transform: scale(1);
+}
+
+.mf-readiness .readiness-radial {
+  stroke-dashoffset: 0;
+}
+
 .mf-readiness-layout {
   display: grid;
   gap: 34px;
@@ -1826,6 +1858,81 @@
   .mf-site .footer-logo {
     width: 190px;
     height: 72px;
+  }
+
+  .mf-readiness.readiness-chapter {
+    padding: 72px 0;
+  }
+
+  .mf-readiness .readiness-container {
+    width: min(calc(100% - 28px), 1420px);
+  }
+
+  .mf-readiness .readiness-intro {
+    margin-bottom: 24px;
+  }
+
+  .mf-readiness .readiness-system {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .mf-readiness .readiness-diagram-shell {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .mf-readiness .readiness-diagram {
+    width: min(108vw, 470px);
+    max-width: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .mf-readiness .readiness-node-group,
+  .mf-readiness .readiness-radial,
+  .mf-readiness .readiness-signal,
+  .mf-readiness .readiness-junction,
+  .mf-readiness .readiness-primary-orbit,
+  .mf-readiness .readiness-guide-ring-outer {
+    display: block;
+  }
+
+  .mf-readiness .readiness-node-label {
+    font-size: 17px;
+    letter-spacing: 0.025em;
+  }
+
+  .mf-readiness .readiness-mobile-selector {
+    width: 100%;
+    margin: 6px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .mf-readiness .readiness-mobile-selector button {
+    min-width: 0;
+    min-height: 46px;
+    padding: 0 12px;
+    font-size: 0.72rem;
+  }
+
+  .mf-readiness .readiness-mobile-selector button:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .mf-readiness .readiness-detail {
+    width: 100%;
+    min-height: 440px;
+    padding: 30px 22px 24px;
+    border-radius: 8px;
+  }
+
+  .mf-readiness .readiness-detail h3 {
+    font-size: clamp(2.15rem, 10vw, 3rem);
   }
 }
 
