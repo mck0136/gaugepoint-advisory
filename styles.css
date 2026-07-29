@@ -463,7 +463,20 @@ p { text-wrap: pretty; }
 .case-progress span:nth-child(-n+2)::before { background: var(--gold); }
 .governance-stage {
   position: relative; min-height: 560px; display: grid; grid-template-columns: minmax(320px,.7fr) minmax(0,1.3fr);
-  gap: clamp(48px,5vw,72px); align-items: center;
+  gap: clamp(48px,5vw,72px); align-items: center; isolation: isolate;
+}
+.governance-stage::before {
+  content: ""; position: absolute; z-index: -3; inset: -90px -8vw; pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 49%,rgba(210,163,74,.16),transparent 25%),
+    radial-gradient(circle at 8% 80%,rgba(210,163,74,.5) 0 1px,transparent 2px) 0 0 / 42px 42px,
+    linear-gradient(115deg,transparent 16%,rgba(210,163,74,.08) 16.1%,transparent 16.3%),
+    linear-gradient(25deg,transparent 34%,rgba(255,255,255,.035) 34.1%,transparent 34.3%);
+  opacity: .72; mask-image: radial-gradient(ellipse at 62% 54%,#000 20%,transparent 78%);
+}
+.governance-stage::after {
+  content: ""; position: absolute; z-index: -2; left: -18%; bottom: -22%; width: 58%; height: 46%;
+  border: 1px solid rgba(210,163,74,.18); border-radius: 50%; pointer-events: none; transform: rotate(-10deg);
 }
 .governance-copy { position: relative; z-index: 3; }
 .governance-copy h3 {
@@ -484,43 +497,85 @@ p { text-wrap: pretty; }
   align-items: center; isolation: isolate;
 }
 .governance-system::before {
-  content: ""; position: absolute; z-index: -2; inset: -70px -8vw; opacity: .2;
-  background-image: linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);
-  background-size: 64px 64px; mask-image: radial-gradient(ellipse at center,#000 30%,transparent 76%);
+  content: ""; position: absolute; z-index: -3; inset: -72px -8vw; opacity: .26;
+  background-image:
+    radial-gradient(circle,rgba(210,163,74,.4) 0 1px,transparent 1.5px),
+    linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);
+  background-size: 32px 32px,64px 64px,64px 64px;
+  mask-image: radial-gradient(ellipse at center,#000 24%,transparent 76%);
 }
 .governance-system::after {
-  content: ""; position: absolute; z-index: -1; top: 50%; right: -3vw; left: -3vw; height: 1px;
-  background: linear-gradient(90deg,transparent,var(--gold) 12%,var(--gold) 88%,transparent);
-  box-shadow: 0 0 18px rgba(210,163,74,.24);
+  content: ""; position: absolute; z-index: -2; top: 4%; right: -10%; bottom: 3%; left: 16%;
+  border: 1px solid rgba(210,163,74,.12); border-radius: 50%; pointer-events: none; transform: rotate(-8deg);
 }
 .governance-card {
   position: relative; z-index: 2; min-height: 250px; padding: 28px 20px; display: grid; align-content: center; justify-items: center;
-  color: var(--white); background: rgba(8,24,38,.84); border: 1px solid rgba(210,163,74,.24); text-align: center;
-  box-shadow: 0 24px 60px rgba(0,0,0,.22);
+  overflow: hidden; color: var(--white);
+  background: linear-gradient(145deg,rgba(17,42,62,.93),rgba(5,17,28,.96));
+  border: 1px solid rgba(210,163,74,.28); border-radius: 6px; text-align: center;
+  box-shadow: inset 0 1px rgba(255,255,255,.055),0 22px 58px rgba(0,0,0,.28);
+}
+.governance-card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(120deg,rgba(255,255,255,.045),transparent 30%,transparent 70%,rgba(210,163,74,.025));
+}
+.governance-recommendation { width: 94%; justify-self: end; margin-top: 14px; }
+.governance-log { width: 92%; justify-self: start; margin-top: 30px; opacity: .94; }
+.governance-recommendation::after, .governance-log::after {
+  content: ""; position: absolute; right: 18px; bottom: 16px; left: 18px; height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(210,163,74,.36),transparent);
 }
 .governance-icon {
   width: 52px; height: 52px; margin-bottom: 28px; display: grid; place-items: center; color: var(--gold);
   padding: 13px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
   border: 1px solid rgba(210,163,74,.72); border-radius: 50%;
+  box-shadow: 0 0 0 7px rgba(210,163,74,.035),0 0 24px rgba(210,163,74,.1);
 }
 .governance-card small { color: var(--gold); }
 .governance-card strong { width: 100%; margin-top: 22px; font-size: clamp(1.15rem,1.7vw,1.55rem); font-weight: 500; line-height: 1.12; }
+.governance-status {
+  position: relative; z-index: 2; display: block; margin-top: 24px; color: rgba(255,255,255,.36);
+  font-family: "IBM Plex Mono",monospace; font-size: .48rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+}
 .governance-approval {
-  min-height: 330px; color: var(--ink);
+  top: -8px; min-height: 348px; color: var(--ink);
   background: linear-gradient(135deg,#f0c66f 0%,#d3a856 48%,#ba8934 100%);
-  border-color: rgba(255,240,196,.92);
-  box-shadow: inset 0 0 0 2px rgba(255,248,218,.42), 0 0 0 9px rgba(210,163,74,.09), 0 0 38px rgba(210,163,74,.38), 0 30px 80px rgba(0,0,0,.34);
+  border-color: rgba(255,240,196,.94); border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(255,250,226,.5),inset 0 1px 0 rgba(255,255,255,.6),
+              0 0 0 8px rgba(210,163,74,.055),0 0 42px rgba(210,163,74,.32),0 32px 82px rgba(0,0,0,.4);
+}
+.governance-approval::before {
+  background:
+    radial-gradient(circle at 50% 112%,rgba(255,246,211,.32),transparent 42%),
+    linear-gradient(120deg,rgba(255,255,255,.18),transparent 30%,transparent 72%,rgba(74,44,8,.07));
+}
+.governance-approval::after {
+  content: ""; position: absolute; right: 16px; bottom: 12px; left: 16px; height: 64px; opacity: .34;
+  background-image: radial-gradient(circle,rgba(11,24,37,.42) 0 1px,transparent 1.5px);
+  background-size: 9px 9px; mask-image: linear-gradient(transparent,#000);
 }
 .governance-approval .governance-icon { color: var(--ink); border-color: rgba(11,24,37,.48); }
 .governance-approval small { color: rgba(11,24,37,.74); }
 .governance-approval strong { font-size: clamp(2rem,2.8vw,2.65rem); font-weight: 500; letter-spacing: -.04em; white-space: nowrap; }
-.governance-link { position: relative; z-index: 3; height: 1px; background: var(--gold); }
+.governance-approval .governance-status { color: rgba(11,24,37,.56); }
+.governance-link {
+  position: relative; z-index: 3; height: 1px;
+  background: linear-gradient(90deg,rgba(210,163,74,.34),var(--gold) 25%,var(--gold) 78%,rgba(210,163,74,.5));
+  box-shadow: 0 0 12px rgba(210,163,74,.16);
+}
 .governance-link::before, .governance-link::after {
   content: ""; position: absolute; top: 50%; width: 8px; height: 8px; background: var(--gold); border: 3px solid #172b3c; border-radius: 50%;
   transform: translateY(-50%);
 }
 .governance-link::before { left: -5px; }
 .governance-link::after { right: -5px; clip-path: polygon(0 0,100% 50%,0 100%); border: 0; border-radius: 0; }
+.governance-link i {
+  position: absolute; top: -1px; left: 0; width: 24px; height: 3px; opacity: 0;
+  background: linear-gradient(90deg,transparent,#fff3c6,transparent); filter: blur(.2px);
+  animation: governance-signal 3.8s ease-in-out infinite;
+}
+.governance-approval + .governance-link i { animation-delay: 1.8s; }
 .os-stage.is-visible .reasoning-path i, .decision-handoff.is-visible i {
   animation: system-line-in 800ms var(--ease) both;
 }
@@ -538,6 +593,12 @@ p { text-wrap: pretty; }
 @keyframes state-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes record-in { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
 @keyframes governance-card-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes governance-signal {
+  0%,24% { left: 0; opacity: 0; }
+  32% { opacity: .9; }
+  72% { opacity: .6; }
+  82%,100% { left: calc(100% - 24px); opacity: 0; }
+}
 
 /* Operating leverage */
 .leverage-chapter { overflow: hidden; background: #eef0ef; }
@@ -923,12 +984,14 @@ p { text-wrap: pretty; }
   .governance-system {
     min-height: auto; grid-template-columns: 1fr; gap: 18px; padding: 26px 18px;
   }
-  .governance-system::after { top: 18px; right: auto; bottom: 18px; left: 50%; width: 1px; height: auto; }
+  .governance-system::after { display: none; }
   .governance-card, .governance-approval { width: min(100%,390px); min-height: 220px; margin-inline: auto; }
-  .governance-approval { min-height: 270px; }
+  .governance-recommendation, .governance-log { width: min(100%,390px); margin-top: 0; }
+  .governance-approval { top: 0; min-height: 270px; }
   .governance-icon { margin-bottom: 22px; }
   .governance-card strong { margin-top: 18px; }
   .governance-link { width: 1px; height: 34px; margin-inline: auto; }
+  .governance-link i { display: none; }
   .governance-link::before { top: -3px; left: 50%; transform: translateX(-50%); }
   .governance-link::after { top: auto; right: auto; bottom: -4px; left: 50%; transform: translateX(-50%) rotate(90deg); }
   .leverage-system { display: block; margin-bottom: 38px; }

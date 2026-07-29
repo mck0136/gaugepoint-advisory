@@ -210,14 +210,14 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
     let sharedJunction;
 
     if (mobile) {
-      sharedJunction = { x: source.centerX, y: source.bottom + 36 };
+      sharedJunction = { x: source.centerX, y: source.bottom + 28 };
       addRoute([
         { x: source.centerX, y: source.bottom },
         sharedJunction
       ], "is-shared", "shared-volume", "shared-fork");
       addJunction(sharedJunction, "shared-fork");
 
-      const fragmentedEntryX = 6;
+      const fragmentedEntryX = Math.max(18, fragmentedSystem.left - 12);
       addRoute([
         sharedJunction,
         { x: fragmentedEntryX, y: sharedJunction.y },
@@ -227,13 +227,12 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
 
       const scaleBackboneX = scalableSystem.left + 26;
       const scaleJunctions = scaleCards.map((card) => ({ x: scaleBackboneX, y: card.centerY }));
-      const scalableEntryY = scaleCards[0].top - 12;
-      const scalableEntryX = rootBounds.width - 6;
+      const scalableEntryY = scaleCards[0].centerY;
+      const scalableEntryX = Math.min(rootBounds.width - 18, scalableSystem.right + 10);
       addRoute([
         sharedJunction,
         { x: scalableEntryX, y: sharedJunction.y },
         { x: scalableEntryX, y: scalableEntryY },
-        { x: scaleBackboneX, y: scalableEntryY },
         scaleJunctions[0]
       ], "is-fork", "shared-fork", "scale-intake");
 
@@ -284,7 +283,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
     }
 
     sharedJunction = {
-      x: source.right + (fragmentedLane.left - source.right) / 2,
+      x: Math.min(source.right + 18, fragmentedLane.left - 12),
       y: source.centerY
     };
     addRoute([
@@ -293,22 +292,19 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
     ], "is-shared", "shared-volume", "shared-fork");
     addJunction(sharedJunction, "shared-fork");
 
-    const fragmentedEntryY = fragmentedSystem.top + 14;
     addRoute([
       sharedJunction,
-      { x: sharedJunction.x, y: fragmentedEntryY },
-      { x: fragmentNodes[0].left - 14, y: fragmentedEntryY },
-      { x: fragmentNodes[0].left - 14, y: fragmentNodes[0].centerY },
+      { x: sharedJunction.x, y: fragmentNodes[0].centerY },
       { x: fragmentNodes[0].left, y: fragmentNodes[0].centerY }
     ], "is-fork", "shared-fork", "frag-email");
 
-    const scaleBackboneY = scalableSystem.top + scalableSystem.height / 2;
+    const scaleHeadingTitle = relativeBounds(system.querySelector(".scalable-lane .lane-heading h3"), rootBounds);
+    const scaleHeadingSummary = relativeBounds(system.querySelector(".scalable-lane .lane-heading > span"), rootBounds);
+    const scaleBackboneY = (scaleHeadingTitle.bottom + scaleHeadingSummary.top) / 2;
     const scaleJunctions = scaleCards.map((card) => ({ x: card.centerX, y: scaleBackboneY }));
-    const scalableEntryY = scalableSystem.top + 14;
     addRoute([
       sharedJunction,
-      { x: sharedJunction.x, y: scalableEntryY },
-      { x: scaleJunctions[0].x, y: scalableEntryY },
+      { x: sharedJunction.x, y: scaleBackboneY },
       scaleJunctions[0]
     ], "is-fork", "shared-fork", "scale-intake");
 
