@@ -756,6 +756,291 @@ if (archiveTarget && content.mediaArchive) {
     </article>`).join("");
 }
 
+const audienceSegments = [
+  {
+    id: "fleets",
+    label: "Fleets",
+    descriptor: "AI-optimized asset utilization and network performance",
+    theme: "AI-first advisory",
+    summary: "Apply AI to fleet planning, asset utilization, operating decisions and scalable exception management.",
+    capabilities: ["AI workflow design", "Asset utilization", "Network performance"],
+    icon: "truck",
+    poster: "assets/audiences/fleets.jpg",
+    objectPosition: "64% center",
+    mediaAlt: "An aerial view of truck trailers arranged across a freight yard.",
+    credit: "Giant Asparagus / Pexels",
+    sourcePage: "https://www.pexels.com/photo/aerial-view-of-truck-and-trailer-parking-lot-35501714/"
+  },
+  {
+    id: "brokers",
+    label: "Brokers",
+    descriptor: "AI-led pricing, procurement and workflow excellence",
+    theme: "AI-led operating leverage",
+    summary: "Create operating leverage across pricing, carrier procurement, exception handling and high-volume brokerage workflows.",
+    capabilities: ["AI workflow design", "Pricing discipline", "Carrier procurement"],
+    icon: "broker",
+    poster: "assets/audiences/brokers.jpg",
+    objectPosition: "66% center",
+    mediaAlt: "A transportation operations team working across multiple monitors.",
+    credit: "Pixabay / Pexels",
+    sourcePage: "https://www.pexels.com/photo/software-engineers-working-on-computers-256219/"
+  },
+  {
+    id: "3pls",
+    label: "3PLs",
+    descriptor: "AI-powered network design, visibility and execution",
+    theme: "AI-enabled network execution",
+    summary: "Modernize network planning, customer visibility, transportation execution and exception management with practical AI.",
+    capabilities: ["Network intelligence", "Customer visibility", "Workflow automation"],
+    icon: "warehouse",
+    poster: "assets/audiences/3pls.jpg",
+    objectPosition: "67% center",
+    mediaAlt: "Warehouse employees and material-handling equipment working inside a distribution facility.",
+    credit: "GB The Green Brand / Pexels",
+    sourcePage: "https://www.pexels.com/photo/modern-warehouse-operations-with-employees-and-forklift-30824313/"
+  },
+  {
+    id: "4pls",
+    label: "4PLs",
+    descriptor: "AI-driven control towers and orchestration at scale",
+    theme: "AI and operating-model governance",
+    summary: "Strengthen control-tower operations, provider orchestration, decision speed and accountability across complex networks.",
+    capabilities: ["Control-tower design", "Network orchestration", "Decision governance"],
+    icon: "network",
+    poster: "assets/audiences/4pls.jpg",
+    objectPosition: "66% center",
+    mediaAlt: "Technicians coordinating activity from a multi-screen industrial control room.",
+    credit: "Sergey Sergeev / Pexels",
+    sourcePage: "https://www.pexels.com/photo/technicians-in-control-room-operating-machinery-32845695/"
+  },
+  {
+    id: "drayage",
+    label: "Drayage",
+    descriptor: "Dispatch flow, yard coordination and handoff control",
+    theme: "Operating transformation",
+    summary: "Improve dispatch, terminal coordination, chassis visibility, exception handling and the handoffs that determine daily performance.",
+    capabilities: ["Dispatch redesign", "Yard and chassis flow", "Terminal handoffs"],
+    icon: "container-truck",
+    poster: "assets/audiences/drayage.jpg",
+    objectPosition: "68% center",
+    mediaAlt: "A container yard where cranes and operating equipment coordinate freight movement.",
+    credit: "Alex Levis / Pexels",
+    sourcePage: "https://www.pexels.com/photo/container-yard-with-crane-moving-shipping-containers-36771186/"
+  },
+  {
+    id: "intermodal",
+    label: "Intermodal",
+    descriptor: "AI-optimized modal decisions and terminal connectivity",
+    theme: "AI-enabled intermodal execution",
+    summary: "Connect modal strategy, rail performance, drayage execution and terminal information through scalable AI-enabled workflows.",
+    capabilities: ["Modal optimization", "Terminal connectivity", "Exception intelligence"],
+    icon: "intermodal",
+    poster: "assets/hero-intermodal-yard.png",
+    objectPosition: "68% center",
+    mediaAlt: "An intermodal terminal with rail tracks, stacked containers and lifting equipment.",
+    credit: "Gaugepoint site media",
+    sourcePage: ""
+  },
+  {
+    id: "shortline-railways",
+    label: "Shortline railways",
+    descriptor: "Equipment velocity through precision operating models",
+    theme: "Precision operating models",
+    summary: "Improve equipment turns, local service execution and asset productivity through disciplined precision operating models.",
+    capabilities: ["Equipment velocity", "Precision operations", "Service design"],
+    icon: "shortline",
+    poster: "assets/audiences/shortline-railways.jpg",
+    objectPosition: "64% center",
+    mediaAlt: "A North American freight train moving along a local rail corridor.",
+    credit: "Tom Fisk / Pexels",
+    sourcePage: "https://www.pexels.com/photo/photo-of-a-freight-train-18512161/"
+  },
+  {
+    id: "regional-railways",
+    label: "Regional railways",
+    descriptor: "Network discipline, equipment velocity and service reliability",
+    theme: "Railway operating transformation",
+    summary: "Improve network flow, terminal discipline, equipment velocity and service reliability across a broader operating footprint.",
+    capabilities: ["Network velocity", "Terminal discipline", "Service reliability"],
+    icon: "regional",
+    poster: "assets/audiences/regional-railways.jpg",
+    objectPosition: "62% center",
+    mediaAlt: "An aerial view of a freight rail yard with multiple tracks and railcars.",
+    credit: "Quantum Prophet AI / Pexels",
+    sourcePage: ""
+  },
+  {
+    id: "ports-terminals",
+    label: "Ports and terminals",
+    descriptor: "Operational control across gates, yards and handoffs",
+    theme: "Terminal operating transformation",
+    summary: "Improve coordination across gates, yard activity, equipment, drayage, rail interfaces and high-volume operating exceptions.",
+    capabilities: ["Gate and yard flow", "Equipment visibility", "Handoff control"],
+    icon: "port",
+    poster: "assets/audiences/ports-terminals.jpg",
+    objectPosition: "68% center",
+    mediaAlt: "An aerial view of a large container terminal and its organized operating lanes.",
+    credit: "Giant Asparagus / Pexels",
+    sourcePage: "https://www.pexels.com/photo/aerial-view-of-shipping-containers-at-port-terminal-35627339/"
+  },
+  {
+    id: "industrial-shippers",
+    label: "Industrial shippers",
+    descriptor: "Cost containment, sourcing strategy and AI-assisted procurement",
+    theme: "Commercial and operating transformation",
+    summary: "Contain freight cost, strengthen carrier sourcing and use AI to improve procurement, routing and transportation decisions.",
+    capabilities: ["Freight-cost containment", "Procurement strategy", "AI-assisted sourcing"],
+    icon: "factory",
+    poster: "assets/audiences/industrial-shippers.jpg",
+    objectPosition: "66% center",
+    mediaAlt: "A freight vehicle moving through an industrial loading and shipping facility.",
+    credit: "Juan R. Real / Pexels",
+    sourcePage: "https://www.pexels.com/photo/warehouse-with-delivery-truck-exiting-the-loading-dock-29786116/"
+  }
+];
+
+const audienceIconPaths = {
+  truck: '<path d="M3 6h11v10H3zM14 9h4l3 4v3h-7zM6 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>',
+  broker: '<circle cx="6" cy="8" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M3 18c.5-3 2-4.5 4.5-4.5S11.5 15 12 18M12 18c.5-3 2-4.5 4.5-4.5S20.5 15 21 18M9 9.5h6"/>',
+  warehouse: '<path d="M3 10 12 4l9 6v10H3zM7 20v-6h10v6M7 10h.01M12 10h.01M17 10h.01"/>',
+  network: '<circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="m10.9 6.9-4.8 9M13.1 6.9l4.8 9M7.2 18h9.6"/>',
+  "container-truck": '<path d="M2.5 7h11v9h-11zM5.5 10h5M13.5 10h4l3 3.2V16h-7zM6 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>',
+  intermodal: '<path d="M5 4h14v9H5zM8 7h8M4 17h16M7 13v4M17 13v4M7 20h.01M17 20h.01"/>',
+  shortline: '<path d="M7 4h10l2 5v7H5V9zM8 9h8M8 13h.01M16 13h.01M7 20l3-4M17 20l-3-4M5 20h14"/>',
+  regional: '<path d="M6 3h12v12H6zM9 6h6M9 10h.01M15 10h.01M8 19l2-4M16 19l-2-4M5 21h14"/>',
+  port: '<path d="M4 20V5h11M7 8h10l3 4M15 5v15M11 12h4M9 12v5h4M3 20h18"/>',
+  factory: '<path d="M3 20V9l6 3V8l6 4V5h6v15zM7 16h.01M12 16h.01M17 16h.01"/>'
+};
+
+const audienceRoot = document.querySelector("[data-audiences]");
+if (audienceRoot) {
+  const preview = audienceRoot.querySelector("#audience-preview-panel");
+  const selector = audienceRoot.querySelector("[data-audience-tabs]");
+  const previewContent = audienceRoot.querySelector("[data-audience-content]");
+  const previewTitle = audienceRoot.querySelector("[data-audience-title]");
+  const previewTheme = audienceRoot.querySelector("[data-audience-theme]");
+  const previewSummary = audienceRoot.querySelector("[data-audience-summary]");
+  const previewCapabilities = audienceRoot.querySelector("[data-audience-capabilities]");
+  const mediaAlt = audienceRoot.querySelector("[data-audience-media-alt]");
+  const status = audienceRoot.querySelector("[data-audience-status]");
+  const mediaLayers = [
+    audienceRoot.querySelector("[data-audience-media-current]"),
+    audienceRoot.querySelector("[data-audience-media-next]")
+  ];
+  let activeAudienceId = "brokers";
+  let activeMediaIndex = 0;
+  let mediaRequest = 0;
+  let hoverTimer;
+  let resizeFrame;
+
+  const audienceIcon = (name) =>
+    `<svg viewBox="0 0 24 24" aria-hidden="true">${audienceIconPaths[name] || audienceIconPaths.network}</svg>`;
+
+  selector.innerHTML = audienceSegments.map((segment) => `
+    <button class="audience-tab" type="button" role="tab"
+      id="audience-tab-${segment.id}" aria-controls="audience-preview-panel"
+      aria-selected="${String(segment.id === activeAudienceId)}"
+      tabindex="${segment.id === activeAudienceId ? "0" : "-1"}"
+      data-audience-id="${segment.id}">
+      <span class="audience-tab__icon">${audienceIcon(segment.icon)}</span>
+      <span class="audience-tab__name">${segment.label}</span>
+      <span class="audience-tab__descriptor">${segment.descriptor}</span>
+    </button>`).join("");
+
+  const audienceTabs = [...selector.querySelectorAll("[data-audience-id]")];
+
+  const updateAudienceConnector = () => {
+    const activeTab = selector.querySelector('[aria-selected="true"]');
+    if (!activeTab) return;
+    const rootBounds = audienceRoot.getBoundingClientRect();
+    const tabBounds = activeTab.getBoundingClientRect();
+    audienceRoot.style.setProperty("--active-segment-x", `${tabBounds.left - rootBounds.left + tabBounds.width / 2}px`);
+  };
+
+  const renderAudienceContent = (segment) => {
+    previewTitle.textContent = segment.label;
+    previewTheme.textContent = segment.theme;
+    previewSummary.textContent = segment.summary;
+    previewCapabilities.innerHTML = segment.capabilities
+      .map((capability) => `<span class="capability-chip"><i aria-hidden="true"></i>${capability}</span>`)
+      .join("");
+    mediaAlt.textContent = segment.mediaAlt;
+    preview.setAttribute("aria-labelledby", `audience-tab-${segment.id}`);
+  };
+
+  const setActiveAudience = (id, announce = true) => {
+    const segment = audienceSegments.find((item) => item.id === id);
+    if (!segment) return;
+
+    activeAudienceId = id;
+    audienceTabs.forEach((tab) => {
+      const selected = tab.dataset.audienceId === id;
+      tab.setAttribute("aria-selected", String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+    });
+    updateAudienceConnector();
+
+    const requestId = ++mediaRequest;
+    const preload = new Image();
+    preload.src = segment.poster;
+    const commit = () => {
+      if (requestId !== mediaRequest) return;
+      const nextMediaIndex = activeMediaIndex === 0 ? 1 : 0;
+      const currentMedia = mediaLayers[activeMediaIndex];
+      const nextMedia = mediaLayers[nextMediaIndex];
+      nextMedia.src = segment.poster;
+      nextMedia.style.objectPosition = segment.objectPosition;
+
+      previewContent.classList.add("is-updating");
+      window.setTimeout(() => {
+        if (requestId !== mediaRequest) return;
+        renderAudienceContent(segment);
+        nextMedia.classList.add("is-active");
+        currentMedia.classList.remove("is-active");
+        previewContent.classList.remove("is-updating");
+        activeMediaIndex = nextMediaIndex;
+        if (announce) status.textContent = `${segment.label} preview selected.`;
+      }, reducedMotion ? 0 : 150);
+    };
+    if (preload.complete) commit();
+    else {
+      preload.addEventListener("load", commit, { once: true });
+      preload.addEventListener("error", commit, { once: true });
+    }
+  };
+
+  audienceTabs.forEach((tab, index) => {
+    tab.addEventListener("pointerenter", () => {
+      if (!window.matchMedia("(hover: hover)").matches) return;
+      window.clearTimeout(hoverTimer);
+      hoverTimer = window.setTimeout(() => setActiveAudience(tab.dataset.audienceId, false), 90);
+    });
+    tab.addEventListener("pointerleave", () => window.clearTimeout(hoverTimer));
+    tab.addEventListener("focus", () => setActiveAudience(tab.dataset.audienceId, false));
+    tab.addEventListener("click", () => setActiveAudience(tab.dataset.audienceId));
+    tab.addEventListener("keydown", (event) => {
+      let nextIndex = index;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % audienceTabs.length;
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + audienceTabs.length) % audienceTabs.length;
+      else if (event.key === "Home") nextIndex = 0;
+      else if (event.key === "End") nextIndex = audienceTabs.length - 1;
+      else return;
+      event.preventDefault();
+      audienceTabs[nextIndex].focus();
+    });
+  });
+
+  mediaLayers.forEach((media) => {
+    media.style.objectPosition = audienceSegments.find((segment) => segment.id === activeAudienceId).objectPosition;
+  });
+  updateAudienceConnector();
+  document.fonts?.ready.then(updateAudienceConnector);
+  window.addEventListener("resize", () => {
+    window.cancelAnimationFrame(resizeFrame);
+    resizeFrame = window.requestAnimationFrame(updateAudienceConnector);
+  }, { passive: true });
+}
+
 document.querySelectorAll("[data-filter]").forEach((button) => {
   button.addEventListener("click", () => {
     const category = button.dataset.filter;

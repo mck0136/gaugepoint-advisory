@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=21">
+    <link rel="stylesheet" href="styles.css?v=22">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -542,12 +542,12 @@
           </figure>
           <div class="founder-story reveal">
             <p>Mark McKendry has spent more than two decades building, leading, and evaluating transportation operations across rail, intermodal, drayage, trucking, and integrated logistics.</p>
-            <p>Before founding Gaugepoint, he spent approximately 15 years at a Class 1 railway and nearly a decade in senior leadership roles at a leading 3PL, where his responsibilities included intermodal strategy, operations, commercial development, network growth, and integrated logistics.</p>
+            <p>Before founding Gaugepoint, he spent approximately 15 years at a Class 1 railway and 10 years in senior leadership roles at a leading 3PL, where his responsibilities included intermodal strategy, operations, commercial development, network growth, and integrated logistics.</p>
             <p>Today, his work focuses on a practical question: where can AI reduce effort, improve decisions, strengthen service, and create operating leverage without separating technology from accountability?</p>
           </div>
           <div class="career-line reveal" aria-label="Career timeline">
             <div><span>Rail and intermodal</span><strong>Class 1 railway</strong><small>Approximately 15 years</small></div>
-            <div><span>Integrated logistics</span><strong>Leading 3PL</strong><small>Nearly a decade</small></div>
+            <div><span>Integrated logistics</span><strong>Leading 3PL</strong><small>10 years</small></div>
             <div><span>AI readiness</span><strong>Gaugepoint</strong><small>Operator-led advisory</small></div>
           </div>
           <blockquote class="belief reveal">Transportation does not need more AI theatre. It needs practical technology applied to real operating problems.</blockquote>
@@ -580,12 +580,49 @@
         </div>
       </section>
 
-      <section class="audience-band">
-        <div class="container">
-          <p class="eyebrow reveal">Who Gaugepoint works with</p>
-          <div class="audience-marquee reveal">
-            <span>Fleets</span><span>Brokers</span><span>3PLs</span><span>4PLs</span><span>Drayage</span><span>Intermodal</span><span>Shortline railways</span><span>Regional railways</span><span>Ports and terminals</span><span>Industrial shippers</span>
+      <section class="audiences-section" id="audiences" aria-labelledby="audiences-heading">
+        <div class="audiences-shell" data-audiences>
+          <div class="audiences-preview reveal" id="audience-preview-panel" role="tabpanel" aria-labelledby="audience-tab-brokers">
+            <div class="audiences-preview__media" aria-hidden="true">
+              <img class="audiences-preview__poster is-active" src="assets/audiences/brokers.jpg" alt="" data-audience-media-current>
+              <img class="audiences-preview__poster" src="assets/audiences/brokers.jpg" alt="" data-audience-media-next>
+            </div>
+            <div class="audiences-preview__shade" aria-hidden="true"></div>
+            <div class="audiences-preview__content" data-audience-content>
+              <div class="preview-badge">
+                <span class="preview-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m10 8 6 4-6 4Z"></path></svg>
+                </span>
+                <span>Preview</span>
+              </div>
+              <p class="audiences-preview__theme" data-audience-theme>AI-led operating leverage</p>
+              <h2 class="audiences-preview__title" data-audience-title>Brokers</h2>
+              <p class="audiences-preview__summary" data-audience-summary>Create operating leverage across pricing, carrier procurement, exception handling and high-volume brokerage workflows.</p>
+              <div class="audiences-preview__capabilities" data-audience-capabilities>
+                <span class="capability-chip"><i aria-hidden="true"></i>AI workflow design</span>
+                <span class="capability-chip"><i aria-hidden="true"></i>Pricing discipline</span>
+                <span class="capability-chip"><i aria-hidden="true"></i>Carrier procurement</span>
+              </div>
+            </div>
+            <p class="sr-only" data-audience-media-alt>A transportation operations team working across multiple monitors.</p>
           </div>
+
+          <div class="audiences-intro reveal">
+            <h2 class="eyebrow audiences-intro__eyebrow" id="audiences-heading">Who Gaugepoint works with</h2>
+            <p class="audiences-intro__hint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 3 11 8-5 1 3 6-2 1-3-6-4 3Z"></path><path d="M17 3v3M21 7h-3M19.5 4.5l-2 2"></path></svg>
+              Hover, focus or tap a segment to preview tailored capabilities.
+            </p>
+          </div>
+
+          <div class="audiences-connector" aria-hidden="true">
+            <span class="audiences-connector__rail"></span>
+            <span class="audiences-connector__vertical"></span>
+            <span class="audiences-connector__node"></span>
+          </div>
+
+          <div class="audiences-selector reveal" role="tablist" aria-label="Gaugepoint customer segments" data-audience-tabs></div>
+          <p class="sr-only" aria-live="polite" data-audience-status>Brokers preview selected.</p>
         </div>
       </section>
 
@@ -606,6 +643,6 @@
 
     <div id="site-footer"></div>
     <script src="content-data.js?v=11"></script>
-    <script src="script.js?v=20"></script>
+    <script src="script.js?v=22"></script>
   </body>
 </html>
