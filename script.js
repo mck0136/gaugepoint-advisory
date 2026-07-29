@@ -481,6 +481,140 @@ const readinessContent = {
   }
 };
 
+const buildReadinessDiagram = () => {
+  const connectorLayer = document.querySelector("[data-readiness-connectors]");
+  const nodeLayer = document.querySelector("[data-readiness-nodes]");
+  if (!connectorLayer || !nodeLayer) return;
+
+  const svgNamespace = "http://www.w3.org/2000/svg";
+  const centerX = 450;
+  const centerY = 450;
+  const centralHubRadius = 155;
+  const nodeOrbitRadius = 285;
+  const outerNodeRadius = 66;
+  const connectorStartRadius = centralHubRadius + 10;
+  const connectorEndRadius = nodeOrbitRadius - outerNodeRadius - 8;
+  const nodes = [
+    { id: "strategy", label: "Strategy" },
+    { id: "workflows", label: "Workflows" },
+    { id: "data", label: "Data" },
+    { id: "economics", label: "Economics" },
+    { id: "systems", label: "Systems" },
+    { id: "people", label: "People" },
+    { id: "governance", label: "Governance" }
+  ];
+  const angleStep = 360 / nodes.length;
+  const startingAngle = -90;
+  const createSvgElement = (name, attributes = {}) => {
+    const element = document.createElementNS(svgNamespace, name);
+    Object.entries(attributes).forEach(([attribute, value]) => element.setAttribute(attribute, String(value)));
+    return element;
+  };
+
+  nodes.forEach((node, index) => {
+    const angleDegrees = startingAngle + index * angleStep;
+    const angleRadians = angleDegrees * (Math.PI / 180);
+    const cosine = Math.cos(angleRadians);
+    const sine = Math.sin(angleRadians);
+    const x = centerX + nodeOrbitRadius * cosine;
+    const y = centerY + nodeOrbitRadius * sine;
+    const connector = {
+      x1: centerX + connectorStartRadius * cosine,
+      y1: centerY + connectorStartRadius * sine,
+      x2: centerX + connectorEndRadius * cosine,
+      y2: centerY + connectorEndRadius * sine
+    };
+
+    const connectorLine = createSvgElement("line", {
+      class: `readiness-radial${node.id === "strategy" ? " is-active" : ""}`,
+      x1: connector.x1,
+      y1: connector.y1,
+      x2: connector.x2,
+      y2: connector.y2,
+      "data-connector": node.id,
+      pathLength: 1,
+      "vector-effect": "non-scaling-stroke"
+    });
+    const signalLine = createSvgElement("line", {
+      class: "readiness-signal",
+      x1: connector.x1,
+      y1: connector.y1,
+      x2: connector.x2,
+      y2: connector.y2,
+      "data-signal": node.id,
+      pathLength: 1,
+      "vector-effect": "non-scaling-stroke"
+    });
+    const junction = createSvgElement("circle", {
+      class: `readiness-junction${node.id === "strategy" ? " is-active" : ""}`,
+      cx: connector.x2,
+      cy: connector.y2,
+      r: 4,
+      "data-junction": node.id,
+      "vector-effect": "non-scaling-stroke"
+    });
+    connectorLayer.append(connectorLine, signalLine, junction);
+
+    const nodeGroup = createSvgElement("g", {
+      class: `readiness-node-group readiness-node-${node.id}${node.id === "strategy" ? " is-active" : ""}`,
+      transform: `translate(${x} ${y})`,
+      role: "button",
+      tabindex: "0",
+      "aria-pressed": String(node.id === "strategy"),
+      "aria-label": `${node.label}. ${readinessContent[node.id].headline.join(" ")}`,
+      "data-readiness": node.id,
+      "data-angle": angleDegrees,
+      "data-node-x": x,
+      "data-node-y": y,
+      "data-orbit-radius": nodeOrbitRadius
+    });
+    const halo = createSvgElement("circle", {
+      class: "readiness-node-halo",
+      cx: 0,
+      cy: 0,
+      r: outerNodeRadius + 12,
+      filter: "url(#readiness-strategy-glow)"
+    });
+    const focusRing = createSvgElement("circle", {
+      class: "readiness-node-focus",
+      cx: 0,
+      cy: 0,
+      r: outerNodeRadius + 6
+    });
+    const surface = createSvgElement("circle", {
+      class: "readiness-node-surface",
+      cx: 0,
+      cy: 0,
+      r: outerNodeRadius,
+      filter: "url(#readiness-node-shadow)",
+      "vector-effect": "non-scaling-stroke"
+    });
+    const rim = createSvgElement("path", {
+      class: "readiness-node-rim",
+      d: "M -49.8 -41.8 A 66 66 0 0 1 49.8 -41.8"
+    });
+    const icon = createSvgElement("use", {
+      class: "readiness-node-icon",
+      href: `#readiness-icon-${node.id}`,
+      x: -15,
+      y: -40,
+      width: 30,
+      height: 30
+    });
+    const label = createSvgElement("text", {
+      class: "readiness-node-label",
+      x: 0,
+      y: 29,
+      "text-anchor": "middle"
+    });
+    label.textContent = node.label.toUpperCase();
+    nodeGroup.append(halo, focusRing, surface, rim, icon, label);
+    nodeLayer.append(nodeGroup);
+  });
+};
+
+buildReadinessDiagram();
+
 const readinessKeys = ["strategy", "workflows", "data", "economics", "systems", "people", "governance"];
 const readinessNodes = [...document.querySelectorAll("[data-readiness]")];
 const readinessDetail = document.querySelector(".readiness-detail");
@@ -537,8 +671,11 @@ const activateReadiness = (key) => {
   else readinessTimer = window.setTimeout(updateDetail, 210);
 };
 
-const visibleReadinessNode = (key) => readinessNodes.find((node) =>
-  node.dataset.readiness === key && node.offsetParent !== null);
+const visibleReadinessNode = (key) => readinessNodes.find((node) => {
+  if (node.dataset.readiness !== key || getComputedStyle(node).display === "none") return false;
+  const bounds = node.getBoundingClientRect();
+  return bounds.width > 0 && bounds.height > 0;
+});
 
 readinessNodes.forEach((node) => {
   node.addEventListener("click", () => activateReadiness(node.dataset.readiness));
