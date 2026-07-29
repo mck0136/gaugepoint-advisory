@@ -196,6 +196,7 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
 
     const source = relativeBounds(system.querySelector("[data-flow-source]"), rootBounds);
     const fragmentedLane = relativeBounds(system.querySelector(".fragmented-lane"), rootBounds);
+    const scalableLane = relativeBounds(system.querySelector(".scalable-lane"), rootBounds);
     const fragmentedSystem = relativeBounds(system.querySelector('[data-flow-system="fragmented"]'), rootBounds);
     const scalableSystem = relativeBounds(system.querySelector('[data-flow-system="scalable"]'), rootBounds);
     const fragmentedOutcome = relativeBounds(system.querySelector('[data-flow-outcome="fragmented"]'), rootBounds);
@@ -217,24 +218,24 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
       ], "is-shared", "shared-volume", "shared-fork");
       addJunction(sharedJunction, "shared-fork");
 
-      const fragmentedEntryX = Math.max(18, fragmentedSystem.left - 12);
+      const mobileForkX = fragmentedLane.left - 10;
+      const fragmentedPanelEntry = { x: fragmentedLane.left, y: fragmentedLane.top + 20 };
       addRoute([
         sharedJunction,
-        { x: fragmentedEntryX, y: sharedJunction.y },
-        { x: fragmentedEntryX, y: fragmentNodes[0].centerY },
-        { x: fragmentNodes[0].left, y: fragmentNodes[0].centerY }
-      ], "is-fork", "shared-fork", "frag-email");
+        { x: mobileForkX, y: sharedJunction.y },
+        { x: mobileForkX, y: fragmentedPanelEntry.y },
+        fragmentedPanelEntry
+      ], "is-fork", "shared-fork", "fragmented-panel");
 
       const scaleBackboneX = scalableSystem.left + 26;
       const scaleJunctions = scaleCards.map((card) => ({ x: scaleBackboneX, y: card.centerY }));
-      const scalableEntryY = scaleCards[0].centerY;
-      const scalableEntryX = Math.min(rootBounds.width - 18, scalableSystem.right + 10);
+      const scalablePanelEntry = { x: scalableLane.left, y: scalableLane.top + 20 };
       addRoute([
         sharedJunction,
-        { x: scalableEntryX, y: sharedJunction.y },
-        { x: scalableEntryX, y: scalableEntryY },
-        scaleJunctions[0]
-      ], "is-fork", "shared-fork", "scale-intake");
+        { x: mobileForkX, y: sharedJunction.y },
+        { x: mobileForkX, y: scalablePanelEntry.y },
+        scalablePanelEntry
+      ], "is-fork", "shared-fork", "scalable-panel");
 
       const fragmentSequence = [0, 1, 2, 4, 5, 6];
       fragmentSequence.slice(0, -1).forEach((nodeIndex, index) => {
@@ -292,21 +293,21 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
     ], "is-shared", "shared-volume", "shared-fork");
     addJunction(sharedJunction, "shared-fork");
 
+    const fragmentedPanelEntry = { x: fragmentedLane.left, y: fragmentedLane.top + 24 };
     addRoute([
       sharedJunction,
-      { x: sharedJunction.x, y: fragmentNodes[0].centerY },
-      { x: fragmentNodes[0].left, y: fragmentNodes[0].centerY }
-    ], "is-fork", "shared-fork", "frag-email");
+      { x: sharedJunction.x, y: fragmentedPanelEntry.y },
+      fragmentedPanelEntry
+    ], "is-fork", "shared-fork", "fragmented-panel");
 
-    const scaleHeadingTitle = relativeBounds(system.querySelector(".scalable-lane .lane-heading h3"), rootBounds);
-    const scaleHeadingSummary = relativeBounds(system.querySelector(".scalable-lane .lane-heading > span"), rootBounds);
-    const scaleBackboneY = (scaleHeadingTitle.bottom + scaleHeadingSummary.top) / 2;
+    const scaleBackboneY = Math.max(...scaleCards.map((card) => card.bottom)) + 16;
     const scaleJunctions = scaleCards.map((card) => ({ x: card.centerX, y: scaleBackboneY }));
+    const scalablePanelEntry = { x: scalableLane.left, y: scalableLane.top + 24 };
     addRoute([
       sharedJunction,
-      { x: sharedJunction.x, y: scaleBackboneY },
-      scaleJunctions[0]
-    ], "is-fork", "shared-fork", "scale-intake");
+      { x: sharedJunction.x, y: scalablePanelEntry.y },
+      scalablePanelEntry
+    ], "is-fork", "shared-fork", "scalable-panel");
 
     const fragmentSequence = [0, 1, 2, 4, 5, 6];
     fragmentSequence.slice(0, -1).forEach((nodeIndex, index) => {
@@ -337,6 +338,9 @@ document.querySelectorAll("[data-leverage-connectors]").forEach((svg) => {
         { x: fragmentedOutcome.centerX, y: fragmentedOutcome.top }
       ], "is-fragmented", "frag-terminal", "fragmented-outcomes");
     }
+
+    const scaleBackboneStart = { x: scalableSystem.left + 12, y: scaleBackboneY };
+    addRoute([scaleBackboneStart, scaleJunctions[0]], "is-scalable", "scale-backbone-start", "scale-intake");
 
     scaleJunctions.forEach((junction, index) => {
       const card = scaleCards[index];
