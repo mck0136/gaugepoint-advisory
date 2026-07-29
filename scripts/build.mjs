@@ -14,6 +14,7 @@ const siteEntries = [
   "assets/gaugepoint-advisory.png",
   "assets/gaugepoint-advisory-lockup.png",
   "assets/hero-intermodal-yard.png",
+  "assets/mark-mckendry-portrait.jpg",
   "assets/transport-yard-observe-poster.jpg",
   "assets/transport-yard-observe.mp4",
   "ai-readiness",

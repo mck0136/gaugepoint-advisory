@@ -123,7 +123,7 @@ window.GAUGEPOINT_CONTENT = {
     },
     {
       category: "freight",
-      type: "Industry witness",
+      type: "Industry Advocate",
       date: "October 2022",
       title: "Formal testimony before the Surface Transportation Board",
       description: "Public testimony on rail service and freight transportation conditions.",
