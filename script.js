@@ -475,7 +475,7 @@ const readinessContent = {
     description: "Set permissions, approval points, escalation rules, audit trails, and responsibility before AI participates in operational decisions."
   },
   economics: {
-    label: "Economics",
+    label: "Financial",
     headline: ["The business case", "must survive", "implementation."],
     description: "Establish the baseline, investment requirement, measurable benefit, and conditions required for the use case to create durable value."
   }
@@ -498,7 +498,7 @@ const buildReadinessDiagram = () => {
     { id: "strategy", label: "Strategy" },
     { id: "workflows", label: "Workflows" },
     { id: "data", label: "Data" },
-    { id: "economics", label: "Economics" },
+    { id: "economics", label: "Financial" },
     { id: "systems", label: "Systems" },
     { id: "people", label: "People" },
     { id: "governance", label: "Governance" }
