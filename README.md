@@ -6,7 +6,9 @@ Static website prototype for Gaugepoint Advisory.
 
 - `index.html` - single-page website structure and content
 - `styles.css` - responsive styling and Gaugepoint palette
-- `script.js` - mobile navigation and placeholder form behavior
+- `script.js` - site interactions and contact-form submission behavior
+- `api/contact.js` - Vercel contact-form delivery endpoint
+- `worker/` - Sites runtime and contact-form delivery endpoint
 - `assets/` - Gaugepoint logo assets plus generated hero imagery
 
 ## Preview
@@ -21,7 +23,6 @@ Then visit `http://localhost:8000`.
 
 ## Before Launch
 
-- Replace the placeholder contact form behavior with a real form provider, CRM, or email endpoint.
 - Confirm current-role and association references in the founder section.
 - Add a real founder photograph when available.
 - Review final AI transformation language against any client confidentiality or technology-partner considerations.

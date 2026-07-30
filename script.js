@@ -1071,13 +1071,60 @@ if (sourceTarget && content.marketSources) {
 
 const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
-  contactForm.addEventListener("submit", (event) => {
+  const startedAt = contactForm.elements.namedItem("startedAt");
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const submitLabel = submitButton?.querySelector("span");
+  const status = contactForm.querySelector(".form-status");
+  const resetStartTime = () => {
+    if (startedAt) startedAt.value = String(Date.now());
+  };
+  resetStartTime();
+
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const status = contactForm.querySelector(".form-status");
+    if (!contactForm.reportValidity() || submitButton?.disabled) return;
+
+    const formData = new FormData(contactForm);
+    const payload = Object.fromEntries(formData.entries());
+    submitButton?.setAttribute("disabled", "");
+    contactForm.setAttribute("aria-busy", "true");
+    if (submitLabel) submitLabel.textContent = "Sending...";
     if (status) {
-      status.textContent = "This private review site does not send submissions yet. Form delivery will be connected before public launch.";
-      status.setAttribute("tabindex", "-1");
-      status.focus();
+      status.textContent = "";
+      status.classList.remove("is-success", "is-error");
+    }
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "We could not send your inquiry. Please try again.");
+      }
+
+      contactForm.reset();
+      resetStartTime();
+      if (status) {
+        status.textContent = result.message || "Thank you. Your inquiry has been sent to Mark.";
+        status.classList.add("is-success");
+        status.focus();
+      }
+    } catch (error) {
+      if (status) {
+        status.textContent = error instanceof Error
+          ? error.message
+          : "We could not send your inquiry. Please try again.";
+        status.classList.add("is-error");
+        status.focus();
+      }
+    } finally {
+      submitButton?.removeAttribute("disabled");
+      contactForm.removeAttribute("aria-busy");
+      if (submitLabel) submitLabel.textContent = "Start a Conversation";
     }
   });
 }

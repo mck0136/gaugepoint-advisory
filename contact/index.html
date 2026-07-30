@@ -5,7 +5,7 @@
     <meta name="description" content="Start a conversation with Gaugepoint about AI readiness, operating transformation, or transportation complexity.">
     <title>Contact Gaugepoint Advisory</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css?v=23">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css?v=24">
     <link rel="stylesheet" href="../mobile-first.css?v=2">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"../"},{"@type":"ListItem","position":2,"name":"Contact"}]}</script>
   </head>
@@ -24,7 +24,9 @@
             <p>Share the workflow, decision, constraint, or investment question that brought you here. Gaugepoint will help frame what appears ready, what may need to change first, and what a practical next step could look like.</p>
             <ul class="check-list"><li>AI readiness assessment</li><li>Use-case and business-case development</li><li>Operating-model modernization</li><li>Pilot and scale planning</li><li>Speaking and industry education</li></ul>
           </div>
-          <form class="contact-form" aria-label="Gaugepoint contact form">
+          <form class="contact-form" action="/api/contact" method="post" aria-label="Gaugepoint contact form">
+            <label class="form-trap" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            <input type="hidden" name="startedAt" value="">
             <label>Name<input type="text" name="name" autocomplete="name" required></label>
             <label>Company<input type="text" name="company" autocomplete="organization" required></label>
             <label>Email<input type="email" name="email" autocomplete="email" required></label>
@@ -41,11 +43,11 @@
             </label>
             <label class="full">Primary operating challenge<textarea name="challenge" rows="4" required></textarea></label>
             <label class="full">Current AI or automation initiative, if any<textarea name="initiative" rows="3"></textarea></label>
-            <div class="form-actions"><button class="button dark" type="submit">Start a Conversation</button><p class="form-status" tabindex="-1" aria-live="polite"></p></div>
+            <div class="form-actions"><button class="button dark" type="submit"><span>Start a Conversation</span></button><p class="form-status" tabindex="-1" role="status" aria-live="polite"></p></div>
           </form>
         </div>
       </section>
     </main>
-    <div id="site-footer"></div><script src="../content-data.js?v=11"></script><script src="../script.js?v=22"></script>
+    <div id="site-footer"></div><script src="../content-data.js?v=11"></script><script src="../script.js?v=25"></script>
   </body>
 </html>

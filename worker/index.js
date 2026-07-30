@@ -1,6 +1,33 @@
+import { submitContact } from "./contact-service.js";
+
 const worker = {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.pathname === "/api/contact") {
+      if (request.method !== "POST") {
+        return Response.json(
+          { ok: false, message: "Method not allowed." },
+          { status: 405, headers: { Allow: "POST" } }
+        );
+      }
+
+      const contentLength = Number(request.headers.get("content-length") || 0);
+      if (contentLength > 20000) {
+        return Response.json({ ok: false, message: "Submission is too large." }, { status: 413 });
+      }
+
+      let payload;
+      try {
+        payload = await request.json();
+      } catch {
+        return Response.json({ ok: false, message: "Invalid submission." }, { status: 400 });
+      }
+
+      const result = await submitContact(payload, env);
+      return Response.json(result.body, { status: result.status });
+    }
+
     if (
       request.method === "GET" &&
       (url.pathname === "/insights" || url.pathname === "/insights/")

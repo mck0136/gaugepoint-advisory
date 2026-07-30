@@ -1093,7 +1093,12 @@ p { text-wrap: pretty; }
 .contact-form { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; padding: 28px; background: var(--white); border: 1px solid var(--line); }
 .contact-form label { display: grid; gap: 7px; font-size: 0.85rem; font-weight: 600; }.contact-form label.full, .form-actions { grid-column: 1 / -1; }
 .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px; border: 1px solid var(--line); background: var(--paper); }
-.form-status { color: var(--steel); font-size: 0.8rem; }
+.contact-form .form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.contact-form .button[disabled] { cursor: wait; opacity: 0.7; transform: none; }
+.form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+.form-status { min-height: 1.35em; margin: 0; color: var(--steel); font-size: 0.8rem; }
+.form-status.is-success { color: #2d6947; }
+.form-status.is-error { color: #9a3f34; }
 .cta-band { padding: 70px 0; color: var(--white); background: var(--navy); }.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }.cta-inner h2 { max-width: 850px; margin: 0; font-size: clamp(2rem,3.6vw,4rem); }
 
 /* Footer */
