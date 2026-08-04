@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#ffffff"/>
+  <defs>
+    <clipPath id="wing-crop">
+      <rect x="38" y="86" width="436" height="90"/>
+    </clipPath>
+    <clipPath id="g-crop">
+      <rect x="157" y="235" width="198" height="198"/>
+    </clipPath>
+  </defs>
+  <image href="assets/gaugepoint-advisory.png" x="-22" y="24" width="540" height="360" clip-path="url(#wing-crop)"/>
+  <image href="assets/gaugepoint-advisory.png" x="-22" y="-341" width="1966" height="1311" clip-path="url(#g-crop)"/>
+  <rect x="330" y="230" width="182" height="220" fill="#ffffff"/>
+</svg>
