@@ -28,7 +28,7 @@ export function initSupplyChainVideo(root) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   root.innerHTML = `
     <div class="sc-pin">
-      <div class="sc-scene" aria-hidden="true"><video class="sc-video" muted playsinline preload="none" tabindex="-1"><source data-src="./assets/videos/supply-chain-in-motion.mp4" type="video/mp4"></video></div>
+      <div class="sc-scene" aria-hidden="true"><video class="sc-video" muted playsinline preload="none" tabindex="-1"></video></div>
       <div class="sc-shade" aria-hidden="true"></div>
       <header class="sc-heading"><span>SUPPLY CHAIN IN MOTION</span><p>One shipment. Three operating contexts.</p></header>
       <div class="sc-stage-number" aria-hidden="true">01</div>
@@ -47,7 +47,7 @@ export function initSupplyChainVideo(root) {
   const captions = [...root.querySelectorAll('.sc-caption')];
   const chapters = [...root.querySelectorAll('[data-sc-video-stage]')];
   const stateText = root.querySelector('.sc-state');
-  let frame = 0, disposed = false, mediaRequested = false, mediaUrl = '', viewportHeight = innerHeight, duration = 20;
+  let frame = 0, disposed = false, mediaRequested = false, viewportHeight = innerHeight, duration = 20;
   const clamp = THREE.MathUtils.clamp;
   const spans = [[0, .48], [.48, .68], [.68, 1]];
   const timeRanges = [[0, 10], [10, 11], [11, 20]];
@@ -99,10 +99,13 @@ export function initSupplyChainVideo(root) {
   }
 
   video.pause();
-  video.addEventListener('loadedmetadata', () => {
+  function mediaReady() {
     if (Number.isFinite(video.duration)) duration = video.duration;
     schedule();
-  });
+  }
+  video.addEventListener('loadedmetadata', mediaReady);
+  video.addEventListener('loadeddata', mediaReady);
+  video.addEventListener('canplay', mediaReady);
   function mediaError() {
     if (disposed) return;
     root.classList.add('sc-unavailable');
@@ -110,20 +113,11 @@ export function initSupplyChainVideo(root) {
     captions.forEach(item => { item.hidden = false; });
   }
   video.addEventListener('error', mediaError);
-  async function loadVideo() {
+  function loadVideo() {
     if (mediaRequested || disposed) return;
     mediaRequested = true;
-    try {
-      const response = await fetch(new URL('./assets/videos/supply-chain-in-motion.mp4', import.meta.url));
-      if (!response.ok) throw new Error('Supply-chain video unavailable');
-      const blob = await response.blob();
-      if (disposed) return;
-      mediaUrl = URL.createObjectURL(blob);
-      video.src = mediaUrl;
-      video.load();
-    } catch {
-      mediaError();
-    }
+    video.src = '/assets/videos/supply-chain-in-motion.mp4';
+    video.load();
   }
   const observer = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) loadVideo();
@@ -146,9 +140,7 @@ export function initSupplyChainVideo(root) {
       chapters.forEach(button => button.removeEventListener('click', jumpTo));
       video.pause();
       video.removeAttribute('src');
-      video.querySelector('source')?.removeAttribute('src');
       video.load();
-      if (mediaUrl) URL.revokeObjectURL(mediaUrl);
       root.innerHTML = '';
       root.classList.remove('sc-unavailable');
       delete root.__supplyChain;
