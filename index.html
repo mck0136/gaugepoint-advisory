@@ -1,505 +1,104 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Gaugepoint helps transportation companies identify where AI can create measurable value, prepare the operation beneath it, and build accountable workflows that scale.">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="theme-color" content="#0b1825">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="AI Readiness for Transportation | Gaugepoint Advisory">
-    <meta property="og:description" content="Turn AI hype into operating advantage.">
-    <meta property="og:image" content="https://www.gaugepointconsulting.com/assets/hero-intermodal-yard.png">
-    <meta property="og:url" content="https://www.gaugepointconsulting.com/">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>AI Readiness for Transportation | Gaugepoint Advisory</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=23">
-    <link rel="stylesheet" href="mobile-first.css?v=4">
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "ProfessionalService",
-            "name": "Gaugepoint Advisory",
-            "url": "https://www.gaugepointconsulting.com/",
-            "description": "AI readiness and operating transformation for transportation.",
-            "founder": {"@id": "#mark-mckendry"},
-            "areaServed": "North America"
-          },
-          {
-            "@type": "Person",
-            "@id": "#mark-mckendry",
-            "name": "Mark McKendry",
-            "jobTitle": "Founder and Principal",
-            "worksFor": {"@type": "Organization", "name": "Gaugepoint Advisory"},
-            "knowsAbout": ["AI readiness", "Operating transformation", "Intermodal transportation", "Rail", "Drayage", "Trucking", "Commercial strategy"]
-          }
-        ]
-      }
-    </script>
-  </head>
-  <body class="mf-site" data-page="home" data-root="">
-    <div id="site-header"></div>
-
-    <main id="main-content">
-      <section class="mf-hero">
-        <div class="mf-hero__media" aria-hidden="true"></div>
-        <div class="mf-hero__shade" aria-hidden="true"></div>
-        <div class="mf-shell mf-hero__content">
-          <p class="eyebrow">AI readiness for transportation</p>
-          <h1>Turn AI hype into operating advantage.</h1>
-          <p class="mf-hero__copy">
-            Gaugepoint helps transportation and supply chain leaders determine where probabilistic
-            AI can improve decisions, where deterministic logic should control execution, and what
-            must be redesigned before either will work. Together, we find the workflows where AI
-            can create measurable value.
-          </p>
-          <div class="mf-actions">
-            <a class="button primary" href="ai-readiness/">Assess Your AI Readiness</a>
-            <a class="mf-text-link mf-text-link--light" href="#operating-system">See how the work changes</a>
-          </div>
-          <p class="mf-hero__proof">Operator led. Vendor neutral.</p>
-        </div>
-      </section>
-
-      <section class="mf-section mf-problem" id="fragmented" aria-labelledby="problem-heading">
-        <div class="mf-shell">
-          <div class="mf-heading">
-            <p class="eyebrow">Before AI</p>
-            <h2 id="problem-heading">Make the work visible before making it intelligent.</h2>
-            <p>
-              Transportation work already moves through a system of inboxes, spreadsheets,
-              calls, and operating platforms. Exceptions reveal whether that system is ready.
-            </p>
-          </div>
-
-          <div class="mf-process" data-mf-process>
-            <div class="mf-process__steps" role="tablist" aria-label="Transportation workflow">
-              <button class="mf-process-step is-active" type="button" role="tab" aria-selected="true" data-process-key="order">
-                <span>01</span><strong>Order received</strong><small>INBOX</small><em>RECEIVED</em>
-              </button>
-              <button class="mf-process-step" type="button" role="tab" aria-selected="false" data-process-key="plan">
-                <span>02</span><strong>Plan load</strong><small>SPREADSHEET</small><em>PLANNED</em>
-              </button>
-              <button class="mf-process-step" type="button" role="tab" aria-selected="false" data-process-key="move">
-                <span>03</span><strong>Dispatch / move</strong><small>TMS</small><em>IN TRANSIT</em>
-              </button>
-              <button class="mf-process-step is-exception" type="button" role="tab" aria-selected="false" data-process-key="exception">
-                <span>04</span><strong>Exception</strong><small>PHONE CALL</small><em>NO OWNER</em>
-              </button>
-              <button class="mf-process-step" type="button" role="tab" aria-selected="false" data-process-key="close">
-                <span>05</span><strong>Resolve / close</strong><small>MANUAL</small><em>PENDING</em>
-              </button>
-            </div>
-
-            <article class="mf-process__detail" aria-live="polite">
-              <div class="mf-status-line">
-                <span data-process-label>Order received</span>
-                <time data-process-time>14:18:02</time>
-              </div>
-              <h3 data-process-title>Information arrives faster than the operation can structure it.</h3>
-              <p data-process-copy>People become the integration layer between tenders, emails, calls, and customer requirements.</p>
-              <dl>
-                <div><dt data-process-meta-one-label>Source</dt><dd data-process-meta-one>Customer inbox</dd></div>
-                <div><dt data-process-meta-two-label>Owner</dt><dd data-process-meta-two>Customer service</dd></div>
-                <div><dt>Status</dt><dd data-process-status>Received</dd></div>
-              </dl>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-section mf-readiness readiness-chapter" id="readiness-system" aria-labelledby="readiness-heading">
-        <div class="mf-shell readiness-container">
-          <div class="mf-heading readiness-intro">
-            <p class="eyebrow">The Gaugepoint AI Readiness System</p>
-            <h2 id="readiness-heading">Seven conditions. One operating system.</h2>
-            <p>Readiness is the alignment required to produce measurable Value, not a technology score.</p>
-          </div>
-
-          <div class="readiness-system" data-readiness-system>
-            <div class="readiness-diagram-shell">
-              <span class="sr-only" id="readiness-diagram-title">Gaugepoint AI Readiness Operating System</span>
-              <span class="sr-only" id="readiness-diagram-desc">Seven interconnected operating conditions share one circular system around the central outcome of measurable Value.</span>
-              <svg class="readiness-diagram" viewBox="0 0 900 900" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="readiness-diagram-title readiness-diagram-desc">
-                <defs>
-                  <radialGradient id="readiness-hub-fill" cx="40%" cy="32%" r="75%">
-                    <stop offset="0%" stop-color="#173a55"></stop>
-                    <stop offset="62%" stop-color="#102f48"></stop>
-                    <stop offset="100%" stop-color="#0b263b"></stop>
-                  </radialGradient>
-                  <filter id="readiness-hub-shadow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#10283d" flood-opacity=".22"></feDropShadow>
-                  </filter>
-                  <filter id="readiness-node-shadow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#1f3143" flood-opacity=".09"></feDropShadow>
-                    <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1f3143" flood-opacity=".06"></feDropShadow>
-                  </filter>
-                  <filter id="readiness-strategy-glow" x="-80%" y="-80%" width="260%" height="260%">
-                    <feGaussianBlur stdDeviation="8" result="blur"></feGaussianBlur>
-                    <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-                  </filter>
-                  <symbol id="readiness-icon-strategy" viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"></circle><path d="M19 29l3.2-9.2 7.8-3.8-3.2 9.2z"></path><circle cx="35.5" cy="13" r="1.7"></circle><path d="M12.5 35.5l3-3"></path></symbol>
-                  <symbol id="readiness-icon-workflows" viewBox="0 0 48 48"><path d="M24 8v7M24 26v6M12 32v-4h24v4"></path><path d="M24 14l6 6-6 6-6-6z"></path><rect x="6" y="32" width="12" height="8" rx="2"></rect><rect x="30" y="32" width="12" height="8" rx="2"></rect></symbol>
-                  <symbol id="readiness-icon-data" viewBox="0 0 48 48"><ellipse cx="24" cy="12" rx="13" ry="5"></ellipse><path d="M11 12v12c0 2.8 5.8 5 13 5s13-2.2 13-5V12M11 24v12c0 2.8 5.8 5 13 5s13-2.2 13-5V24M11 24c0 2.8 5.8 5 13 5s13-2.2 13-5"></path></symbol>
-                  <symbol id="readiness-icon-economics" viewBox="0 0 48 48"><path d="M9 39V28h6v11M21 39V20h6v19M33 39V12h6v27M8 23l10-7 9 2 12-10"></path><circle cx="39" cy="8" r="2"></circle></symbol>
-                  <symbol id="readiness-icon-systems" viewBox="0 0 48 48"><path d="M8 18l16-8 16 8-16 8zM8 25l16 8 16-8M8 32l16 8 16-8"></path></symbol>
-                  <symbol id="readiness-icon-people" viewBox="0 0 48 48"><circle cx="24" cy="15" r="6"></circle><circle cx="10.5" cy="20" r="4"></circle><circle cx="37.5" cy="20" r="4"></circle><path d="M13 39c.8-7 4.5-11 11-11s10.2 4 11 11M3.5 38c.5-5 3-8 7-8 2 0 3.7.7 5 2M44.5 38c-.5-5-3-8-7-8-2 0-3.7.7-5 2"></path></symbol>
-                  <symbol id="readiness-icon-governance" viewBox="0 0 48 48"><path d="M24 6l13 5v10c0 9-5 15.5-13 21-8-5.5-13-12-13-21V11z"></path><path d="M17.5 24l4.5 4.5 9-10"></path></symbol>
-                </defs>
-
-                <g class="readiness-guide-rings" aria-hidden="true">
-                  <circle class="readiness-guide-ring" cx="450" cy="450" r="172"></circle>
-                  <circle class="readiness-guide-ring readiness-guide-ring-solid" cx="450" cy="450" r="205"></circle>
-                  <circle class="readiness-guide-ring" cx="450" cy="450" r="245"></circle>
-                  <circle class="readiness-primary-orbit" data-readiness-orbit cx="450" cy="450" r="285"></circle>
-                  <circle class="readiness-guide-ring readiness-guide-ring-outer" cx="450" cy="450" r="335"></circle>
-                </g>
-                <g data-readiness-connectors aria-hidden="true"></g>
-                <g class="readiness-hub" filter="url(#readiness-hub-shadow)" aria-hidden="true">
-                  <circle class="readiness-hub-ring readiness-hub-ring-outer" cx="450" cy="450" r="166"></circle>
-                  <circle class="readiness-hub-body" cx="450" cy="450" r="155"></circle>
-                  <circle class="readiness-hub-inset" cx="450" cy="450" r="143"></circle>
-                  <path class="readiness-hub-highlight" d="M344 360A139 139 0 0 1 458 311"></path>
-                  <text class="readiness-hub-eyebrow" x="450" y="423" text-anchor="middle">OPERATING OUTCOME</text>
-                  <text class="readiness-hub-title" x="450" y="470" text-anchor="middle">
-                    <tspan x="450">Measurable</tspan><tspan x="450" dy="47">Value</tspan>
-                  </text>
-                </g>
-                <g data-readiness-nodes></g>
-              </svg>
-
-              <div class="readiness-mobile-selector" role="group" aria-label="AI readiness conditions">
-                <button class="is-active" type="button" data-readiness="strategy" aria-pressed="true">Strategy</button>
-                <button type="button" data-readiness="workflows" aria-pressed="false">Workflows</button>
-                <button type="button" data-readiness="data" aria-pressed="false">Data</button>
-                <button type="button" data-readiness="economics" aria-pressed="false">Financial</button>
-                <button type="button" data-readiness="systems" aria-pressed="false">Systems</button>
-                <button type="button" data-readiness="people" aria-pressed="false">People</button>
-                <button type="button" data-readiness="governance" aria-pressed="false">Governance</button>
-              </div>
-            </div>
-
-            <aside class="readiness-detail" aria-live="polite">
-              <div class="readiness-detail-dots" aria-hidden="true"></div>
-              <div class="readiness-detail-copy">
-                <p class="readiness-detail-label" data-readiness-label>Strategy</p>
-                <span class="readiness-detail-mark" aria-hidden="true"></span>
-                <h3 data-readiness-title><span>A defined business </span><span>problem comes first.</span></h3>
-                <div class="readiness-editorial-rule" aria-hidden="true"><i></i><span></span><i></i></div>
-                <p data-readiness-copy>Clarify the operating outcome, executive ownership, and evidence that will define success before selecting a tool.</p>
-              </div>
-              <a class="readiness-cta" href="ai-readiness/" aria-label="Explore the AI Readiness Assessment">
-                <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18"></circle><path d="M14 22h15M24 17l5 5-5 5"></path></svg>
-                <span>Explore the AI Readiness Assessment</span>
-              </a>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-section mf-operating-system" id="operating-system" aria-labelledby="operating-system-heading">
-        <div class="mf-shell">
-          <div class="mf-heading mf-heading--inverse">
-            <p class="eyebrow">AI in the flow of transportation</p>
-            <h2 id="operating-system-heading">From operating signal to owned action.</h2>
-            <p>Observe. Understand. Coordinate. Act. One operating sequence, with the evidence and authority visible.</p>
-          </div>
-
-          <div class="mf-os" data-mf-os>
-            <div class="mf-os__tabs" role="tablist" aria-label="Operating sequence">
-              <button class="is-active" type="button" role="tab" aria-selected="true" data-os-key="observe"><span>01</span>Observe</button>
-              <button type="button" role="tab" aria-selected="false" data-os-key="understand"><span>02</span>Understand</button>
-              <button type="button" role="tab" aria-selected="false" data-os-key="coordinate"><span>03</span>Coordinate</button>
-              <button type="button" role="tab" aria-selected="false" data-os-key="act"><span>04</span>Act</button>
-            </div>
-
-            <div class="mf-os__panels">
-              <article class="mf-os-panel is-active" data-os-panel="observe">
-                <div class="mf-os-copy">
-                  <p class="eyebrow">Observe</p>
-                  <h3>Turn a physical event into a trusted workflow event.</h3>
-                  <p>Detect the arrival, verify the equipment, record the condition, and preserve a path to qualified review.</p>
-                </div>
-                <div class="mf-observe-visual">
-                  <video muted loop playsinline preload="none" poster="assets/transport-yard-observe-poster.jpg" data-mf-video>
-                    <source data-src="assets/transport-yard-observe.mp4" type="video/mp4">
-                  </video>
-                  <div class="mf-observe-shade"></div>
-                  <span class="mf-detection-box"><i>TRAILER 4821</i></span>
-                  <div class="mf-observe-states">
-                    <span class="is-active">ARRIVAL DETECTED</span>
-                    <span>EQUIPMENT ID VERIFIED</span>
-                    <span>WORKFLOW UPDATED</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="mf-os-panel" data-os-panel="understand" hidden>
-                <div class="mf-os-copy">
-                  <p class="eyebrow">Understand</p>
-                  <h3>Make the reasoning visible.</h3>
-                  <p>Reconcile the appointment, current ETA, and customer threshold into one evidence-backed conclusion.</p>
-                </div>
-                <div class="mf-context-visual">
-                  <div><span>TENDER</span><strong>Delivery required 10:00</strong></div>
-                  <div><span>TMS STATUS</span><strong>Updated ETA 10:42</strong></div>
-                  <div><span>CUSTOMER RULE</span><strong>Escalate beyond 30 min</strong></div>
-                  <article>
-                    <span>OPERATING CONTEXT · 09:32:06</span>
-                    <strong>SERVICE RISK IDENTIFIED</strong>
-                    <p>42-minute projected delay. Threshold breached. Evidence attached.</p>
-                  </article>
-                </div>
-              </article>
-
-              <article class="mf-os-panel" data-os-panel="coordinate" hidden>
-                <div class="mf-os-copy">
-                  <p class="eyebrow">Coordinate</p>
-                  <h3>Turn stalled work into owned action.</h3>
-                  <p>Consolidate the evidence into one case, assign authority, and make elapsed time measurable.</p>
-                </div>
-                <div class="mf-case-visual">
-                  <header><span>EXCEPTION 0247</span><time>12 MIN</time></header>
-                  <h4>APPOINTMENT CONFLICT</h4>
-                  <dl>
-                    <div><dt>Owner</dt><dd>Dispatch · Central Region</dd></div>
-                    <div><dt>Next action</dt><dd>Confirm revised appointment</dd></div>
-                    <div><dt>Escalates at</dt><dd>20 minutes</dd></div>
-                    <div><dt>Status</dt><dd>Owner assigned</dd></div>
-                  </dl>
-                </div>
-              </article>
-
-              <article class="mf-os-panel" data-os-panel="act" hidden>
-                <div class="mf-os-copy">
-                  <p class="eyebrow">Act</p>
-                  <h3>Move only with explicit authority.</h3>
-                  <p>Probabilistic AI recommends. Deterministic controls govern execution. A qualified person authorizes; the decision and outcome are recorded.</p>
-                </div>
-                <div class="mf-act-visual">
-                  <div><span>AI RECOMMENDATION</span><strong>Recovery plan ready</strong></div>
-                  <div class="is-approved"><span>HUMAN REVIEW</span><strong>Approved</strong></div>
-                  <div><span>ACTION LOG</span><strong>Resolution recorded</strong></div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-section mf-transformation" id="operating-transformation" aria-labelledby="transformation-heading">
-        <div class="mf-shell">
-          <div class="mf-heading">
-            <p class="eyebrow">Operating transformation</p>
-            <h2 id="transformation-heading">The same volume can produce very different results.</h2>
-            <p>Growth creates leverage only when the operating model can absorb it without reproducing manual work.</p>
-          </div>
-
-          <div class="mf-comparison" data-mf-comparison>
-            <div class="mf-volume">
-              <span>Same input</span><strong>+30%</strong><small>ADDED VOLUME</small>
-            </div>
-
-            <div class="mf-comparison__controls" role="tablist" aria-label="Compare operating models">
-              <button class="is-active" type="button" role="tab" aria-selected="true" data-comparison-key="fragmented">Fragmented</button>
-              <button type="button" role="tab" aria-selected="false" data-comparison-key="scalable">Scalable</button>
-            </div>
-
-            <div class="mf-comparison__lanes">
-              <article class="mf-lane mf-lane--fragmented is-active" data-comparison-panel="fragmented">
-                <header>
-                  <p class="eyebrow">01 · Fragmented operation</p>
-                  <h3>Growth creates more work around the work.</h3>
-                </header>
-                <ol class="mf-flow">
-                  <li><span>01</span><strong>Email</strong><small>INTAKE</small></li>
-                  <li><span>02</span><strong>Spreadsheet</strong><small>RE-KEYING</small></li>
-                  <li><span>03</span><strong>Manual follow-up</strong><small>NO OWNER</small></li>
-                  <li><span>04</span><strong>Status chase</strong><small>2 TOUCHES</small></li>
-                  <li><span>05</span><strong>Waiting</strong><small>18 MIN IN</small></li>
-                  <li><span>06</span><strong>Escalation</strong><small>REACTIVE</small></li>
-                </ol>
-                <dl class="mf-outcomes">
-                  <div><dt>Touches</dt><dd>More</dd></div>
-                  <div><dt>Decisions</dt><dd>Slower</dd></div>
-                  <div><dt>Variance</dt><dd>Greater</dd></div>
-                  <div><dt>Margin</dt><dd>Under pressure</dd></div>
-                </dl>
-              </article>
-
-              <article class="mf-lane mf-lane--scalable" data-comparison-panel="scalable" aria-hidden="true">
-                <header>
-                  <p class="eyebrow">02 · Scalable operation</p>
-                  <h3>Growth moves through a designed operating system.</h3>
-                </header>
-                <ol class="mf-flow">
-                  <li><span>01</span><strong>Structured intake</strong><small>RECEIVED</small></li>
-                  <li><span>02</span><strong>Assigned owner</strong><small>00:42</small></li>
-                  <li><span>03</span><strong>Decision rule</strong><small>APPLIED</small></li>
-                  <li><span>04</span><strong>Managed exception</strong><small>CONTAINED</small></li>
-                  <li><span>05</span><strong>Workflow update</strong><small>POSTED</small></li>
-                  <li><span>06</span><strong>Resolution</strong><small>CLOSED</small></li>
-                </ol>
-                <dl class="mf-outcomes">
-                  <div><dt>Touches</dt><dd>Fewer</dd></div>
-                  <div><dt>Decisions</dt><dd>Faster</dd></div>
-                  <div><dt>Consistency</dt><dd>Higher</dd></div>
-                  <div><dt>Capacity</dt><dd>Ahead of volume</dd></div>
-                </dl>
-              </article>
-            </div>
-          </div>
-
-          <div class="mf-inline-links">
-            <a class="mf-text-link" href="operating-transformation/">Explore operating transformation</a>
-            <a class="mf-text-link" href="insights/freight-market-tightening/">Read the freight-market perspective</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-section mf-judgment" aria-labelledby="judgment-heading">
-        <div class="mf-shell mf-judgment__layout">
-          <div class="mf-heading">
-            <p class="eyebrow">Technology judgment</p>
-            <h2 id="judgment-heading">The right technology for the right workflow.</h2>
-            <p>
-              Gaugepoint helps leaders distinguish an AI opportunity from a process, management,
-              or systems problem. The answer may be probabilistic AI, deterministic automation,
-              business-process redesign, or another technology better suited to the work.
-            </p>
-          </div>
-          <div class="mf-not-ai">
-            <h3>Do not use AI when:</h3>
-            <ol>
-              <li><span>01</span><p><strong>The process is unstable.</strong> Structure the work first.</p></li>
-              <li><span>02</span><p><strong>The decision requires accountable judgment.</strong> Improve the evidence, not remove the owner.</p></li>
-              <li><span>03</span><p><strong>The data cannot support a dependable result.</strong> Fix the operating foundation.</p></li>
-              <li><span>04</span><p><strong>The economics do not justify the change.</strong> Choose the simplest useful intervention.</p></li>
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-section mf-governance" aria-labelledby="governance-heading">
-        <div class="mf-shell mf-governance__layout">
-          <div class="mf-heading mf-heading--inverse">
-            <p class="eyebrow">Governance</p>
-            <h2 id="governance-heading">Automate execution, preserve human control.</h2>
-            <p>The system can recommend, coordinate, or execute only what the operation has deliberately authorized.</p>
-          </div>
-          <div class="mf-governance-flow" aria-label="Recommendation passes through human review before the action is recorded">
-            <article><span>RECOMMENDATION</span><strong>Approve recovery plan</strong><small>MODEL OUTPUT · READY</small></article>
-            <i aria-hidden="true"></i>
-            <article class="is-approved"><span>HUMAN REVIEW</span><strong>Approved</strong><small>AUTHORITY CONFIRMED</small></article>
-            <i aria-hidden="true"></i>
-            <article><span>ACTION LOG</span><strong>Resolution recorded</strong><small>AUDIT ENTRY · 0247</small></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-section mf-audiences" id="audiences" aria-labelledby="audiences-heading">
-        <div class="mf-shell">
-          <div class="mf-heading">
-            <p class="eyebrow">Who Gaugepoint works with</p>
-            <h2 id="audiences-heading">Built for the operations that move freight.</h2>
-            <p>Choose a segment to see where AI readiness and operating transformation create practical value.</p>
-          </div>
-
-          <div class="mf-audience-layout" data-mf-audiences>
-            <div class="mf-audience-control">
-              <label for="mf-audience-select">Transportation segment</label>
-              <select id="mf-audience-select" data-audience-select>
-                <option value="fleets">Fleets</option>
-                <option value="brokers">Brokers</option>
-                <option value="3pls">3PLs</option>
-                <option value="4pls">4PLs</option>
-                <option value="drayage">Drayage</option>
-                <option value="intermodal">Intermodal</option>
-                <option value="shortline-railways">Shortline railways</option>
-                <option value="regional-railways">Regional railways</option>
-                <option value="ports-terminals">Ports and terminals</option>
-                <option value="industrial-shippers">Industrial shippers</option>
-              </select>
-              <div class="mf-audience-buttons" role="tablist" aria-label="Transportation segments" data-audience-buttons></div>
-            </div>
-
-            <article class="mf-audience-preview" id="audience-preview" aria-live="polite">
-              <img
-                src="assets/audiences-mobile/fleets.jpg"
-                srcset="assets/audiences-mobile/fleets.jpg 900w, assets/audiences/fleets.jpg 1800w"
-                sizes="(max-width: 699px) calc(100vw - 28px), 760px"
-                alt=""
-                data-audience-image
-              >
-              <div class="mf-audience-preview__shade"></div>
-              <div class="mf-audience-preview__copy">
-                <p class="eyebrow" data-audience-theme>AI-optimized operations</p>
-                <h3 data-audience-title>Fleets</h3>
-                <p data-audience-summary>Improve asset utilization, network performance, dispatch flow, and exception control.</p>
-                <ul data-audience-capabilities>
-                  <li>Asset velocity</li><li>Dispatch workflow</li><li>Network performance</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-section mf-founder" aria-labelledby="founder-heading">
-        <div class="mf-shell mf-founder__layout">
-          <figure>
-            <img
-              src="assets/mark-mckendry-portrait-mobile.jpg"
-              srcset="assets/mark-mckendry-portrait-mobile.jpg 800w, assets/mark-mckendry-portrait.jpg 1280w"
-              sizes="(max-width: 699px) calc(100vw - 28px), 520px"
-              alt="Mark McKendry, Founder and Principal of Gaugepoint Advisory"
-              loading="lazy"
-            >
-          </figure>
-          <div class="mf-founder__copy">
-            <p class="eyebrow">Operator-led advisory</p>
-            <h2 id="founder-heading">Transportation experience first. AI applied to the work.</h2>
-            <p>
-              Mark McKendry has spent more than two decades across rail, intermodal, drayage,
-              trucking, and integrated logistics, including approximately 15 years at a Class 1
-              railway and 10 years in senior leadership at a leading 3PL.
-            </p>
-            <div class="mf-founder__facts">
-              <div><strong>Over 20</strong><span>industry speaking appearances</span></div>
-              <div><strong>Industry advocate</strong><span>Former IANA Operations Committee Chair</span></div>
-            </div>
-            <div class="mf-inline-links">
-              <a class="mf-text-link" href="about/">About Mark and Gaugepoint</a>
-              <a class="mf-text-link" href="speaking-media/">Speaking and media</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="mf-closing">
-        <div class="mf-closing__media" aria-hidden="true"></div>
-        <div class="mf-closing__shade" aria-hidden="true"></div>
-        <div class="mf-shell mf-closing__content">
-          <p class="eyebrow">Start with readiness</p>
-          <h2>Is your operation ready to use AI, or only ready to buy it?</h2>
-          <p>Identify where value exists, what must change first, and how to proceed responsibly.</p>
-          <div class="mf-actions">
-            <a class="button primary" href="ai-readiness/">Assess Your AI Readiness</a>
-            <a class="button secondary" href="contact/">Start a Conversation</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <div id="site-footer"></div>
-
-    <script src="content-data.js?v=9"></script>
-    <script src="script.js?v=24"></script>
-    <script src="mobile-first.js?v=3"></script>
-  </body>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#060b10">
+  <meta name="description" content="Gaugepoint helps transportation and supply chain leaders turn AI hype into operating advantage through readiness, workflow redesign, and accountable execution.">
+  <meta property="og:title" content="AI Readiness for Transportation | Gaugepoint Advisory">
+  <meta property="og:description" content="Turn AI hype into operating advantage. Operator-led, vendor-neutral advice for transportation and supply chain leaders.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://www.gaugepointconsulting.com/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>AI Readiness for Transportation | Gaugepoint Advisory</title>
+  <link rel="stylesheet" href="home-redesign.css">
+  <link rel="stylesheet" href="home-supply-chain.css">
+  <link rel="stylesheet" href="home-animated-graphics.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#top" aria-label="Gaugepoint Advisory home">GAUGEPOINT<span>ADVISORY</span></a>
+    <nav aria-label="Primary"><a href="/ai-readiness/">AI readiness</a><a href="#expertise">Expertise</a><a href="/ai-in-transportation/">AI in transportation</a><a href="/speaking-media/">Speaking &amp; media</a><a href="/about/">About</a><a class="nav-contact" href="/contact/">Talk with us <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="scene" id="scene" role="img" aria-label="Interactive three-dimensional globe with freight network routes. Drag to rotate."><div class="fallback" id="fallback"><span></span><p>Transportation. Connected.</p></div></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Operator led / Vendor neutral</p>
+        <h1 id="hero-title">TURN AI HYPE<br>INTO OPERATING<br>ADVANTAGE.</h1>
+        <p class="intro">Better decisions. Controlled execution.<br>A stronger operation beneath both.</p>
+        <div class="hero-actions"><a class="cta" href="#readiness-system">Explore AI readiness <span aria-hidden="true">↗</span></a><a class="secondary-cta" href="#contact">Talk with us <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="scene-caption"><span class="live-dot"></span> CONNECTED OPERATIONS <span class="caption-secondary">/ NORTH AMERICA & BEYOND</span></div>
+      <div class="scene-controls"><span class="drag-label">DRAG TO EXPLORE</span><button id="pause" aria-label="Pause globe motion" title="Pause globe motion">Ⅱ</button><button id="reset" aria-label="Reset globe view" title="Reset globe view">↺</button></div>
+      <div class="hero-bottom"><a href="#approach" class="scroll-cue">SCROLL TO DISCOVER <span aria-hidden="true">↓</span></a><p>Supply chain expertise.<br>Operating advantage.</p><span class="edition">01 / GAUGEPOINT ADVISORY</span></div>
+    </section>
+    <section class="approach" id="approach">
+      <p class="eyebrow">THE OPERATION COMES FIRST</p>
+      <h2>Make technology work.<br>Make the business stronger.</h2>
+      <p>Gaugepoint helps transportation and supply chain leaders determine where probabilistic AI can improve decisions, where deterministic logic should control execution, and what must be redesigned before either will work.</p>
+      <p>Together, we find the workflows where AI can create measurable value.</p>
+      <a class="text-link" href="#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+    </section>
+    <section id="supply-chain" class="supply-chain" aria-label="Supply chain in motion"></section>
+    <section id="interstate" class="interstate-journey" aria-label="AI-supported drayage arrival and dock handoff"></section>
+    <section class="chapter services" id="expertise">
+      <div class="section-heading"><p class="eyebrow">01 / OUR EXPERTISE</p><h2>BUSINESS FIRST.<br>TECHNOLOGY IN SERVICE.</h2><p>Independent advisory connecting AI readiness, workflow design, vital stakeholders, operating controls, financial logic, and accountable implementation.</p></div>
+      <div class="service-list">
+        <a href="/ai-readiness/"><span>01</span><h3>AI readiness</h3><p>Identify where value exists, what must change first, and how to proceed responsibly.</p><b aria-hidden="true">↗</b></a>
+        <a href="/operating-transformation/"><span>02</span><h3>Operating transformation</h3><p>Modernize fragmented operations into scalable, accountable, and commercially stronger businesses.</p><b aria-hidden="true">↗</b></a>
+        <a href="#contact"><span>03</span><h3>Business process outsourcing</h3><p>Connect process design, clear ownership, operating controls, and an accountable delivery model.</p><b aria-hidden="true">↗</b></a>
+        <a href="#contact"><span>04</span><h3>Commercial strategy</h3><p>Bring transportation experience to sourcing, network growth, commercial choices, and freight-market decisions.</p><b aria-hidden="true">↗</b></a>
+      </div>
+    </section>
+    <section class="chapter dark-chapter" id="before-ai">
+      <div class="section-heading"><p class="eyebrow">02 / BEFORE AI</p><h2>MAKE THE WORK VISIBLE.<br>THEN MAKE IT INTELLIGENT.</h2><p>Transportation work already moves through a system of inboxes, spreadsheets, calls, and operating platforms. Exceptions reveal whether that system is ready.</p></div>
+      <div class="process-steps" role="group" aria-label="Transportation workflow">
+        <button data-process="0" aria-pressed="true"><small>01 / INBOX</small><strong>Order received</strong><em>RECEIVED</em></button>
+        <button data-process="1" aria-pressed="false"><small>02 / SPREADSHEET</small><strong>Plan load</strong><em>PLANNED</em></button>
+        <button data-process="2" aria-pressed="false"><small>03 / TMS</small><strong>Dispatch / move</strong><em>IN TRANSIT</em></button>
+        <button data-process="3" aria-pressed="false"><small>04 / PHONE CALL</small><strong>Exception</strong><em>NO OWNER</em></button>
+        <button data-process="4" aria-pressed="false"><small>05 / MANUAL</small><strong>Resolve / close</strong><em>PENDING</em></button>
+      </div>
+      <article class="process-detail" aria-live="polite"><p class="eyebrow" id="process-state">ORDER RECEIVED / 14:18:02</p><h3 id="process-title">Information arrives faster than the operation can structure it.</h3><p id="process-copy">People become the integration layer between tenders, emails, calls, and customer requirements.</p></article>
+    </section>
+    <section class="chapter readiness" id="readiness-system">
+      <div class="section-heading"><p class="eyebrow">03 / THE GAUGEPOINT AI READINESS SYSTEM</p><h2>SEVEN CONDITIONS.<br>ONE OPERATING SYSTEM.</h2><p>Readiness is the alignment required to produce measurable Value, not a technology score.</p></div>
+      <div class="readiness-layout"><div class="animated-graphic readiness-graphic" id="measurable-value-graphic" aria-label="Animated measurable value readiness system"></div>
+        <article class="readiness-detail" aria-live="polite"><p class="eyebrow" id="condition-label">STRATEGY</p><h3 id="condition-title">A defined business problem comes first.</h3><p id="condition-copy">Clarify the operating outcome, executive ownership, and evidence that will define success before selecting a tool.</p><a class="cta" href="/ai-readiness/">Explore the AI Readiness Assessment <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section>
+    <section class="chapter dark-chapter flow" id="operating-system">
+      <div class="section-heading"><p class="eyebrow">04 / AI IN THE FLOW OF TRANSPORTATION</p><h2>FROM OPERATING SIGNAL<br>TO OWNED ACTION.</h2><p>Observe. Understand. Coordinate. Act. One operating sequence, with the evidence and authority visible.</p></div>
+      <div class="flow-tabs" role="group" aria-label="Operating sequence"><button aria-pressed="true" data-flow="observe">01 / Observe</button><button aria-pressed="false" data-flow="understand">02 / Understand</button><button aria-pressed="false" data-flow="coordinate">03 / Coordinate</button><button aria-pressed="false" data-flow="act">04 / Act</button></div>
+      <article class="flow-panel" data-flow-panel="observe"><div><p class="eyebrow">OBSERVE</p><h3>Turn a physical event into a trusted workflow event.</h3><p>Detect the arrival, verify the equipment, record the condition, and preserve a path to qualified review.</p></div><div class="observe-media"><video muted loop playsinline preload="none" poster="/assets/transport-yard-observe-poster.jpg"><source data-src="/assets/transport-yard-observe.mp4" type="video/mp4"></video><div class="detection"><span>TRAILER 4821 / CAMERA 03</span></div><p>ARRIVAL DETECTED → EQUIPMENT ID VERIFIED → WORKFLOW UPDATED</p></div></article>
+      <article class="flow-panel" data-flow-panel="understand" hidden><div><p class="eyebrow">UNDERSTAND</p><h3>Make the reasoning visible.</h3><p>Reconcile the appointment, current ETA, and customer threshold into one evidence-backed conclusion.</p></div><div class="evidence"><div><small>TENDER</small><strong>Delivery required 10:00</strong></div><div><small>TMS STATUS</small><strong>Updated ETA 10:42</strong></div><div><small>CUSTOMER RULE</small><strong>Escalate beyond 30 min</strong></div><div class="evidence-conclusion"><small>OPERATING CONTEXT / 09:32:06</small><h4>SERVICE RISK IDENTIFIED</h4><p>42-minute projected delay. Threshold breached. Evidence attached.</p></div></div></article>
+      <article class="flow-panel" data-flow-panel="coordinate" hidden><div><p class="eyebrow">COORDINATE</p><h3>Turn stalled work into owned action.</h3><p>Consolidate the evidence into one case, assign authority, and make elapsed time measurable.</p></div><div class="exception-record"><small>EXCEPTION 0247 / 12 MIN ELAPSED</small><h4>APPOINTMENT CONFLICT</h4><dl><div><dt>Owner</dt><dd>Dispatch / Central Region</dd></div><div><dt>Next action</dt><dd>Confirm revised appointment</dd></div><div><dt>Escalates at</dt><dd>20 minutes</dd></div><div><dt>Status</dt><dd>Owner assigned</dd></div></dl><p class="technical">CREATED → ASSIGNED → UPDATED → ESCALATION CHECKED → RESOLVED</p></div></article>
+      <article class="flow-panel" data-flow-panel="act" hidden><div><p class="eyebrow">ACT</p><h3>Move only with explicit authority.</h3><p>Probabilistic AI recommends. Deterministic controls govern execution. A qualified person authorizes; the decision and outcome are recorded.</p></div><div class="approval-flow"><article><small>AI RECOMMENDATION</small><strong>Recovery plan ready</strong></article><article class="approved"><small>HUMAN REVIEW</small><strong>Approved</strong></article><article><small>ACTION LOG</small><strong>Resolution recorded</strong></article></div></article>
+    </section>
+    <section class="chapter transformation" id="operating-transformation">
+      <div class="section-heading"><p class="eyebrow">05 / OPERATING TRANSFORMATION</p><h2>SAME VOLUME.<br>VERY DIFFERENT RESULTS.</h2><p>Growth creates leverage only when the operating model can absorb it without reproducing manual work.</p></div>
+      <div class="animated-graphic comparison-graphic" id="scale-comparison-graphic" aria-label="Animated comparison of fragmented and scalable operations"></div><a class="text-link" href="/operating-transformation/">Explore operating transformation ↗</a>
+    </section>
+    <section class="chapter judgment" id="technology-judgment"><div class="section-heading"><p class="eyebrow">06 / TECHNOLOGY JUDGMENT</p><h2>THE RIGHT TECHNOLOGY.<br>THE RIGHT WORKFLOW.</h2><p>Gaugepoint helps leaders distinguish an AI opportunity from a process, management, or systems problem. The answer may be probabilistic AI, deterministic automation, business-process redesign, or another technology better suited to the work.</p></div><div class="judgment-layout"><h3>We teach leaders<br>when not to use AI.</h3><ol><li><strong>The process is unstable.</strong><p>Structure the work first.</p></li><li><strong>The decision requires accountable judgment.</strong><p>Improve the evidence, not remove the owner.</p></li><li><strong>The data cannot support a dependable result.</strong><p>Fix the operating foundation.</p></li><li><strong>The economics do not justify the change.</strong><p>Choose the simplest useful intervention.</p></li></ol></div></section>
+    <section class="chapter dark-chapter governance" id="governance"><div class="section-heading"><p class="eyebrow">07 / GOVERNANCE</p><h2>AUTOMATE EXECUTION.<br>PRESERVE HUMAN CONTROL.</h2><p>The system can recommend, coordinate, or execute only what the operation has deliberately authorized.</p></div><div class="animated-graphic governance-graphic" id="governance-graphic" aria-label="Animated human authorization and action log"></div></section>
+    <section class="chapter audiences" id="audiences"><div class="section-heading"><p class="eyebrow">08 / WHO GAUGEPOINT WORKS WITH</p><h2>BUILT FOR THE OPERATIONS<br>THAT MOVE FREIGHT.</h2><p>Choose a segment to see where AI readiness and operating transformation create practical value.</p></div><div class="audience-layout"><div class="audience-buttons" id="audience-buttons" role="group" aria-label="Transportation segments"></div><article class="audience-preview"><img id="audience-image" src="/assets/audiences/fleets.jpg" alt="An aerial view of truck trailers in a freight yard" loading="lazy"><div aria-live="polite"><p class="eyebrow" id="audience-theme">AI-FIRST ADVISORY</p><h3 id="audience-title">Fleets</h3><p id="audience-copy">Apply AI to fleet planning, asset utilization, operating decisions and scalable exception management.</p><ul id="audience-capabilities"><li>AI workflow design</li><li>Asset utilization</li><li>Network performance</li></ul></div></article></div></section>
+    <section class="chapter dark-chapter evidence-chapter" id="industry-evidence"><div class="section-heading"><p class="eyebrow">09 / INDUSTRY EVIDENCE</p><h2>PRACTICAL APPLICATION.<br>OPERATING EVIDENCE.</h2><p>Public examples connect technology choices to defined workflows and operating outcomes.</p></div><div id="public-examples" class="public-examples"></div></section>
+    <section class="chapter speaking" id="speaking-media"><div class="section-heading"><p class="eyebrow">10 / SPEAKING AND MEDIA</p><h2>A PRACTICAL VOICE<br>IN TRANSPORTATION.</h2><p>Speaking, testimony, education, and commentary on AI in transportation, intermodal operations, rail service, freight markets, and operating strategy.</p></div><div class="speaking-stats"><article><strong>Over 20</strong><p>industry speaking appearances</p></article><article><strong>A Leading Voice Within the Industry</strong><p>media and publication contributions</p></article><article><strong>Trusted Industry Advocate</strong><p>Formal STB testimony and former IANA Operations Committee Chair</p></article></div><div class="publication-line">Transport Topics / Inbound Logistics / Food Logistics / Railway Age / IANA / Let's Talk Supply Chain</div><p class="wide-copy">Mark McKendry has presented through the Intermodal Association of North America's Education On-Demand program on practical applications of AI in intermodal transportation. Session titles and topic summaries are provided for reference.</p><div id="iana-sessions" class="session-list"></div><a class="text-link" href="/speaking-media/">Explore speaking, education and media ↗</a></section>
+    <section class="chapter market" id="freight-market"><p class="eyebrow">11 / FREIGHT MARKET UPDATE</p><h2>BETTER MARGINS WON'T FIX<br>UNDERLYING PROBLEMS.</h2><h3>The Freight Market Is Tightening. Is Your Operation Ready to Scale?</h3><p>A better pricing environment can create breathing room. It does not automatically create a better operating model.</p><p>The useful operating question is narrower: if opportunity returns, can the business absorb more work without recreating the same manual effort, errors, and delays?</p><a class="text-link" href="/insights/freight-market-tightening/">Read the Freight Market Update ↗</a></section>
+    <section class="chapter founder" id="founder"><div class="section-heading"><p class="eyebrow">12 / OPERATOR-LED ADVISORY</p><h2>TRANSPORTATION EXPERIENCE FIRST.<br>AI APPLIED TO THE WORK.</h2></div><div class="founder-layout"><figure><img src="/assets/mark-mckendry-portrait.jpg" alt="Mark McKendry, Founder and Principal of Gaugepoint Advisory" loading="lazy"><figcaption>MARK MCKENDRY / FOUNDER & PRINCIPAL</figcaption></figure><div class="biography"><p><strong>As Founder and Principal of Gaugepoint Advisory, Mark McKendry leads a specialized supply chain consultancy driving business transformation. He advises organizations on AI readiness, operational efficiency, BPO, and commercial growth strategy.</strong></p><p>He has spent more than two decades working across North American freight transportation, including approximately 15 years at a Class 1 railway and 10 years in senior leadership roles at a leading 3PL. His experience spans rail, intermodal, drayage, trucking, integrated logistics, commercial strategy, freight markets, network development, and operating transformation.</p><p>At the leading 3PL, Mark built the company's intermodal business from a small, relatively unknown division into an established and widely recognized North American offering. Under his leadership, the business grew more than twentyfold and developed into a scaled platform combining asset-based and non-asset transportation solutions.</p><p>He also led its Canadian Transportation organization, improving bottom-line performance by more than 400%. In another major transformation initiative, Mark designed and executed a full business-process outsourcing strategy for a national retailer that reduced transportation costs by 39%.</p><p>Throughout his career, Mark has held senior responsibility for complex transportation operations and has worked directly with the systems, customers, carriers, terminals, railroads, and operating teams that move freight across North America. His work has consistently focused on turning fragmented operations into scalable, accountable, and commercially stronger businesses.</p><p>He is a former Chair of the Intermodal Association of North America's Operations Committee and has been a frequent industry speaker, moderator, commentator, and contributor on intermodal strategy, rail service, freight markets, supply-chain resilience, public policy, cargo security, and practical AI adoption.</p><p>At Gaugepoint, Mark works with transportation leadership teams to identify where AI can create measurable value, assess whether the operation is ready to support it, and modernize the workflows, decision rights, systems, governance, and management routines beneath it.</p><a class="text-link" href="/about/">About Mark and Gaugepoint ↗</a></div></div><div class="career-strip"><div><small>RAIL AND INTERMODAL</small><strong>Class 1 railway</strong><p>Approximately 15 years</p></div><div><small>INTEGRATED LOGISTICS</small><strong>Leading 3PL</strong><p>10 years</p></div><div><small>AI READINESS</small><strong>Gaugepoint</strong><p>Operator led advisory</p></div></div></section>
+    <section class="chapter dark-chapter contact" id="contact"><div class="section-heading"><p class="eyebrow">13 / START A CONVERSATION</p><h2>READY TO USE AI.<br>OR ONLY READY TO BUY IT?</h2><p>Bring an operating problem, a growth constraint, or an AI question. Identify where value exists, what must change first, and how to proceed responsibly.</p></div><div class="contact-layout"><div><a href="mailto:mark.mckendry@gaugepointconsulting.com">mark.mckendry@gaugepointconsulting.com ↗</a><p>AI readiness / Operating transformation<br>BPO / Commercial strategy</p></div><a class="cta" href="/contact/">Start a Conversation <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer><a class="brand" href="#top">GAUGEPOINT<span>ADVISORY</span></a><p>AI readiness and operating transformation for transportation.</p><small><a href="/assets/vendor/three/LICENSE.txt">Open-source notices</a> · © 2026 Gaugepoint. All rights reserved.</small></footer>
+  <script src="/content-data.js"></script>
+  <script type="module" src="home-scene.js?v=production-redesign-1"></script>
+  <script type="module" src="home-graphics.js?v=production-redesign-1"></script>
+  <script type="module">
+    import('./home-videos.js?v=production-redesign-1').then(module => {
+      module.initSupplyChainVideo?.(document.querySelector('#supply-chain'));
+      module.initInterstate?.(document.querySelector('#interstate'));
+    }).catch(() => {
+      document.querySelector('#supply-chain').textContent = 'Supply-chain motion preview is being prepared.';
+    });
+  </script>
+</body>
 </html>

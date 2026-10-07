@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap');
+
+.animated-graphic { width: 100%; min-width: 0; }
+.graphic-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.graphic-svg .mobile-view { display: none; }
+.graphic-svg .condition-hit { fill: transparent; stroke: transparent; stroke-width: 2; cursor: pointer; pointer-events: all; }
+.graphic-svg .condition-hit[aria-pressed="true"] { stroke: #8a6a2f; stroke-opacity: .72; }
+.graphic-svg .condition-hit:focus-visible { fill: #b8995f22; stroke: #8a6a2f; stroke-width: 3; outline: none; }
+.readiness-graphic { max-width: 880px; margin-inline: auto; }
+.comparison-graphic { max-width: 1400px; margin: 0 auto 40px; }
+.governance-graphic { max-width: 1200px; margin: 0 auto; }
+
+@media (max-width: 760px) {
+  .graphic-svg .desktop-view { display: none; }
+  .graphic-svg .condition-controls { display: none; }
+  .graphic-svg .mobile-view { display: inline; }
+  .comparison-graphic { margin-bottom: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .graphic-svg * { scroll-behavior: auto; }
+}
