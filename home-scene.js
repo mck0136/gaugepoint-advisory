@@ -176,7 +176,7 @@ const audienceData = [
 const audienceRoot=document.querySelector('#audience-buttons');
 audienceData.forEach(([id,label,theme,copy,capabilities],index)=>{
   const button=document.createElement('button');button.type='button';button.setAttribute('aria-pressed',String(index===0));
-  const number=document.createElement('small');number.textContent=String(index+1).padStart(2,'0');button.append(number,document.createTextNode(label));const arrow=document.createElement('span');arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');button.append(arrow);
+  const number=document.createElement('small');number.textContent=String(index+1).padStart(2,'0');button.append(number,document.createTextNode(label));const arrow=document.createElement('span');arrow.className='audience-arrow';arrow.setAttribute('aria-hidden','true');arrow.innerHTML='<svg viewBox="0 0 20 20" focusable="false"><path d="M5 15 15 5M7 5h8v8"/></svg>';button.append(arrow);
   button.addEventListener('click',()=>{audienceRoot.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));document.querySelector('#audience-title').textContent=label;document.querySelector('#audience-theme').textContent=theme;document.querySelector('#audience-copy').textContent=copy;const image=document.querySelector('#audience-image');image.src=id==='intermodal'?'/assets/hero-intermodal-yard.png':'/assets/audiences/'+id+'.jpg';image.alt=label+' operating environment';const list=document.querySelector('#audience-capabilities');list.replaceChildren(...capabilities.map(capability=>{const li=document.createElement('li');li.textContent=capability;return li;}));});audienceRoot.append(button);
 });
 const content=window.GAUGEPOINT_CONTENT;
