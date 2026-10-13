@@ -1,5 +1,54 @@
 import * as THREE from './assets/vendor/three/three.module.js';
 
+function createScrollSeekController(video) {
+  let desiredTime = null;
+  let retryTimer = 0;
+  let lastSeekAt = -Infinity;
+  let destroyed = false;
+
+  function applyLatest() {
+    if (retryTimer) {
+      clearTimeout(retryTimer);
+      retryTimer = 0;
+    }
+    if (destroyed || desiredTime === null || video.readyState < 2 || video.seeking) return;
+    const interval = matchMedia('(max-width: 700px)').matches ? 72 : 42;
+    const wait = interval - (performance.now() - lastSeekAt);
+    if (wait > 0) {
+      retryTimer = window.setTimeout(() => {
+        retryTimer = 0;
+        applyLatest();
+      }, wait);
+      return;
+    }
+    if (Math.abs(video.currentTime - desiredTime) <= 0.055) return;
+    lastSeekAt = performance.now();
+    video.currentTime = desiredTime;
+  }
+
+  function request(time) {
+    desiredTime = time;
+    applyLatest();
+  }
+
+  function onSeeked() {
+    if (desiredTime !== null && Math.abs(video.currentTime - desiredTime) > 0.055) applyLatest();
+  }
+
+  video.addEventListener('seeked', onSeeked);
+  video.addEventListener('loadeddata', applyLatest);
+
+  return {
+    request,
+    destroy() {
+      destroyed = true;
+      clearTimeout(retryTimer);
+      video.removeEventListener('seeked', onSeeked);
+      video.removeEventListener('loadeddata', applyLatest);
+    }
+  };
+}
+
 const VIDEO_STAGES = [
   {
     name: 'Road freight',
@@ -44,6 +93,7 @@ export function initSupplyChainVideo(root) {
     </div>`;
 
   const video = root.querySelector('.sc-video');
+  const seek = createScrollSeekController(video);
   const captions = [...root.querySelectorAll('.sc-caption')];
   const chapters = [...root.querySelectorAll('[data-sc-video-stage]')];
   const stateText = root.querySelector('.sc-state');
@@ -60,7 +110,7 @@ export function initSupplyChainVideo(root) {
     const [timeStart, timeEnd] = timeRanges[stage];
     const local = clamp((progress - start) / (end - start), 0, 1);
     const targetTime = Math.min(duration - .04, timeStart + local * (timeEnd - timeStart));
-    if (video.readyState >= 1 && Math.abs(video.currentTime - targetTime) > .045) video.currentTime = targetTime;
+    seek.request(targetTime);
     captions.forEach((item, i) => { item.hidden = reduced.matches ? false : i !== stage; });
     chapters.forEach((button, i) => {
       if (i === stage) button.setAttribute('aria-current', 'step');
@@ -138,6 +188,7 @@ export function initSupplyChainVideo(root) {
       window.removeEventListener('resize', resize);
       reduced.removeEventListener('change', preferenceChanged);
       chapters.forEach(button => button.removeEventListener('click', jumpTo));
+      seek.destroy();
       video.pause();
       video.removeAttribute('src');
       video.load();
@@ -543,25 +594,20 @@ export function initInterstate(root) {
   ];
   root.innerHTML = `<div class="is-pin"><div class="is-scene" aria-hidden="true"><video class="is-video" muted playsinline preload="metadata" tabindex="-1"><source src="./assets/videos/drayage-dock.mp4" type="video/mp4"></video></div><div class="is-shade" aria-hidden="true"></div><p class="is-eyebrow">AI IN THE FLOW OF TRANSPORTATION</p><div class="is-title"><h2>From dock arrival<br>to accountable handoff.</h2><p>One physical move. Clear context. Human-controlled execution.</p></div><div class="is-touchpoints">${points.map((p, i) => `<article class="is-touchpoint" data-is-point="${i}" ${i ? 'hidden' : ''}><span>0${i + 1} / ${p[0]}</span><h3>${p[1]}</h3><p>${p[2]}</p></article>`).join('')}</div><div class="is-scale"><span>ARRIVAL</span><div><i></i></div><span>DOCK HANDOFF</span></div><p class="is-equipment">DRAYAGE / 40-FT CONTAINER</p><p class="is-fallback" hidden>The sequence shows a drayage arrival and dock handoff, supported by verified shipment context, clear ownership, human-controlled vehicle movement, and an auditable record.</p></div>`;
   const video = root.querySelector('.is-video');
+  const seek = createScrollSeekController(video);
   const cards = [...root.querySelectorAll('.is-touchpoint')];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let frame = 0, disposed = false, height = 1, initialOffsetApplied = false;
+  let frame = 0, disposed = false, height = 1;
   let duration = 10;
-  const setTime = (video, time) => {
-    if (!Number.isFinite(video.duration) || video.readyState < 1) return;
-    const next = Math.min(video.duration - .04, Math.max(.04, time));
-    if (Math.abs(video.currentTime - next) > .045) video.currentTime = next;
-  };
   video.addEventListener('loadedmetadata', () => {
     if (Number.isFinite(video.duration)) duration = Math.max(.1, video.duration);
-    if (!initialOffsetApplied) { setTime(video, .04); initialOffsetApplied = true; }
     update();
   });
   video.addEventListener('loadeddata', update);
   function render(value) {
     if (disposed) return;
     const p = THREE.MathUtils.clamp(value, 0, 1);
-    setTime(video, p * duration);
+    seek.request(Math.min(duration - .04, Math.max(.04, p * duration)));
     const active = Math.min(points.length - 1, Math.floor(p * points.length));
     cards.forEach((card, i) => { card.hidden = reduced.matches ? false : i !== active; card.dataset.complete = String(i < active); });
     root.querySelector('.is-scale i').style.width = `${p * 100}%`;
@@ -595,6 +641,7 @@ export function initInterstate(root) {
   root.__interstate = { setProgress: render, destroy() {
     disposed = true; cancelAnimationFrame(frame); observer.disconnect();
     window.removeEventListener('scroll', schedule); window.removeEventListener('resize', resize); reduced.removeEventListener('change', resize);
+    seek.destroy();
     video.pause(); video.removeAttribute('src'); video.querySelector('source')?.removeAttribute('src'); video.load();
     root.innerHTML = ''; root.classList.remove('is-reduced', 'is-unavailable'); delete root.__interstate;
   } };
