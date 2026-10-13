@@ -11,7 +11,7 @@ function createScrollSeekController(video) {
       clearTimeout(retryTimer);
       retryTimer = 0;
     }
-    if (destroyed || desiredTime === null || video.readyState < 2 || video.seeking) return;
+    if (destroyed || desiredTime === null || video.readyState < 2) return;
     const interval = matchMedia('(max-width: 700px)').matches ? 72 : 42;
     const wait = interval - (performance.now() - lastSeekAt);
     if (wait > 0) {
