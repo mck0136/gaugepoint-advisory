@@ -11,8 +11,9 @@ function createScrollSeekController(video) {
       clearTimeout(retryTimer);
       retryTimer = 0;
     }
-    if (destroyed || desiredTime === null || video.readyState < 2) return;
-    const interval = matchMedia('(max-width: 700px)').matches ? 72 : 42;
+    // Metadata is enough to seek; waiting for decoded data can stall a paused video.
+    if (destroyed || desiredTime === null || video.readyState < 1 || video.seeking) return;
+    const interval = 1000 / 30;
     const wait = interval - (performance.now() - lastSeekAt);
     if (wait > 0) {
       retryTimer = window.setTimeout(() => {
@@ -21,7 +22,8 @@ function createScrollSeekController(video) {
       }, wait);
       return;
     }
-    if (Math.abs(video.currentTime - desiredTime) <= 0.055) return;
+    // Even the initial .04s seek must run when no frame has been decoded yet.
+    if (Math.abs(video.currentTime - desiredTime) <= (video.readyState < 2 ? 0 : 1 / 60)) return;
     lastSeekAt = performance.now();
     video.currentTime = desiredTime;
   }
@@ -32,10 +34,11 @@ function createScrollSeekController(video) {
   }
 
   function onSeeked() {
-    if (desiredTime !== null && Math.abs(video.currentTime - desiredTime) > 0.055) applyLatest();
+    applyLatest();
   }
 
   video.addEventListener('seeked', onSeeked);
+  video.addEventListener('loadedmetadata', applyLatest);
   video.addEventListener('loadeddata', applyLatest);
 
   return {
@@ -44,6 +47,7 @@ function createScrollSeekController(video) {
       destroyed = true;
       clearTimeout(retryTimer);
       video.removeEventListener('seeked', onSeeked);
+      video.removeEventListener('loadedmetadata', applyLatest);
       video.removeEventListener('loadeddata', applyLatest);
     }
   };
@@ -166,7 +170,8 @@ export function initSupplyChainVideo(root) {
   function loadVideo() {
     if (mediaRequested || disposed) return;
     mediaRequested = true;
-    video.src = '/assets/videos/supply-chain-in-motion.mp4';
+    video.preload = 'auto';
+    video.src = '/assets/videos/supply-chain-in-motion.mp4?v=safari-video-4';
     video.load();
   }
   const observer = new IntersectionObserver(entries => {
@@ -592,18 +597,20 @@ export function initInterstate(root) {
     ['Authorize', 'Keep the backing move human-controlled.', 'A qualified driver performs the maneuver; authorized staff confirm the assigned dock and operating plan.'],
     ['Record', 'Make completion auditable.', 'Deterministic rules preserve appointment requirements, and the completed handoff is recorded.']
   ];
-  root.innerHTML = `<div class="is-pin"><div class="is-scene" aria-hidden="true"><video class="is-video" muted playsinline preload="metadata" tabindex="-1"><source src="./assets/videos/drayage-dock.mp4" type="video/mp4"></video></div><div class="is-shade" aria-hidden="true"></div><p class="is-eyebrow">AI IN THE FLOW OF TRANSPORTATION</p><div class="is-title"><h2>From dock arrival<br>to accountable handoff.</h2><p>One physical move. Clear context. Human-controlled execution.</p></div><div class="is-touchpoints">${points.map((p, i) => `<article class="is-touchpoint" data-is-point="${i}" ${i ? 'hidden' : ''}><span>0${i + 1} / ${p[0]}</span><h3>${p[1]}</h3><p>${p[2]}</p></article>`).join('')}</div><div class="is-scale"><span>ARRIVAL</span><div><i></i></div><span>DOCK HANDOFF</span></div><p class="is-equipment">DRAYAGE / 40-FT CONTAINER</p><p class="is-fallback" hidden>The sequence shows a drayage arrival and dock handoff, supported by verified shipment context, clear ownership, human-controlled vehicle movement, and an auditable record.</p></div>`;
+  root.innerHTML = `<div class="is-pin"><div class="is-scene" aria-hidden="true"><video class="is-video" muted playsinline preload="none" tabindex="-1"></video></div><div class="is-shade" aria-hidden="true"></div><p class="is-eyebrow">AI IN THE FLOW OF TRANSPORTATION</p><div class="is-title"><h2>From dock arrival<br>to accountable handoff.</h2><p>One physical move. Clear context. Human-controlled execution.</p></div><div class="is-touchpoints">${points.map((p, i) => `<article class="is-touchpoint" data-is-point="${i}" ${i ? 'hidden' : ''}><span>0${i + 1} / ${p[0]}</span><h3>${p[1]}</h3><p>${p[2]}</p></article>`).join('')}</div><div class="is-scale"><span>ARRIVAL</span><div><i></i></div><span>DOCK HANDOFF</span></div><p class="is-equipment">DRAYAGE / 40-FT CONTAINER</p><p class="is-fallback" hidden>The sequence shows a drayage arrival and dock handoff, supported by verified shipment context, clear ownership, human-controlled vehicle movement, and an auditable record.</p></div>`;
   const video = root.querySelector('.is-video');
   const seek = createScrollSeekController(video);
   const cards = [...root.querySelectorAll('.is-touchpoint')];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let frame = 0, disposed = false, height = 1;
+  let frame = 0, disposed = false, mediaRequested = false, height = 1;
   let duration = 10;
-  video.addEventListener('loadedmetadata', () => {
+  function mediaReady() {
+    if (disposed) return;
     if (Number.isFinite(video.duration)) duration = Math.max(.1, video.duration);
-    update();
-  });
-  video.addEventListener('loadeddata', update);
+    schedule();
+  }
+  video.addEventListener('loadedmetadata', mediaReady);
+  video.addEventListener('loadeddata', mediaReady);
   function render(value) {
     if (disposed) return;
     const p = THREE.MathUtils.clamp(value, 0, 1);
@@ -615,6 +622,7 @@ export function initInterstate(root) {
   }
   function update() {
     frame = 0;
+    if (disposed) return;
     if (reduced.matches) render(.5);
     else render(THREE.MathUtils.clamp(-root.getBoundingClientRect().top / Math.max(1, root.offsetHeight - height), 0, 1));
   }
@@ -625,12 +633,25 @@ export function initInterstate(root) {
     if (reduced.matches) render(.5); else update();
   }
   video.pause();
-  video.addEventListener('canplay', update);
-  video.addEventListener('progress', update);
-  video.addEventListener('error', () => { root.classList.add('is-unavailable'); root.querySelector('.is-fallback').hidden = false; });
+  video.addEventListener('canplay', mediaReady);
+  video.addEventListener('progress', schedule);
+  function mediaError() {
+    if (disposed) return;
+    root.classList.add('is-unavailable');
+    root.querySelector('.is-fallback').hidden = false;
+  }
+  video.addEventListener('error', mediaError);
+  function loadVideo() {
+    if (mediaRequested || disposed) return;
+    mediaRequested = true;
+    video.preload = 'auto';
+    video.src = '/assets/videos/drayage-dock.mp4?v=safari-video-4';
+    video.load();
+  }
   const observer = new IntersectionObserver(entries => {
+    if (disposed) return;
     const visible = entries[0].isIntersecting;
-    if (visible) { if (video.readyState === 0) video.load(); update(); }
+    if (visible) { loadVideo(); schedule(); }
     else video.pause();
   }, { rootMargin: '100% 0px' });
   observer.observe(root);
@@ -641,6 +662,8 @@ export function initInterstate(root) {
   root.__interstate = { setProgress: render, destroy() {
     disposed = true; cancelAnimationFrame(frame); observer.disconnect();
     window.removeEventListener('scroll', schedule); window.removeEventListener('resize', resize); reduced.removeEventListener('change', resize);
+    video.removeEventListener('loadedmetadata', mediaReady); video.removeEventListener('loadeddata', mediaReady);
+    video.removeEventListener('canplay', mediaReady); video.removeEventListener('progress', schedule); video.removeEventListener('error', mediaError);
     seek.destroy();
     video.pause(); video.removeAttribute('src'); video.querySelector('source')?.removeAttribute('src'); video.load();
     root.innerHTML = ''; root.classList.remove('is-reduced', 'is-unavailable'); delete root.__interstate;
