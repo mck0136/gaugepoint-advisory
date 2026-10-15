@@ -1,0 +1,42 @@
+.gp-demo { padding-inline: 3.5%; }
+.gp-demo > .gp-section-inner { width: min(100%, 1560px); }
+.gp-demo .demo-heading { max-width: 1080px; }
+.gp-demo-shell { box-shadow: none; background: #fff; }
+.platform-concepts > .demo-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 0 22px; border-bottom: 1px solid #10161a33; }
+.platform-concepts .demo-tab { min-height: 90px; grid-template-columns: 20px minmax(0, 1fr); align-items: center; padding: 18px; border: 0; border-bottom: 3px solid transparent; }
+.platform-concepts .demo-tab strong { font-size: 17px; line-height: 1.35; }
+.platform-concepts .demo-tab strong small { display: block; margin-top: 4px; font-size: 12px; font-weight: 400; }
+.platform-concepts .demo-tab > span { font-size: 11px; }
+.platform-concepts .demo-tab i { display: none; }
+.platform-concepts .demo-tab[aria-selected="true"] { background: #f2f4f0; border-bottom-color: #987029; }
+.platform-concepts .demo-panel { padding: 0; min-height: 0; }
+.platform-brief { margin: 0; padding: 20px 30px; background: #f1f3ee; color: #3c5544; font-size: 16px; line-height: 1.6; }
+.platform-brief > span { display: block; margin-bottom: 5px; color: #6b785f; font: 10px/1.5 var(--dev-mono); }
+.platform-story { display: grid; grid-template-columns: minmax(200px, .65fr) 1.5fr; gap: 28px; padding: 24px 30px; background: #fafbf8; }
+.platform-story h3 { margin: 0; font-size: 24px; line-height: 1.2; font-weight: 600; }
+.platform-story p { margin: 0; font-size: 15px; line-height: 1.6; color: #52605c; }
+.platform-app { display: block; min-width: 0; border-top: 1px solid #10161a26; font: 14px/1.5 var(--dev-sans); letter-spacing: 0; }
+.platform-app *, .platform-app button, .platform-app input { box-sizing: border-box; letter-spacing: 0; }
+.platform-app button, .platform-app input, .platform-app select, .platform-app textarea { font-family: var(--dev-sans); }
+.platform-app [hidden] { display: none !important; }
+.platform-app :is(button, input, select, textarea):focus-visible { outline: 2px solid #ae8d45; outline-offset: 3px; }
+.platform-disclaimer { padding: 18px 26px; margin: 0; border-top: 1px solid #dde2d9; color: #65725f; background: #fff; font-size: 12px; line-height: 1.65; }
+.platform-fallback, .workspace-error { padding: 26px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 780px) {
+  .platform-story { grid-template-columns: 1fr; gap: 12px; padding: 22px; }
+  .platform-concepts > .demo-tabs { padding: 0 8px; }
+  .platform-concepts .demo-tab { padding: 16px 10px; grid-template-columns: 1fr; gap: 8px; align-content: start; }
+  .platform-concepts .demo-tab strong { font-size: 15px; }
+}
+@media (max-width: 560px) {
+  .gp-demo .platform-app :is(input, select, textarea) { font-size: 16px; }
+  .gp-demo-shell { margin: 0; }
+  .platform-concepts > .demo-tabs { grid-template-columns: 1fr; padding: 6px 14px; }
+  .platform-concepts .demo-tab { min-height: 56px; grid-template-columns: 20px 1fr; align-items: center; padding: 12px 6px; border-bottom-width: 2px; }
+  .platform-concepts .demo-tab strong { font-size: 16px; }
+  .platform-story, .platform-brief { padding: 20px 18px; }
+  .platform-story h3 { font-size: 22px; }
+  .platform-brief, .platform-story p { font-size: 15px; }
+  .platform-disclaimer { padding: 17px; }
+}

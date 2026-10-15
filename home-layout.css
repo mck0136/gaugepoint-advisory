@@ -1,0 +1,166 @@
+/* Assessment-first homepage layout; shared navigation lives in site-shell.css. */
+#top,
+#approach,
+#technology-judgment,
+#before-ai,
+#readiness-system,
+#expertise,
+#audiences,
+#supply-chain,
+#interstate,
+#operating-system,
+#operating-transformation,
+#governance,
+#industry-evidence,
+#speaking-media,
+#freight-market,
+#founder,
+#contact {
+  scroll-margin-top: 88px;
+}
+
+#approach {
+  padding-top: 82px;
+  padding-bottom: 70px;
+}
+
+#founder .founder-layout { display: block; }
+#founder .biography { max-width: 76ch; }
+#founder .founder-byline { margin: 0 0 24px; color: #536068; font: 12px/1.6 var(--mono); }
+
+#supply-chain:not(.sc-unavailable):not(.sc-reduced) .sc-pin,
+#interstate:not(.is-unavailable):not(.is-reduced) .is-pin {
+  top: var(--gp-site-header-height);
+  height: calc(100svh - var(--gp-site-header-height));
+  min-height: 0;
+}
+
+@media (max-width: 700px) {
+  #approach {
+    padding-top: 58px;
+    padding-bottom: 54px;
+  }
+
+  #top.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(260px, 78vw) auto auto auto;
+    grid-template-areas:
+      "copy"
+      "scene"
+      "caption"
+      "controls"
+      "bottom";
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-top: 82px;
+    overflow: hidden;
+  }
+
+  #top .hero-copy {
+    grid-area: copy;
+    width: auto;
+    padding: 20px 6% 18px;
+  }
+
+  #top .hero-copy .eyebrow {
+    margin-bottom: 18px;
+  }
+
+  #top .hero-copy h1 {
+    font-size: clamp(40px, 10.3vw, 66px);
+  }
+
+  #top .hero-copy .intro {
+    margin: 18px 0 18px;
+  }
+
+  #top .hero-actions {
+    gap: 14px 20px;
+  }
+
+  #top .scene {
+    position: relative;
+    grid-area: scene;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+  }
+
+  #top .scene .fallback {
+    left: 12%;
+    right: auto;
+    top: 8%;
+    width: 76%;
+  }
+
+  #top .scene-caption {
+    position: static;
+    grid-area: caption;
+    align-self: center;
+    margin: 0 6%;
+    min-height: 32px;
+    font-size: 8px;
+  }
+
+  #top .scene-controls {
+    position: static;
+    grid-area: controls;
+    justify-self: end;
+    margin: 0 6% 14px;
+  }
+
+  #top .scene-controls button {
+    width: 40px;
+    height: 40px;
+  }
+
+  #top .drag-label {
+    margin-right: 8px;
+  }
+
+  #top .hero-bottom {
+    position: static;
+    grid-area: bottom;
+    min-height: 76px;
+    height: auto;
+    margin: 0 6%;
+  }
+
+  #top .hero-bottom p {
+    margin: 0;
+  }
+
+  #contact .contact-layout {
+    min-width: 0;
+  }
+
+  #contact .contact-layout > div {
+    min-width: 0;
+  }
+
+  #contact .contact-layout > div > a {
+    display: inline-block;
+    max-width: 100%;
+    font-size: clamp(12px, 3.8vw, 15px);
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+
+  #audiences .audience-layout,
+  #audiences .audience-preview {
+    min-width: 0;
+  }
+
+  #audiences .audience-buttons {
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #audiences .audience-buttons button {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}

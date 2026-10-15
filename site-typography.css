@@ -1,0 +1,225 @@
+/* Shared editorial typography for served Gaugepoint content pages. */
+body:not(.workspace.app) {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 18px;
+  font-stretch: normal;
+  letter-spacing: 0;
+  --site-title-size: 88px;
+  --site-section-size: 64px;
+  --site-subheading-size: 30px;
+}
+
+body:not(.workspace.app) :is(h1, h2, h3, h4, h5, h6, button, input, select, textarea) {
+  font-stretch: normal;
+  letter-spacing: 0;
+}
+
+body:not(.workspace.app) :is(.hero-copy h1, .page-hero h1, .article-hero h1, .gp-hero h1) {
+  max-width: 100%;
+  font-size: 88px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  line-height: 1.02;
+}
+
+body:not(.workspace.app) :is(
+  .section-heading h2,
+  .page-intro-grid h2,
+  .approach > h2,
+  .market h2,
+  .closing-content h2,
+  .article-body h2,
+  .gp-section-heading h2,
+  .gp-closing h2
+) {
+  font-size: 64px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  line-height: 1.04;
+}
+
+body:not(.workspace.app) :is(
+  .chapter h3,
+  .section h3,
+  .article-body h3,
+  .dimension-card h3,
+  .list-panel h3,
+  .application-card h3,
+  .ownership-step h3
+) {
+  font-size: 30px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+body:not(.workspace.app) :is(
+  .intro,
+  .page-hero-copy,
+  .wide-copy,
+  .section-heading > p:not(.eyebrow),
+  .page-copy p,
+  .prose p,
+  .lead-block p,
+  .article-body p,
+  .gp-hero-lede,
+  .gp-saas-copy,
+  .economics-copy,
+  .gp-intro
+) {
+  font-size: 18px;
+}
+
+body:not(.workspace.app) .gp-hero .gp-hero-question {
+  font-size: 68px;
+  font-weight: 600;
+}
+
+body:not(.workspace.app) :is(.cta, .secondary-cta, .button, .nav-contact, .contact-form label, .gp-primary-cta) {
+  font-size: 14px;
+}
+
+body:not(.workspace.app) :is(.header nav, .gp-header nav, .site-nav a) {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+body:not(.workspace.app) :is(.header nav, .gp-header nav) { gap: 24px; }
+.compact-navigation { display: none; }
+@media (max-width: 1024px) {
+  body:not(.workspace.app) :is(.header, .gp-header) > nav { display: none; }
+  .compact-navigation { display: block; position: relative; }
+  .compact-navigation summary { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border: 1px solid #ffffff60; border-radius: 6px; color: #f2f3ee; font-size: 14px; list-style: none; cursor: pointer; }
+  .compact-navigation summary::-webkit-details-marker { display: none; }
+  .compact-navigation summary:focus-visible { outline: 2px solid #cba660; outline-offset: 4px; }
+  .compact-navigation[open] summary { background: #203039; }
+  .compact-navigation-panel { position: absolute; top: calc(100% + 12px); right: 0; width: min(84vw, 320px); padding: 8px; border: 1px solid #ffffff40; border-radius: 6px; background: #10191e; color: #f2f3ee; box-shadow: 0 12px 28px #0005; }
+  .compact-navigation-panel a { display: flex; align-items: center; min-height: 44px; padding: 10px 12px; font-size: 14px; line-height: 1.4; }
+  .compact-navigation-panel a:hover { background: #203039; }
+}
+
+body:not(.workspace.app) :is(.eyebrow, .gp-eyebrow, .scroll-cue, .edition, .drag-label, .hero-bottom .edition) {
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+body:not(.workspace.app) :is(.brand, .gp-brand) {
+  font-size: 21px;
+  letter-spacing: 0;
+}
+
+body:not(.workspace.app) :is(.brand span, .gp-brand span) {
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+body:not(.workspace.app) :is(.header, .site-header, .gp-header) {
+  min-width: 0;
+}
+
+body:not(.workspace.app) :is(.hero-copy, .page-hero, .article-hero, .section-heading, .page-intro-grid) {
+  min-width: 0;
+}
+
+/* The mobile-first content templates have higher-specificity heading rules. */
+body:not(.workspace.app).mf-site :is(h1, h2, h3) {
+  font-weight: 600;
+  font-stretch: normal;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+body:not(.workspace.app).mf-site h1 { font-size: var(--site-title-size); line-height: 1.02; }
+body:not(.workspace.app).mf-site h2 { font-size: var(--site-section-size); line-height: 1.04; }
+body:not(.workspace.app).mf-site h3 { font-size: var(--site-subheading-size); line-height: 1.15; }
+
+@media (max-width: 1024px) {
+  body:not(.workspace.app) { --site-title-size: 64px; --site-section-size: 48px; }
+  body:not(.workspace.app) :is(.header nav > a:not(.nav-contact), .gp-header nav > a:not(.gp-nav-contact)) { display: none; }
+  body:not(.workspace.app) :is(.header .nav-contact, .gp-header .gp-nav-contact) { min-height: 44px; font-size: 12px; }
+  body:not(.workspace.app) .site-nav a { font-size: 14px; }
+  body:not(.workspace.app) :is(.hero-copy h1, .page-hero h1, .article-hero h1, .gp-hero h1) {
+    font-size: 64px;
+  }
+
+  body:not(.workspace.app) :is(
+    .section-heading h2,
+    .page-intro-grid h2,
+    .approach > h2,
+    .market h2,
+    .closing-content h2,
+    .article-body h2,
+    .gp-section-heading h2,
+    .gp-closing h2
+  ) {
+    font-size: 48px;
+  }
+
+  body:not(.workspace.app) .gp-hero .gp-hero-question {
+    font-size: 46px;
+  }
+}
+
+@media (max-width: 700px) {
+  body:not(.workspace.app) {
+    font-size: 16px;
+    --site-title-size: 48px;
+    --site-section-size: 36px;
+    --site-subheading-size: 26px;
+  }
+
+  body:not(.workspace.app) :is(.hero-copy h1, .page-hero h1, .article-hero h1, .gp-hero h1) {
+    font-size: 48px;
+  }
+
+  body:not(.workspace.app) :is(
+    .section-heading h2,
+    .page-intro-grid h2,
+    .approach > h2,
+    .market h2,
+    .closing-content h2,
+    .article-body h2,
+    .gp-section-heading h2,
+    .gp-closing h2
+  ) {
+    font-size: 36px;
+  }
+
+  body:not(.workspace.app) :is(
+    .chapter h3,
+    .section h3,
+    .article-body h3,
+    .dimension-card h3,
+    .list-panel h3,
+    .application-card h3,
+    .ownership-step h3
+  ) {
+    font-size: 26px;
+  }
+
+  body:not(.workspace.app) :is(
+    .intro,
+    .page-hero-copy,
+    .wide-copy,
+    .section-heading > p:not(.eyebrow),
+    .page-copy p,
+    .prose p,
+    .lead-block p,
+    .article-body p,
+    .gp-hero-lede,
+    .gp-saas-copy,
+    .economics-copy,
+    .gp-intro
+  ) {
+    font-size: 16px;
+  }
+
+  body:not(.workspace.app) .gp-hero .gp-hero-question {
+    font-size: 38px;
+  }
+
+  body:not(.workspace.app) :is(.brand, .gp-brand) {
+    font-size: 18px;
+  }
+}

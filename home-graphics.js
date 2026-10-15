@@ -36,7 +36,7 @@ function freezeMotion(svg) {
     svg.querySelectorAll('text').forEach(text => {
       if (/Awaiting|AUTHORITY GATE \/ CLOSED/.test(text.textContent)) text.remove();
     });
-    svg.querySelectorAll('circle[fill="#f0cf94"], circle[stroke="#f0cf94"]').forEach(circle => circle.remove());
+    svg.querySelectorAll('.desktop-view circle[fill="#f0cf94"], .desktop-view circle[stroke="#f0cf94"]').forEach(circle => circle.remove());
     svg.querySelectorAll('[stroke-dasharray="150 541"]').forEach(element => element.remove());
     svg.querySelectorAll('line[x1="395"]').forEach((line, index) => {
       line.setAttribute('y1', index === 0 ? '100' : '263');
@@ -50,6 +50,18 @@ function freezeMotion(svg) {
       line.setAttribute('y1', '373');
       line.setAttribute('y2', '422');
     });
+
+    const mobileView = svg.querySelector('.mobile-view');
+    mobileView?.querySelectorAll('.mobile-pending').forEach(element => element.setAttribute('display', 'none'));
+    mobileView?.querySelectorAll('.mobile-approved, .mobile-human-approved, .mobile-executed')
+      .forEach(element => element.setAttribute('opacity', '1'));
+    mobileView?.querySelectorAll('.mobile-gate-closed, .mobile-signal')
+      .forEach(element => element.setAttribute('opacity', '0'));
+    mobileView?.querySelectorAll('.mobile-gate-open, .mobile-recommendation, .mobile-action-log')
+      .forEach(element => element.setAttribute('opacity', '1'));
+    mobileView?.querySelector('.mobile-authority-gate')?.setAttribute('data-state', 'open');
+    mobileView?.querySelector('.mobile-gate-left')?.setAttribute('transform', 'translate(-30 0)');
+    mobileView?.querySelector('.mobile-gate-right')?.setAttribute('transform', 'translate(30 0)');
   }
 }
 

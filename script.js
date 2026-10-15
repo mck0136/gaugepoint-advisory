@@ -6,6 +6,7 @@ const content = window.GAUGEPOINT_CONTENT || {};
 const navigation = [
   ["ai-readiness", "AI Readiness", "ai-readiness/"],
   ["operating-transformation", "Operating Transformation", "operating-transformation/"],
+  ["ai-native-development", "Software Platforms", "ai-native-development/"],
   ["ai-in-transportation", "AI in Transportation", "ai-in-transportation/"],
   ["speaking-media", "Speaking & Media", "speaking-media/"],
   ["about", "About", "about/"]
@@ -15,8 +16,9 @@ const pageUrl = (path = "") => `${root}${path}`;
 const externalLink = (url, label) =>
   `<a class="text-link external-link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
 
+const usesSharedShell = Boolean(document.querySelector("script[data-site-shell]"));
 const headerTarget = document.querySelector("#site-header");
-if (headerTarget) {
+if (headerTarget && !usesSharedShell) {
   const navLinks = navigation.map(([key, label, href]) => {
     const current = currentPage === key ? ' aria-current="page"' : "";
     return `<a href="${pageUrl(href)}"${current}>${label}</a>`;
@@ -42,7 +44,7 @@ const main = document.querySelector("main");
 if (main && !main.id) main.id = "main-content";
 
 const footerTarget = document.querySelector("#site-footer");
-if (footerTarget) {
+if (footerTarget && !usesSharedShell) {
   footerTarget.innerHTML = `
     <footer class="site-footer">
       <div class="container footer-grid">

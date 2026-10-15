@@ -98,7 +98,7 @@ try {
   function resize() {
     const width = host.clientWidth, height = host.clientHeight;
     renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
-    if (width <= 700) { world.position.set(0, 1.65, 0); world.scale.setScalar(.38); camera.position.z = 11.8; }
+    if (width <= 700) { world.position.set(0, 0, 0); world.scale.setScalar(1.2); camera.position.z = 11.8; }
     else { world.position.set(2.45, .05, 0); world.scale.setScalar(1.08); camera.position.z = 11.4; }
     camera.updateProjectionMatrix();
   }
